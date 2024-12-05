@@ -2,5 +2,7 @@ export default {
   // config options
   root: 'src',
   publicDir: '../public',
-  outDir: '../dist'
+  build: {
+    outDir: '../dist',
+  }
 }

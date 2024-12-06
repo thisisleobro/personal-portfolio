@@ -4,29 +4,67 @@
 		<meta charset="UTF-8" />
 		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
 		<title>Vite App</title>
 	</head>
-	<body>
-		<div id="app">
-			<div>
-				<a href="https://vite.dev" target="_blank">
-					<img src="./vite.svg" class="logo" alt="Vite logo" />
-				</a>
-				<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-					<img src="./javascript.svg" class="logo vanilla" alt="JavaScript logo" />
-				</a>
-				<h1>Hello Vite!</h1>
-				<div class="card">
-					<button id="counter" type="button"></button>
-				</div>
-				<p class="read-the-docs">
-					Click on the Vite logo to learn more
-				</p>
+	<body class="mx-4">
+		<nav id="top-bar" class="flex justify-between fixed p-4 w-svw left-0">
+			<span>Leo Carvalho</span>
 
-				<p>Test deployment</p>
-				<p class="text-3xl font-bold underline">Tailwind test</p>
+			<div id="top-navigation" class="flex gap-4">
+				<a href="#hero" class="active">About</a>
+				<a href="#projects">Projects</a>
+				<a href="#contact">Contact</a>
 			</div>
-		</div>
+		</nav>
+		<section id="hero" class="h-svh bg-slate-200">
+			<div id="hero-container" class="flex flex-row m-auto container align-middle">
+				<div class="f fi j-right a-start" style="width:300px">
+					<img
+					width="160px"
+					src="face.svg"
+					>
+					<!-- src="face.jpg" -->
+					<!-- src="https://images.unsplash.com/photo-1709651669999-57741c9bf085?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" -->
+					<!-- src="profile.avif" -->
+				</div>
+				<div id="hero-right" class="fi f g-medium m0">
+					<h1>
+						I'm Leo. I <span class="colored">design</span></br>
+						and <span class="colored">develop</span></br>
+						in my free time
+					</h1>
+
+					<div class="f column g-small">
+						<p>
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg>
+							Available for work through company
+						</p>
+
+						<p>
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+							Praia, Cape Verde
+						</p>
+
+						<p>
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+							carvalho@post.com
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section id="projects" class="h-svh">
+			
+			<div id="repos" class="flex flex-row bg-slate-100 rounded-xl p-8 dark:bg-slate-800"/>
+		</section>
+
+		<section id="contact" class="h-svh">
+			
+		</section>
+		
 		<script type="module" src="/main.js"></script>
 	</body>
 </html>

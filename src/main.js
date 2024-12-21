@@ -29,7 +29,7 @@ import './style.css'
 
 
 const sections = document.querySelectorAll("body > section");
-const navLi = document.querySelectorAll("#top-navigation > a");
+const navLi = document.querySelectorAll("#nav-links > a");
 
 window.addEventListener('scroll', () => {
 	console.log('scroll')

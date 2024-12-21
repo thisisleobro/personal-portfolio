@@ -6,6 +6,25 @@
 	font-family: "poppins", sans-serif;
 }
 
+html, #profile {
+	scroll-behavior: smooth;
+	scrollbar-width: thin;
+}
+
+body {
+	@apply text-slate-800 stroke-slate-800;
+}
+
+#profile {
+	fill: none;
+	stroke-width: 2px;
+	height: 200px;
+}
+
+.feather {
+	width: 1rem;
+}
+
 @layer components {
 	.btn-primary {
 		@apply py-2 px-5 bg-violet-500 text-white font-semibold rounded-full shadow-md hover:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-400 focus:ring-opacity-75;
@@ -13,5 +32,20 @@
 
 	.active {
 		@apply text-blue-600
+	}
+
+	.feather-circle {
+		@apply text-green-500
+	}
+
+	.feather-map-pin {
+		@apply text-red-500
+	}
+
+	.feather-mail {
+		@apply text-yellow-500
+	}
+	.feather-github {
+		@apply text-white
 	}
 }

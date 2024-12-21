@@ -39,6 +39,8 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
+      - name: Retrieve public repos
+        run: curl "https://api.github.com/users/thisisleobro/repos" -o repos.json
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact

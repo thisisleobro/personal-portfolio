@@ -1,0 +1,54 @@
+---
+import Layout from '../../layouts/Layout.astro'
+
+import i18next from 'i18next'
+
+export const getStaticPaths = (() => {
+	return [
+		{ params: { lang: 'en' }, props: {} },
+		{ params: { lang: 'pt' }, props: {} },
+	];
+})
+
+
+console.log('currentLocale:', Astro.currentLocale)
+await i18next.changeLanguage(Astro.currentLocale)
+
+import Hero from '../../components/Hero.astro';
+import Projects from '../../components/Projects.astro';
+import Repos from '../../components/Repos.astro';
+import Navigation from '../../components/Navigation.astro';
+---
+<Layout>
+<div id="container" class="mx-4">
+	<Navigation/>
+	<Hero/>
+	<Projects/>	
+	<Repos/>
+
+	<script type="text/javascript">
+		const sections = document.querySelectorAll("#container > section");
+		const navLi = document.querySelectorAll("#nav-links > a");
+
+		window.addEventListener('scroll', () => {
+			// console.log('scroll')
+			let currentSectionId = "";
+
+			sections.forEach((section) => {
+				const sectionTop = section.offsetTop;
+				if (scrollY >= sectionTop - 300) {
+					currentSectionId = section.getAttribute("id");
+				}
+			});
+
+			navLi.forEach((li) => {
+				li.classList.remove("active");
+
+				if (li.href.includes(currentSectionId)) {
+					li.classList.add('active');
+				}
+			});
+		}, { passive: true })
+	</script>
+</div>
+</Layout>

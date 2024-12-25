@@ -1,0 +1,14 @@
+---
+import githubRepos from '../../repos.json'
+import packageIcon from '../assets/icons/package.svg?raw'
+import github from '../assets/icons/github.svg?raw'
+---
+<section id="repos" class="flex flex-col align-middle gap-8 max-w-3xl mx-auto">
+	<h2 class="text-xl font-semibold text-center pt-4">Public repos</h2>
+	<ul id="github-repos" class="flex flex-col gap-8">
+		{githubRepos.map((repo) => <li class="flex flex-col gap-2">
+			<a href={repo.html_url} class="flex align-middle gap-2"><Fragment set:html={packageIcon} /> {repo.name}</a> 
+			<p>{repo.description ?? '...'}</p>
+		</li>)}
+	</ul>
+</section>

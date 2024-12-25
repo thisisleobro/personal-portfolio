@@ -1,0 +1,50 @@
+---
+// import circle from '../assets/icons/circle.svg?raw'
+import mapPin from '../assets/icons/map-pin.svg?raw'
+import mail from '../assets/icons/mail.svg?raw'
+import profile from '../assets/profile.svg?raw'
+
+import {t} from 'i18next'
+
+---
+<section id="hero" class="min-h-svh flex align-middle justify-center">
+	<div id="hero-container" class="flex flex-col sm:flex-row m-auto align-middle gap-8">
+		<div class="flex sm:justify-end justify-center flex-1 w-96">
+			<Fragment set:html={profile} />
+		</div>
+		<div id="hero-right" class="flex flex-col m-0 gap-4 justify-center flex-1">
+			<h1 class="text-2xl font-bold leading-9 text-center sm:text-left">
+				<Fragment set:html={t('hero_design')} />
+				<br/>
+				<Fragment set:html={t('hero_develop')} />
+				<br/>
+				<Fragment set:html={t('in_my_free_time')} />
+			</h1>
+
+			<div class="flex flex-col gap-1">
+				<!-- <p class="flex gap-1 align-middle m-auto sm:ml-0" id="available">
+					<Fragment set:html={circle} />
+					Available for work through company
+				</p> -->
+
+				<p class="flex gap-1 align-middle m-auto sm:ml-0" id="location">
+					<Fragment set:html={mapPin} />
+					{t('location')}
+				</p>
+
+
+
+				<p class="flex gap-1 align-middle m-auto sm:ml-0" id="email">
+					<!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> -->
+					<Fragment set:html={mail} />
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+<script is:inline>
+	const email = ['c', 'a', 'r', 'v', 'a', 'l', 'h', 'o', '@', 'p', 'o', 's', 't', '.', 'c', 'o', 'm']
+	const emailElement = document.getElementById('email')
+
+	emailElement.append(email.join(''))
+</script>

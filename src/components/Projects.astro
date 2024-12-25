@@ -1,0 +1,64 @@
+---
+import github from '../assets/icons/github.svg?raw'
+import down from '../assets/icons/down.svg?raw'
+
+import {t} from 'i18next'
+---
+<section id="projects"
+class="flex flex-col align-middle gap-8 max-w-3xl mx-auto relative -top-12 mb-16">
+	<h2 class="text-xl font-semibold text-center pt-4 flex align-middle justify-center">{t('projects')} <Fragment set:html={down} /></h2>	
+	
+	<div class="flex flex-col gap-16">
+
+		<!-- First project -->
+		<div class="flex flex-col-reverse sm:flex-row gap-4 ">
+			<div class="flex flex-col flex-1 justify-between gap-2">
+				<div class="flex flex-col gap-2">
+					<h3 class="text-xl font-semibold sm:text-left text-center text-gray-700">Keypirinha QR Code</h3>
+					
+					<p class="sm:text-left text-center">A <a href="https://keypirinha.com/" target="_blank">Keypirinha</a> plugin to<br/>convert text to QR Code </p>
+					<p class="sm:text-left text-center text-sm">✔ Copy QR code image to clipboard</p>
+					<p class="sm:text-left text-center text-sm">✔ Open as image in default viewer</p>
+				</div>
+
+				<div class="flex sm:ml-0 mx-auto gap-4">
+					<a class="transition-all delay-75 min-h-8 min-w-8 m-auto flex justify-center rounded"
+					href="https://github.com/thisisleobro/Keypirinha-qrcode"
+					target="_blank">
+						<Fragment set:html={github} />
+					</a>
+				</div>
+			</div>
+
+			<div class="flex-1">
+				<!-- <img src="./keypirinha-qrcode.gif" class="rounded"> -->
+				<video src="./keypirinha-qrcode.mp4" autoplay loop />
+			</div>
+		</div>
+
+		<!-- Second project -->
+		<div class="flex flex-col sm:flex-row gap-4">
+			<div class="flex-1">
+				<img src="./kantu.png" class="rounded">
+			</div>
+
+			<div class="flex flex-col flex-1 justify-between">
+				<div>
+					<h3 class="text-xl font-semibold sm:text-right text-center">Kantu</h3>
+					
+					<p class="sm:text-right text-center">An app to get product prices<br/>from various ERPs</p>
+					<p class="sm:text-right text-center text-sm">To be released</p>
+				</div>
+
+				<!-- <div class="flex sm:mr-0 mx-auto gap-4">
+					<a>
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+					</a>
+					<a>
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-code"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+					</a>
+				</div> -->
+			</div>
+		</div>				
+	</div>
+</section>

@@ -1,0 +1,37 @@
+---
+import i18next from 'i18next'
+import Backend from 'i18next-fs-backend'
+
+// @ts-ignore
+import path from 'node:path'
+
+await i18next.use(Backend).init({
+	fallbackLng: 'en',
+	debug: true,
+	lng: Astro.currentLocale,
+	// preload: ['en', 'pt'],
+	ns: ['translation'],
+	defaultNS: 'translation',
+	backend: {
+		loadPath: path.join('.', 'locales/{{lng}}/{{ns}}.json')
+	},
+})
+
+
+// return Astro.redirect('/en')
+---
+<script>
+	const suportedLanguages = ['pt', 'en']
+
+	const storedLocale = localStorage.getItem('locale')
+
+	if (suportedLanguages.includes(storedLocale)) {
+		window.location.pathname = storedLocale
+	} else {
+		const matchingLanguage = navigator.languages
+			.map(language => language.slice(0, 2))
+			.find((language) => suportedLanguages.includes(language))
+
+		window.location.pathname = matchingLanguage? matchingLanguage: 'en'
+	}
+</script>

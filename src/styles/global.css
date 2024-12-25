@@ -6,12 +6,16 @@
 	font-family: "poppins", sans-serif;
 }
 
-html, #profile {
+html,
+body {
 	scroll-behavior: smooth;
 	scrollbar-width: thin;
+	margin: 0;
+	width: 100%;
+	height: 100%;
 }
 
-body {
+#container {
 	@apply text-slate-800 stroke-slate-800;
 }
 
@@ -34,18 +38,18 @@ body {
 		@apply text-blue-600
 	}
 
-	.feather-circle {
+	#available > svg {
 		@apply text-green-500
 	}
 
-	.feather-map-pin {
+	#location > svg {
 		@apply text-red-500
 	}
 
-	.feather-mail {
+	#email > svg {
 		@apply text-yellow-500
 	}
-	.feather-github {
+	/*.feather-github {
 		@apply text-white
-	}
+	}*/
 }

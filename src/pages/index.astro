@@ -20,7 +20,7 @@ await i18next.use(Backend).init({
 
 // return Astro.redirect('/en')
 ---
-<script>
+<script is:inline>
 	const suportedLanguages = ['pt', 'en']
 
 	const storedLocale = localStorage.getItem('locale')

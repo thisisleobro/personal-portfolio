@@ -3,20 +3,18 @@
 	<option value="/pt" {...{selected: Astro.currentLocale === 'pt'}} class="language-option">PT</option>
 </select>
 <script is:inline>
-	const languageOptionElements = document.getElementsByClassName('language-option')
+	const languageSelect = document.getElementById('languages')
 
-	for (let i = 0; i < languageOptionElements.length; i++) {
-		languageOptionElements[i].onclick = () => {
-			const url = window.location
-			const locale = languageOptionElements[i].value
+	languageSelect.onchange = (event) => {
+		const url = window.location
+		const locale = event.target.value
 
-			localStorage.setItem('locale', locale.split('/')[1])
+		localStorage.setItem('locale', locale.split('/')[1])
 
-			url.pathname = [
-				locale,
-				...url.pathname.split('/').slice(2)
-			].join('/')
-		}
+		url.pathname = [
+			locale,
+			...url.pathname.split('/').slice(2)
+		].join('/')
 	}
 </script>
 <style>

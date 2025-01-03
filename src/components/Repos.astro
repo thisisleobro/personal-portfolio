@@ -1,5 +1,7 @@
 ---
-import githubRepos from '../../repos.json'
+const response = await fetch('https://api.github.com/users/thisisleobro/repos');
+const githubRepos = await response.json();
+// import githubRepos from '../../repos.json'
 import packageIcon from '../assets/icons/package.svg?raw'
 import github from '../assets/icons/github.svg?raw'
 ---

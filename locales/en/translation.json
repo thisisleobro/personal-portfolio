@@ -1,7 +1,17 @@
 {
-	"hero_design": "I'm Leo. I <span class=\"active\">design</span>",
-	"hero_develop": "and <span class=\"active\">develop</span>",
-	"in_my_free_time": "in my free time",
-	"location": "Praia, Cape Verde",
-	"projects": "Projects"
+	"hero": {
+		"title": "About",
+		"design": "I'm Leo. I <span class=\"active\">design</span>",
+		"develop": "and <span class=\"active\">develop</span>",
+		"in_my_free_time": "in my free time",
+		"location": "Praia, Cape Verde"
+	},
+	"projects": {
+		"title": "Projects",
+		"subtitle": "Trying to make a living out of this. Not there yet."
+	},
+	"repos": {
+		"title": "Open source",
+		"subtitle": "Want to contribute more to open source."
+	}
 }

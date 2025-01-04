@@ -29,6 +29,14 @@ body {
 	width: 1rem;
 }
 
+.links .feather {
+	width: 1.3rem;
+}
+
+.project svg {
+	width: 1.3rem;;
+}
+
 @layer components {
 	.btn-primary {
 		@apply py-2 px-5 bg-violet-500 text-white font-semibold rounded-full shadow-md hover:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-400 focus:ring-opacity-75;
@@ -49,7 +57,7 @@ body {
 	#email > svg {
 		@apply text-yellow-500
 	}
-	/*.feather-github {
-		@apply text-white
-	}*/
+	.star svg {
+		@apply text-yellow-500
+	}
 }

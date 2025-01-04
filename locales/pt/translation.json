@@ -1,7 +1,17 @@
 {
-	"hero_design": "Sou o Leo. <span class=\"active\">Projeto</span>",
-	"hero_develop": "e <span class=\"active\">Desenvolvo</span>",
-	"in_my_free_time": "no meu tempo livre",
-	"location": "Praia, Cabo Verde",
-	"projects": "Projetos"
+	"hero": {
+		"title": "Sobre",
+		"design": "Sou o Leo. <span class=\"active\">Projeto</span>",
+		"develop": "e <span class=\"active\">Desenvolvo</span>",
+		"in_my_free_time": "no meu tempo livre",
+		"location": "Praia, Cabo Verde"
+	},
+	"projects": {
+		"title": "Projetos",
+		"subtitle": "Tentando viver disto. Impossivel para ja."
+	},
+	"repos": {
+		"title": "Open source",
+		"subtitle": "Tentando contribuir mais para comunidade open source."
+	}
 }

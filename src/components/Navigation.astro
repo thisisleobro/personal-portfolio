@@ -1,14 +1,52 @@
 ---
 import Language from '../components/Language.astro'
+import {t} from 'i18next'
 ---
-<nav class="flex justify-between fixed p-4 w-svw left-0 z-50 bg-white sm:bg-transparent">
+<nav class="flex justify-between fixed p-4 w-svw left-0 z-50 bg-white" id="navigation">
 	<span>Leo Carvalho</span>
 
 	<div id="nav-links" class="flex gap-4">
-		<a href="#hero" class="active">About</a>
-		<a href="#projects">Projects</a>
-		<a href="#repos">Open source</a>		
+		<a href="#hero" class="active">{t('hero.title')}</a>
+		<a href="#projects">{t('projects.title')}</a>
+		<a href="#repos">{t('repos.title')}</a>		
 		<!-- <a href="#contact">Contact</a> -->
 		<Language/>
 	</div>
 </nav>
+
+<script is:inline>
+	document.addEventListener('DOMContentLoaded', function() {
+		const sections = document.querySelectorAll("#container > section");
+		const navLi = document.querySelectorAll("#nav-links > a");
+		const navigation = document.getElementById('navigation');
+
+		window.addEventListener('scroll', () => {
+			// console.log('scroll')
+			// add border to navigation
+			if (scrollY > 100) {
+				navigation.classList.add('border-b')
+			} else {
+				navigation.classList.remove('border-b')
+			}
+
+
+			// highlight navigation
+			let currentSectionId = "";
+
+			sections.forEach((section) => {
+				const sectionTop = section.offsetTop;
+				if (scrollY >= sectionTop - 300) {
+					currentSectionId = section.getAttribute("id");
+				}
+			});
+
+			navLi.forEach((li) => {
+				li.classList.remove("active");
+
+				if (li.href.includes(currentSectionId)) {
+					li.classList.add('active');
+				}
+			});
+		}, { passive: true })
+	}, false);
+</script>

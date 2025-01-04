@@ -26,19 +26,17 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 20.14.0
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
-      - name: Retrieve public repos
-        run: curl "https://api.github.com/users/thisisleobro/repos" -o repos.json
       - name: Build
         run: npm run build
       - name: Setup Pages

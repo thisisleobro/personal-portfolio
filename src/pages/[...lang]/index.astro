@@ -11,7 +11,7 @@ export const getStaticPaths = (() => {
 })
 
 
-console.log('currentLocale:', Astro.currentLocale)
+// console.log('currentLocale:', Astro.currentLocale)
 await i18next.changeLanguage(Astro.currentLocale)
 
 import Hero from '../../components/Hero.astro';

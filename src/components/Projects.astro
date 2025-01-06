@@ -1,8 +1,12 @@
 ---
 import github from '../assets/icons/github.svg?raw'
 import down from '../assets/icons/down.svg?raw'
+import play from '../assets/icons/play.svg?raw'
 
 import {t} from 'i18next'
+import { Image } from 'astro:assets'
+import kantu from '../assets/kantu.png'
+import keypirinhaQrCode from '../assets/keypirinha-qrcode.jpg'
 ---
 <section id="projects"
 class="flex flex-col align-middle gap-8 max-w-3xl mx-auto relative -mt-12 mb-24"
@@ -37,16 +41,61 @@ class="flex flex-col align-middle gap-8 max-w-3xl mx-auto relative -mt-12 mb-24"
 				</div>
 			</div>
 
-			<div class="flex-1">
+			<div class="flex-1 relative" id='kantu-media'>
 				<!-- <img src="./keypirinha-qrcode.gif" class="rounded"> -->
-				<video src="/keypirinha-qrcode.mp4"  autoplay loop controls/>
+				<video
+				src="/keypirinha-qrcode.mp4"
+				autoplay
+				loop
+				poster={keypirinhaQrCode.src}
+				id="kantu-video"
+				class="rounded"
+				/>
+				<!-- <Image src={keypirinhaQrCode} alt='keypirinha QR Code' class='rounded' id='kantu-preview'/> -->
+				<div class="absolute top-0 bottom-0 left-0 right-0 flex align-middle justify-center" id="play">
+					<Fragment set:html={play}/>
+				</div>
+				<script is:inline>
+					const kantuMediaElement = document.getElementById('kantu-media')
+					const kantuVideo = document.getElementById('kantu-video')
+					const kantuPlayOverlay = document.getElementById('play')
+
+					const playVideo = (event) => {
+						event.stopPropagation()
+						// console.log('play', event)
+						kantuVideo.play()
+						kantuMediaElement.removeChild(kantuPlayOverlay)
+
+						kantuMediaElement.onclick = pauseVideo
+					}
+
+					kantuMediaElement.onclick = playVideo
+
+					kantuPlayOverlay.onclick = playVideo
+
+					const pauseVideo = (event) => {
+						event.stopPropagation()
+						// console.log('pause', event)
+						kantuVideo.pause()
+						kantuMediaElement.appendChild(kantuPlayOverlay)
+						
+						kantuMediaElement.onclick = playVideo
+					}
+
+
+					// kantuVideoElement.onclick = (event) => {
+					// 	// const kantuPreviewElement = document.getElementById('kantu-preview')
+					// 	kantuVideoElement.removeChild(kantuPreviewElement)
+					// }
+				</script>
 			</div>
 		</div>
 
 		<!-- Second project -->
 		<div class="flex flex-col sm:flex-row gap-4">
 			<div class="flex-1">
-				<img src="/kantu.png" class="rounded">
+				<!-- <img src="/kantu.png" class="rounded"> -->
+				<Image src={kantu} alt="kantu" class='rounded'/>
 			</div>
 
 			<div class="flex flex-col flex-1 justify-between">

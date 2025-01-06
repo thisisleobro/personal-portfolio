@@ -25,6 +25,18 @@ body {
 	height: 200px;
 }
 
+#kantu-video {
+	cursor: pointer;
+}
+
+#play {
+	color: white;
+}
+
+#play svg {
+	width: 2rem;
+}
+
 .feather {
 	width: 1rem;
 }

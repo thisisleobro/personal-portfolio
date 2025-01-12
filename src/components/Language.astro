@@ -1,6 +1,21 @@
-<select id="languages" class="bg-transparent">
-	<option value="/en" {...{selected: Astro.currentLocale === 'en'}} class="language-option">EN</option>
-	<option value="/pt" {...{selected: Astro.currentLocale === 'pt'}} class="language-option">PT</option>
+---
+import {t} from 'i18next'
+---
+<select id="languages" class="bg-transparent" aria-label={t('languages')}>
+	<option
+	value="/en"
+	{...{selected: Astro.currentLocale === 'en'}}
+	class="language-option"
+	>
+		EN
+	</option>
+	<option
+	value="/pt"
+	{...{selected: Astro.currentLocale === 'pt'}}
+	class="language-option"
+	>
+		PT
+	</option>
 </select>
 <script is:inline>
 	const languageSelect = document.getElementById('languages')

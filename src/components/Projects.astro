@@ -4,9 +4,10 @@ import down from '../assets/icons/down.svg?raw'
 import play from '../assets/icons/play.svg?raw'
 
 import {t} from 'i18next'
-import { Image } from 'astro:assets'
+import { Picture, getImage } from 'astro:assets'
 import kantu from '../assets/kantu.png'
 import keypirinhaQrCode from '../assets/keypirinha-qrcode.jpg'
+const optimizedKeypirinhaQrCode = await getImage({src: keypirinhaQrCode, width: 1024})
 ---
 <section id="projects"
 class="flex flex-col align-middle gap-8 max-w-3xl mx-auto relative -mt-12 mb-24"
@@ -47,7 +48,7 @@ class="flex flex-col align-middle gap-8 max-w-3xl mx-auto relative -mt-12 mb-24"
 				src="/keypirinha-qrcode.mp4"
 				autoplay
 				loop
-				poster={keypirinhaQrCode.src}
+				poster={optimizedKeypirinhaQrCode.src}
 				id="kantu-video"
 				class="rounded"
 				/>
@@ -95,7 +96,7 @@ class="flex flex-col align-middle gap-8 max-w-3xl mx-auto relative -mt-12 mb-24"
 		<div class="flex flex-col sm:flex-row gap-4">
 			<div class="flex-1">
 				<!-- <img src="/kantu.png" class="rounded"> -->
-				<Image src={kantu} alt="kantu" class='rounded'/>
+				<Picture src={kantu} alt="kantu" class='rounded' width={kantu.width / 2} densities={[1.5, 3]}/>
 			</div>
 
 			<div class="flex flex-col flex-1 justify-between">

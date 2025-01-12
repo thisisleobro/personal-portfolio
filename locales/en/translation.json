@@ -1,4 +1,8 @@
 {
+	"languages": "Languages",
+	"my_email": "My email",
+	"my_github": "My Github profile",
+	"description": "Personal portfolio of Leo Carvalho",
 	"hero": {
 		"title": "About",
 		"design": "I'm Leo. I <span class=\"active\">design</span>",

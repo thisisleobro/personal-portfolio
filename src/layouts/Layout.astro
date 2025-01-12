@@ -3,6 +3,8 @@ import '../styles/global.css'
 import profile from '../assets/profile.svg'
 
 const enableAnalytics = import.meta.env.PROD && !import.meta.env.DISABLE_ANALYTICS
+const umamiWebsiteId = import.meta.env.UMAMI_WEBSITE_ID
+
 ---
 <!doctype html>
 <html lang={Astro.currentLocale}>
@@ -20,6 +22,8 @@ const enableAnalytics = import.meta.env.PROD && !import.meta.env.DISABLE_ANALYTI
 				person_profiles: 'always' // or 'always' to create profiles for anonymous users as well
 			})
 		</script>}
+
+		{umamiWebsiteId && <script is:inline defer src="https://analytics.carvalho.cv/script.js" data-website-id={umamiWebsiteId}></script>}
 	</head>
 	<body>
 		<slot />

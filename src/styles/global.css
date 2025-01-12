@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-	font-family: "poppins", sans-serif;
-}
-
 html,
 body {
 	scroll-behavior: smooth;

@@ -1,5 +1,5 @@
 ---
-import i18next from 'i18next'
+import i18next, {t} from 'i18next'
 import Backend from 'i18next-fs-backend'
 
 // @ts-ignore
@@ -17,21 +17,43 @@ await i18next.use(Backend).init({
 	},
 })
 
+import profile from '../assets/profile.svg'
+
+import {title} from '../constants'
+import Analytics from '../components/Analytics.astro'
 
 // return Astro.redirect('/en')
 ---
-<script is:inline>
-	const suportedLanguages = ['pt', 'en']
 
-	const storedLocale = localStorage.getItem('locale')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="icon" type="image/svg+xml" href={profile.src} />
+	<meta name="generator" content={Astro.generator} />
+	<title>{title}</title>
+	<meta name="description" content={t('description')}>
+	<meta name="author" content="Leo Carvalho">	<Analytics />
+	<script is:inline>
+		const suportedLanguages = ['pt', 'en']
 
-	if (suportedLanguages.includes(storedLocale)) {
-		window.location.pathname = storedLocale
-	} else {
-		const matchingLanguage = navigator.languages
-			.map(language => language.slice(0, 2))
-			.find((language) => suportedLanguages.includes(language))
+		const storedLocale = localStorage.getItem('locale')
 
-		window.location.pathname = matchingLanguage? matchingLanguage: 'en'
-	}
-</script>
+		if (suportedLanguages.includes(storedLocale)) {
+			window.location.pathname = storedLocale
+		} else {
+			const matchingLanguage = navigator.languages
+				.map(language => language.slice(0, 2))
+				.find((language) => suportedLanguages.includes(language))
+
+			window.location.pathname = matchingLanguage? matchingLanguage: 'en'
+		}
+	</script>
+</head>
+<body>
+	Redirecting to your language
+</body>
+</html>

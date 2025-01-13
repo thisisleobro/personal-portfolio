@@ -1,5 +1,5 @@
 ---
-import i18next, {t} from 'i18next'
+import i18next from 'i18next'
 import Backend from 'i18next-fs-backend'
 
 // @ts-ignore
@@ -17,26 +17,21 @@ await i18next.use(Backend).init({
 	},
 })
 
-import profile from '../assets/profile.svg'
-
-import {title} from '../constants'
-import Analytics from '../components/Analytics.astro'
-
 // return Astro.redirect('/en')
+import profile from '../assets/profile.svg'
+import Analytics from '../components/Analytics.astro'
 ---
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="robots" content="noindex" />
+	<title>/</title>
 	<link rel="icon" type="image/svg+xml" href={profile.src} />
-	<meta name="generator" content={Astro.generator} />
-	<title>{title}</title>
-	<meta name="description" content={t('description')}>
-	<meta name="author" content="Leo Carvalho">	<Analytics />
+	<Analytics/>
+</head>
+<body>
 	<script is:inline>
 		const suportedLanguages = ['pt', 'en']
 
@@ -52,8 +47,13 @@ import Analytics from '../components/Analytics.astro'
 			window.location.pathname = matchingLanguage? matchingLanguage: 'en'
 		}
 	</script>
-</head>
-<body>
-	Redirecting to your language
+	<div class="flex items-center justify-center flex-col gap-4 min-h-dvh">
+		<h1>You may have javascript disabled. If so pick your language manually</h1>
+		<ul class="flex gap-4">
+			{['pt', 'en'].map((language) =><li>
+				<a href={language} class="text-blue-500 underline">{language.toUpperCase()}</a>
+			</li>)}
+		</ul>
+	</div>
 </body>
 </html>

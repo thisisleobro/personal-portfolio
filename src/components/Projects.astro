@@ -2,6 +2,8 @@
 import github from '../assets/icons/github.svg?raw'
 import down from '../assets/icons/down.svg?raw'
 import play from '../assets/icons/play.svg?raw'
+import check from '../assets/icons/check.svg?raw'
+import loader from '../assets/icons/loader.svg?raw'
 
 import {t} from 'i18next'
 import { Picture, getImage } from 'astro:assets'
@@ -29,8 +31,12 @@ class="flex flex-col align-middle gap-8 max-w-3xl mx-auto relative -mt-12 mb-24"
 					<h3 class="text-xl font-semibold sm:text-left text-center text-gray-700">Keypirinha QR Code</h3>
 					
 					<p class="sm:text-left text-center">A <a href="https://keypirinha.com/" target="_blank">Keypirinha</a> plugin to<br/>convert text to QR Code </p>
-					<p class="sm:text-left text-center text-sm">✔ Copy QR code image to clipboard</p>
-					<p class="sm:text-left text-center text-sm">✔ Open as image in default viewer</p>
+					<p class="sm:text-left text-center text-sm flex gap-1">
+						<Fragment set:html={check} /> Copy QR code image to clipboard
+					</p>
+					<p class="sm:text-left text-center text-sm flex gap-1">
+						<Fragment set:html={check} /> Open as image in default viewer
+					</p>
 				</div>
 
 				<div class="flex sm:ml-0 mx-auto gap-4">
@@ -46,7 +52,6 @@ class="flex flex-col align-middle gap-8 max-w-3xl mx-auto relative -mt-12 mb-24"
 				<!-- <img src="./keypirinha-qrcode.gif" class="rounded"> -->
 				<video
 				src="/keypirinha-qrcode.mp4"
-				autoplay
 				loop
 				poster={optimizedKeypirinhaQrCode.src}
 				id="kantu-video"
@@ -56,9 +61,9 @@ class="flex flex-col align-middle gap-8 max-w-3xl mx-auto relative -mt-12 mb-24"
 				<div class="absolute top-0 bottom-0 left-0 right-0 flex align-middle justify-center" id="play">
 					<Fragment set:html={play}/>
 				</div>
-				<script is:inline>
+				<script>
 					const kantuMediaElement = document.getElementById('kantu-media')
-					const kantuVideo = document.getElementById('kantu-video')
+					const kantuVideo = document.getElementById('kantu-video') as HTMLVideoElement
 					const kantuPlayOverlay = document.getElementById('play')
 
 					const playVideo = (event) => {
@@ -82,12 +87,6 @@ class="flex flex-col align-middle gap-8 max-w-3xl mx-auto relative -mt-12 mb-24"
 						
 						kantuMediaElement.onclick = playVideo
 					}
-
-
-					// kantuVideoElement.onclick = (event) => {
-					// 	// const kantuPreviewElement = document.getElementById('kantu-preview')
-					// 	kantuVideoElement.removeChild(kantuPreviewElement)
-					// }
 				</script>
 			</div>
 		</div>
@@ -103,8 +102,12 @@ class="flex flex-col align-middle gap-8 max-w-3xl mx-auto relative -mt-12 mb-24"
 				<div>
 					<h3 class="text-xl font-semibold sm:text-right text-center">Kantu</h3>
 					
-					<p class="sm:text-right text-center">An app to get product prices<br/>from various ERPs</p>
-					<p class="sm:text-right text-center text-sm">To be released</p>
+					<p class="sm:text-right text-center">
+						An app to get product prices<br/>from various ERPs
+					</p>
+					<p class="sm:text-right text-center text-sm flex gap-1 justify-end">
+						<Fragment set:html={loader} /> To be released
+					</p>
 				</div>
 
 				<!-- <div class="flex sm:mr-0 mx-auto gap-4">

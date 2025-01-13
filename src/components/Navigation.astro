@@ -14,10 +14,10 @@ import {t} from 'i18next'
 	</div>
 </nav>
 
-<script is:inline>
+<script>
 	document.addEventListener('DOMContentLoaded', function() {
 		const sections = document.querySelectorAll("#container > section");
-		const navLi = document.querySelectorAll("#nav-links > a");
+		const navLi = document.querySelectorAll("#nav-links > a") as NodeListOf<HTMLLinkElement>;
 		const navigation = document.getElementById('navigation');
 
 		window.addEventListener('scroll', () => {
@@ -34,6 +34,7 @@ import {t} from 'i18next'
 			let currentSectionId = "";
 
 			sections.forEach((section) => {
+				// @ts-ignore
 				const sectionTop = section.offsetTop;
 				if (scrollY >= sectionTop - 300) {
 					currentSectionId = section.getAttribute("id");

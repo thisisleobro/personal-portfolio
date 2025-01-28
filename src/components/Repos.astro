@@ -18,7 +18,9 @@ import {t} from 'i18next'
 		</h3>
 	</div>
 	<ul id="github-repos" class="flex flex-col gap-8">
-		{githubRepos.map((repo) => <li class="flex flex-col gap-2">
+		{githubRepos
+		.filter((repo) => !repo.fork)
+		.map((repo) => <li class="flex flex-col gap-2">
 			<div class="flex justify-between">
 				<a href={repo.html_url} class="flex align-middle gap-2">
 					<Fragment set:html={packageIcon}/> {repo.name}

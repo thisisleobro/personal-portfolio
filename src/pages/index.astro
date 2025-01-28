@@ -37,15 +37,18 @@ import Analytics from '../components/Analytics.astro'
 		const storedLocale = localStorage.getItem('locale')
 
 		window.addEventListener("load", function(){
-			if (suportedLanguages.includes(storedLocale)) {
-				window.location.pathname = storedLocale
-			} else {
-				const matchingLanguage = navigator.languages
-					.map(language => language.slice(0, 2))
-					.find((language) => suportedLanguages.includes(language))
 
-				window.location.pathname = matchingLanguage? matchingLanguage: 'en'
-			}
+			setTimeout(() => {
+				if (suportedLanguages.includes(storedLocale)) {
+					window.location.pathname = storedLocale
+				} else {
+					const matchingLanguage = navigator.languages
+						.map(language => language.slice(0, 2))
+						.find((language) => suportedLanguages.includes(language))
+
+					window.location.pathname = matchingLanguage? matchingLanguage: 'en'
+				}
+			}, 1000)
 		});
 	</script>
 	<div class="flex items-center justify-center flex-col gap-4 min-h-dvh">

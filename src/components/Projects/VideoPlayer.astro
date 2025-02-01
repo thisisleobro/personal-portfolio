@@ -1,0 +1,45 @@
+---
+const {id, videoSrc, poster} = Astro.props
+
+import { PlayIcon } from 'astro-feather';
+---
+
+<div class="flex-1 relative" id={`${id}-media`}>
+	<video
+	src={videoSrc}
+	loop
+	poster={poster}
+	id={`${id}-video`}
+	class="rounded"
+	/>
+	<div class="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center" id={`${id}-play`}>
+		<PlayIcon customClasses='stroke-white flex' size={32}/>
+	</div>
+	<script define:vars={{ id }}>
+		const kantuMediaElement = document.getElementById(`${id}-media`)
+		const kantuVideo = document.getElementById(`${id}-video`)
+		const kantuPlayOverlay = document.getElementById(`${id}-play`)
+
+		const playVideo = (event) => {
+			event.stopPropagation()
+			// console.log('play', event)
+			kantuVideo.play()
+			kantuMediaElement.removeChild(kantuPlayOverlay)
+
+			kantuMediaElement.onclick = pauseVideo
+		}
+
+		kantuMediaElement.onclick = playVideo
+
+		kantuPlayOverlay.onclick = playVideo
+
+		const pauseVideo = (event) => {
+			event.stopPropagation()
+			// console.log('pause', event)
+			kantuVideo.pause()
+			kantuMediaElement.appendChild(kantuPlayOverlay)
+			
+			kantuMediaElement.onclick = playVideo
+		}
+	</script>
+</div>

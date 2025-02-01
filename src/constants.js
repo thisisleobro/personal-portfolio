@@ -1,1 +1,2 @@
-export const title = 'Leo Carvalho | Portfolio'
+export const author = 'Leo Carvalho'
+export const title = `${author} | Portfolio`

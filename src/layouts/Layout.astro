@@ -1,21 +1,22 @@
 ---
 import '../styles/global.css'
-import profile from '../assets/profile.svg'
-
-import {title} from '../constants'
-import {t} from 'i18next'
+// import profile from '../assets/profile.svg'
 import Analytics from '../components/Analytics.astro'
+
+import {author, title} from '../constants'
+import {t} from 'i18next'
 ---
 <!doctype html>
 <html lang={Astro.currentLocale}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/svg+xml" href={profile.src} />
+		<link rel="icon" type="image/svg+xml" href="favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
-		<meta name="description" content={t('description')}>
-		<meta name="author" content="Leo Carvalho">
+		<meta name="description" content={t('description')} />
+		<meta name="author" content={author} />
+		<link rel="sitemap" href="/sitemap-index.xml" />
 		<Analytics />
 	</head>
 	<body>

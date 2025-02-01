@@ -1,10 +1,9 @@
 ---
+import {PackageIcon, StarIcon} from 'astro-feather';
+
 const response = await fetch('https://api.github.com/users/thisisleobro/repos');
 const githubRepos = await response.json();
 
-import packageIcon from '../assets/icons/package.svg?raw'
-// import github from '../assets/icons/github.svg?raw'
-import star from '../assets/icons/star.svg?raw'
 
 import {t} from 'i18next'
 ---
@@ -22,11 +21,11 @@ import {t} from 'i18next'
 		.filter((repo) => !repo.fork)
 		.map((repo) => <li class="flex flex-col gap-2">
 			<div class="flex justify-between">
-				<a href={repo.html_url} class="flex align-middle gap-2">
-					<Fragment set:html={packageIcon}/> {repo.name}
+				<a href={repo.html_url} class="flex items-center gap-2">
+					<PackageIcon customClasses='size-4' /> {repo.name}
 				</a> 
-				<div class="flex justify-between gap-2 star">
-					<Fragment set:html={star}/> {repo.stargazers_count}
+				<div class="flex justify-between items-center gap-2">
+					<StarIcon customClasses='size-4'/> {repo.stargazers_count}
 				</div>
 			</div>
 			<p>{repo.description ?? '...'}</p>

@@ -1,0 +1,67 @@
+---
+import { Picture } from 'astro:assets'
+import kantu from '../../assets/kantu.png'
+import { GithubIcon, CheckIcon, BookmarkIcon, GlobeIcon } from 'astro-feather';
+import VideoPlayer from './VideoPlayer.astro';
+const {id, name, description, imageSrc, videoSrc, poster, features, todos, links} = Astro.props
+
+const githubUrl = links?.github
+const websiteUrl = links?.website
+---
+
+<div class="flex flex-col sm:flex-row gap-4 p-4">
+	{imageSrc &&
+		<div class="flex-1">
+			<Picture src={imageSrc} alt={name} class='rounded' width={kantu.width / 2} densities={[1.5, 3]}/>
+		</div>
+	}
+
+	{videoSrc &&
+		<VideoPlayer id={id} videoSrc={videoSrc} poster={poster}/>
+	}
+
+	<div class="flex flex-col flex-1 justify-between gap-8">
+		<div class="flex flex-col gap-4">
+			<div class="flex flex-col gap-2">
+				<h3 class="text-xl font-semibold sm:text-right text-center flex gap-1 sm:justify-end justify-center items-baseline">
+					{name}
+				</h3>
+				
+				<p class="sm:text-right text-center">
+					<Fragment set:html={description}/>
+				</p>
+			</div>
+
+			<div class="flex flex-col gap-2">
+				{features?.map(feature => <p class="sm:justify-end justify-center text-sm flex gap-1">
+					{feature} <CheckIcon customClasses='size-4 mt-auto' />
+				</p>)}
+
+				{todos?.map(todo => <p class="sm:justify-end justify-center text-sm flex gap-1">
+					{todo} <BookmarkIcon customClasses='size-4 mt-auto' />
+				</p>)}
+			</div>
+
+		</div>
+
+		<div class="flex gap-4 sm:justify-end justify-center items-center">
+			{githubUrl &&
+				<a class=""
+				aria-label='github'
+				href={githubUrl}
+				target="_blank">
+					<GithubIcon customClasses='size-6'/>
+				</a>
+			}
+
+			{websiteUrl &&
+				<a class=""
+				aria-label='website'
+				href={websiteUrl}
+				target="_blank">
+					<GlobeIcon customClasses='size-6'/>
+				</a>
+			}
+		</div>
+	</div>
+</div>

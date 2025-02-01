@@ -1,0 +1,70 @@
+---
+import {t} from 'i18next'
+import { getImage } from 'astro:assets'
+import kantu from '../../assets/kantu.png'
+import keypirinhaQrCode from '../../assets/keypirinha-qrcode.jpg'
+const optimizedKeypirinhaQrCode = await getImage({src: keypirinhaQrCode, width: 1024})
+import ExcelToSaft from '../../assets/excel-to-saftcv.png'
+
+import Project from './Project.astro'
+
+import {ArrowDownIcon} from 'astro-feather'
+---
+<section id="projects"
+class="flex flex-col align-middle gap-8 max-w-3xl mx-auto relative -mt-12 mb-24"
+>
+	<div class="flex flex-col gap-2">
+		<h2 class="text-xl font-semibold text-center pt-4 flex items-baseline justify-center gap-2">
+			{t('projects.title')} <ArrowDownIcon customClasses='size-4' />
+		</h2>	
+		<h3 class="text-lg text-center text-gray-600">
+			{t('projects.subtitle')}
+		</h3>
+	</div>
+	<div class="flex flex-col gap-16">
+
+		<Project
+		name='Gerador SAFT (CV) Inventario'
+		imageSrc={ExcelToSaft}
+		description='Gera SAF-T CV Inventario a partir de um ficheiro Excel'
+		features={[
+			'Gerar ficheiro SAF-T (CV) de Inventario',
+			'Integrado com Excel',
+		]}
+		todos={[
+			'Validacao de ficheiro gerado'
+		]}
+		links={{
+			website: 'https://saft.carvalho.cv'
+		}}
+		/>
+
+		<Project
+		id={'Keypirinha-qrcode'}
+		name='Keypirinha QR Code'
+		videoSrc='keypirinha-qrcode.mp4'
+		poster={optimizedKeypirinhaQrCode.src}
+		description='A <a href="https://keypirinha.com/" target="_blank">Keypirinha</a> plugin to<br/>convert text to QR Code'
+		features={[
+			'Copy QR code image to clipboard',
+			'Open as image in default viewer',
+		]}
+		links={{
+			github: 'https://github.com/thisisleobro/Keypirinha-qrcode'
+		}}
+		/>
+
+		<Project
+		name='Kantu'
+		imageSrc={kantu}
+		description='An app to get product prices<br/>from various ERPs'
+		features={[
+			'Ligacao com ERP Primavera',
+		]}
+		todos={[
+			'Release'
+		]}
+		/>
+
+	</div>
+</section>

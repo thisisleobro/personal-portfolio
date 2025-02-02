@@ -2,7 +2,7 @@
 import { Picture } from 'astro:assets'
 import kantu from '../../assets/kantu.png'
 import { GithubIcon, CheckIcon, BookmarkIcon, GlobeIcon } from 'astro-feather';
-import VideoPlayer from './VideoPlayer.astro';
+// import VideoPlayer from './VideoPlayer.astro';
 const {id, name, description, imageSrc, videoSrc, poster, features, todos, links} = Astro.props
 
 const githubUrl = links?.github
@@ -17,7 +17,15 @@ const websiteUrl = links?.website
 	}
 
 	{videoSrc &&
-		<VideoPlayer id={id} videoSrc={videoSrc} poster={poster}/>
+		// <VideoPlayer id={id} videoSrc={videoSrc} poster={poster}/>
+		<video
+		src={videoSrc}
+		loop
+		autoplay
+		poster={poster}
+		id={`${id}-video`}
+		class="rounded"
+		/>
 	}
 
 	<div class="flex flex-col flex-1 justify-between gap-8">

@@ -2,8 +2,9 @@
 import {t} from 'i18next'
 import { getImage } from 'astro:assets'
 import kantu from '../../assets/kantu.png'
-import keypirinhaQrCode from '../../assets/keypirinha-qrcode.jpg'
-const optimizedKeypirinhaQrCode = await getImage({src: keypirinhaQrCode, width: 1024})
+import keypirinhaQrCodeVideo from '../../assets/keypirinha-qrcode.mp4?inline'
+import keypirinhaQrCodeImage from '../../assets/keypirinha-qrcode.jpg'
+const optimizedKeypirinhaQrCode = await getImage({src: keypirinhaQrCodeImage, width: 1024})
 import ExcelToSaft from '../../assets/excel-to-saftcv.png'
 
 import Project from './Project.astro'
@@ -42,7 +43,7 @@ class="flex flex-col align-middle gap-16 max-w-3xl mx-auto relative -mt-12 mb-24
 		<Project
 		id={'Keypirinha-qrcode'}
 		name='Keypirinha QR Code'
-		videoSrc='keypirinha-qrcode.mp4'
+		videoSrc={keypirinhaQrCodeVideo}
 		poster={optimizedKeypirinhaQrCode.src}
 		description='A <a href="https://keypirinha.com/" target="_blank">Keypirinha</a> plugin to<br/>convert text to QR Code'
 		features={[

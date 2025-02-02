@@ -15,6 +15,7 @@ const locales = translations.reduce((acc, cur) => ({ ...acc, [cur.lang_key]: cur
 // https://astro.build/config
 export default defineConfig({
   site,
+  trailingSlash: 'never',
   i18n: {
     defaultLocale,
     locales: translationsKeys

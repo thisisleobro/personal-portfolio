@@ -1,0 +1,9 @@
+name: deploy project
+on:
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to coolify
+        run: "curl --request GET '${{ secrets.COOLIFY_PRODUCTION_WEBHOOK }}' --header 'Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}'"

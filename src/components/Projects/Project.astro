@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets'
+import { Picture } from 'astro:assets'
 import kantu from '../../assets/kantu.png'
 import { GithubIcon, CheckIcon, BookmarkIcon, GlobeIcon } from 'astro-feather';
 import VideoPlayer from './VideoPlayer.astro';
@@ -24,7 +24,7 @@ const position = passedPosition === 'right'?
 <div class={`flex flex-col ${position.flex} gap-4 p-4`}>
 	{imageSrc &&
 		<div class="flex-1">
-			<Image src={imageSrc} alt={name} class='rounded' width={kantu.width / 2} densities={[1.5, 3]}/>
+			<Picture src={imageSrc} alt={name} class='rounded' width={kantu.width / 2} densities={[1.5, 3]}/>
 		</div>
 	}
 

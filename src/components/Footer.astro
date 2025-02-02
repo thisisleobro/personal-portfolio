@@ -1,7 +1,12 @@
 ---
+// @ts-ignore
+const commit = $SOURCE_COMMIT
 ---
-<footer class="min-h-16 border-t flex p-4 items-center justify-center">
+<footer class="min-h-16 border-t flex flex-col items-center justify-center p-4 gap-2">
 	<p class="text-slate-500 text-sm">
 		Copyright © {new Date().getFullYear()} - Leo Carvalho
+	</p>
+	<p class="text-slate-500 text-sm">
+		{new Date().toISOString()} {commit && commit}
 	</p>
 </footer>

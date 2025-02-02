@@ -6,6 +6,6 @@ const commit = import.meta.env.$SOURCE_COMMIT
 		Copyright © {new Date().getFullYear()} - Leo Carvalho
 	</p>
 	<p class="text-slate-500 text-sm">
-		{new Date().toISOString()} {commit && " - " + commit}
+		{new Date().toISOString()}{commit && " - " + commit}
 	</p>
 </footer>

@@ -3,13 +3,25 @@ import { Image } from 'astro:assets'
 import kantu from '../../assets/kantu.png'
 import { GithubIcon, CheckIcon, BookmarkIcon, GlobeIcon } from 'astro-feather';
 import VideoPlayer from './VideoPlayer.astro';
-const {id, name, description, imageSrc, videoSrc, poster, features, todos, links} = Astro.props
+const {id, name, description, imageSrc, videoSrc, poster, features, todos, links, position: passedPosition} = Astro.props
 
 const githubUrl = links?.github
 const websiteUrl = links?.website
+
+const position = passedPosition === 'right'?
+	{
+		justify: 'sm:justify-start',
+		text: 'sm:text-left',
+		flex: 'sm:flex-row-reverse',
+	}:
+	{
+		justify: 'sm:justify-end',
+		text: 'sm:text-right',
+		flex: 'sm:flex-row',
+	}
 ---
 
-<div class="flex flex-col sm:flex-row gap-4 p-4">
+<div class={`flex flex-col ${position.flex} gap-4 p-4`}>
 	{imageSrc &&
 		<div class="flex-1">
 			<Image src={imageSrc} alt={name} class='rounded' width={kantu.width / 2} densities={[1.5, 3]}/>
@@ -20,31 +32,31 @@ const websiteUrl = links?.website
 		<VideoPlayer id={id} videoSrc={videoSrc} poster={poster}/>
 	}
 
-	<div class="flex flex-col flex-1 justify-between gap-8">
+	<div class={`flex flex-col flex-1 justify-between gap-8`}>
 		<div class="flex flex-col gap-4">
 			<div class="flex flex-col gap-2">
-				<h3 class="text-xl font-semibold sm:text-right text-center flex gap-1 sm:justify-end justify-center items-baseline">
+				<h3 class={`text-xl font-semibold ${position.text} text-center flex gap-1 ${position.justify} justify-center items-baseline`}>
 					{name}
 				</h3>
 				
-				<p class="sm:text-right text-center">
+				<p class={`${position.text} text-center`}>
 					<Fragment set:html={description}/>
 				</p>
 			</div>
 
 			<div class="flex flex-col gap-2">
-				{features?.map(feature => <p class="sm:justify-end justify-center text-sm flex gap-1">
+				{features?.map(feature => <p class={`${position.justify} justify-center text-sm flex gap-1`}>
 					{feature} <CheckIcon customClasses='size-4 mt-auto' />
 				</p>)}
 
-				{todos?.map(todo => <p class="sm:justify-end justify-center text-sm flex gap-1">
+				{todos?.map(todo => <p class={`${position.justify} justify-center text-sm flex gap-1`}>
 					{todo} <BookmarkIcon customClasses='size-4 mt-auto' />
 				</p>)}
 			</div>
 
 		</div>
 
-		<div class="flex gap-4 sm:justify-end justify-center items-center">
+		<div class={`flex gap-4 ${position.justify} justify-center items-center`}>
 			{githubUrl &&
 				<a class=""
 				aria-label='github'

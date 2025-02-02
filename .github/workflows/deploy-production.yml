@@ -1,4 +1,4 @@
-name: deploy project
+name: Deploy project to production
 on:
   workflow_dispatch:
 jobs:

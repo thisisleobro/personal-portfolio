@@ -1,21 +1,17 @@
 ---
-import {t} from 'i18next'
+// For some reason if i move "import {t} from 'i18next'" down it breaks
+import {t} from 'i18next';
+const matches = import.meta.glob('../assets/i18n/**/translation.json', { eager: true });
+const translations = Object.values(matches) as any;
 ---
 <select id="languages" class="bg-transparent" aria-label={t('languages')}>
-	<option
-	value="/en"
-	{...{selected: Astro.currentLocale === 'en'}}
-	class="language-option"
+	{translations.map(({lang_key, lang_description}) => <option
+	value={`/${lang_key}`}
+	{...{selected: Astro.currentLocale === lang_key}}
+	class="language-option text-right"
 	>
-		EN
-	</option>
-	<option
-	value="/pt"
-	{...{selected: Astro.currentLocale === 'pt'}}
-	class="language-option"
-	>
-		PT
-	</option>
+		{lang_description}
+	</option>)}
 </select>
 <script is:inline>
 	const languageSelect = document.getElementById('languages')

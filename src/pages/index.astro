@@ -8,9 +8,11 @@ const translations = Object.values(matches) as any;
 const resources = {}
 
 translations.forEach((translation) => {
-	resources[translation.key] = {}
-	resources[translation.key].translation = {...translation}
+	resources[translation.lang_key] = {}
+	resources[translation.lang_key].translation = {...translation}
 })
+
+const supportedLanguages = translations.map(({lang_key, lang_description}, ) => ({lang_key, lang_description}))
 
 await i18next.init({
 	fallbackLng: Astro.preferredLocale,
@@ -33,19 +35,18 @@ await i18next.init({
 	<Analytics />
 </head>
 <body>
-	<script is:inline>
-		const suportedLanguages = ['pt', 'en']
+	<script is:inline define:vars={{supportedLanguages}}>
+		const suportedLanguageKeys = supportedLanguages.map(({lang_key}) => lang_key)
 		const storedLocale = localStorage.getItem('locale')
 
 		window.addEventListener("load", function(){
-
 			setTimeout(() => {
-				if (suportedLanguages.includes(storedLocale)) {
+				if (suportedLanguageKeys.includes(storedLocale)) {
 					window.location.pathname = storedLocale
 				} else {
 					const matchingLanguage = navigator.languages
 						.map(language => language.slice(0, 2))
-						.find((language) => suportedLanguages.includes(language))
+						.find((language) => suportedLanguageKeys.includes(language))
 
 					window.location.pathname = matchingLanguage? matchingLanguage: 'en';
 				}
@@ -55,8 +56,8 @@ await i18next.init({
 	<div class="flex items-center justify-center flex-col gap-4 min-h-dvh">
 		<h1>You may have javascript disabled. If so pick your language manually</h1>
 		<ul class="flex gap-4">
-			{['pt', 'en'].map((language) =><li>
-				<a href={language} class="text-blue-500 underline">{language.toUpperCase()}</a>
+			{supportedLanguages.map(({lang_key, lang_description}) =><li>
+				<a href={lang_key} class="text-blue-500 underline">{lang_description}</a>
 			</li>)}
 		</ul>
 	</div>

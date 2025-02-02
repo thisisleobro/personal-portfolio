@@ -4,7 +4,7 @@ const {id, videoSrc, poster} = Astro.props
 import { PlayIcon } from 'astro-feather';
 ---
 
-<div class="flex-1 relative" id={`${id}-media`}>
+<div class="flex-1 relative cursor-pointer" id={`${id}-media`}>
 	<video
 	src={videoSrc}
 	loop

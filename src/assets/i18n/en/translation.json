@@ -1,6 +1,6 @@
 {
-	"key": "en",
-	"language_description": "English",
+	"lang_key": "en",
+	"lang_description": "English",
 	"languages": "Languages",
 	"my_email": "My email",
 	"my_github": "My Github profile",

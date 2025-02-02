@@ -1,9 +1,6 @@
 ---
-// import circle from '../assets/icons/circle.svg?raw'
-// import mapPin from '../assets/icons/map-pin.svg?raw'
-import mail from '../assets/icons/mail.svg?raw'
-import github from '../assets/icons/github.svg?raw'
 import profile from '../assets/profile.svg?raw'
+import { MailIcon, GithubIcon } from 'astro-feather';
 
 import {t} from 'i18next'
 
@@ -34,12 +31,12 @@ import {t} from 'i18next'
 				</p> -->
 
 
-				<p class="flex gap-3 links my-2 justify-center sm:justify-normal">
+				<p class="flex gap-4 links my-2 justify-center sm:justify-normal">
 					<a class="flex" id="email" target="_blank" aria-label={t('my_email')}>
-						<Fragment set:html={mail} />
+						<MailIcon customClasses='text-yellow-500'/>
 					</a>
 					<a href="https://github.com/thisisleobro" target="_blank" aria-label={t('my_github')}>
-						<Fragment set:html={github} />
+						<GithubIcon customClasses='text-slate-800'/>
 					</a>
 				</p>
 			</div>

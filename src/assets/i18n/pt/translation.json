@@ -14,7 +14,37 @@
 	},
 	"projects": {
 		"title": "Projetos",
-		"subtitle": "Tentando viver disto. Impossivel para ja."
+		"subtitle": "Tentando viver disto. Impossivel para ja.",
+		"saftcv": {
+			"name": "Gerador SAFT (CV) Inventario",
+			"description": "Gera SAF-T CV Inventario a partir de um ficheiro Excel",
+			"features": [
+				"Gerar ficheiro SAF-T (CV) de Inventario",
+				"Usa ficheiro Excel"
+			],
+			"todos": [
+				"Validacao de ficheiro gerado"
+			]
+		},
+		"keypirinha-qrcode": {
+			"name": "Keypirinha QR Code",
+			"description": "Um plugin Keypirinha que converte textos em codigos QR",
+			"features": [
+				"Copia imagem do codigo QR para clipboard",
+				"Abre a imagem no visualizador de imagem padrao"
+			],
+			"todos": []
+		},
+		"kantu": {
+			"name": "Kantu",
+			"description": "Um aplicativo para consulta de precos em varios ERPs",
+			"features": [
+				"Integra com Primavera ERP"
+			],
+			"todos": [
+				"Lancar o produto"
+			]
+		}
 	},
 	"repos": {
 		"title": "Open source",

@@ -25,16 +25,11 @@ class="flex flex-col align-middle gap-16 max-w-3xl mx-auto relative -mt-12 mb-24
 	<div class="flex flex-col gap-8">
 
 		<Project
-		name='Gerador SAFT (CV) Inventario'
 		imageSrc={ExcelToSaft}
-		description='Gera SAF-T CV Inventario<br/>a partir de um ficheiro Excel'
-		features={[
-			'Gerar ficheiro SAF-T (CV) de Inventario',
-			'Integrado com Excel',
-		]}
-		todos={[
-			'Validacao de ficheiro gerado'
-		]}
+		name={t('projects.saftcv.name')}
+		description={t('projects.saftcv.description')}
+		features={t('projects.saftcv.features', { returnObjects: true })}
+		todos={t('projects.saftcv.todos', {returnObjects: true})}
 		links={{
 			website: 'https://saft.carvalho.cv'
 		}}
@@ -42,14 +37,12 @@ class="flex flex-col align-middle gap-16 max-w-3xl mx-auto relative -mt-12 mb-24
 
 		<Project
 		id={'Keypirinha-qrcode'}
-		name='Keypirinha QR Code'
+		name={t('projects.keypirinha-qrcode.name')}
+		description={t('projects.keypirinha-qrcode.description')}
 		videoSrc={keypirinhaQrCodeVideo}
 		poster={optimizedKeypirinhaQrCode.src}
-		description='A <a href="https://keypirinha.com/" target="_blank">Keypirinha</a> plugin to<br/>convert text to QR Code'
-		features={[
-			'Copy QR code image to clipboard',
-			'Open as image in default viewer',
-		]}
+		features={t('projects.keypirinha-qrcode.features', { returnObjects: true })}
+		todos={t('projects.keypirinha-qrcode.todos', {returnObjects: true})}
 		links={{
 			github: 'https://github.com/thisisleobro/Keypirinha-qrcode'
 		}}
@@ -57,16 +50,11 @@ class="flex flex-col align-middle gap-16 max-w-3xl mx-auto relative -mt-12 mb-24
 		/>
 
 		<Project
-		name='Kantu'
 		imageSrc={kantu}
-		description='An app to get product prices<br/>from various ERPs'
-		features={[
-			'Ligacao com ERP Primavera',
-		]}
-		todos={[
-			'Release'
-		]}
+		name={t('projects.kantu.name')}
+		description={t('projects.kantu.description')}
+		features={t('projects.kantu.features', { returnObjects: true })}
+		todos={t('projects.kantu.todos', {returnObjects: true})}
 		/>
-
 	</div>
 </section>

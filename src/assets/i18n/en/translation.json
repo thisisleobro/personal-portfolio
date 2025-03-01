@@ -14,7 +14,37 @@
 	},
 	"projects": {
 		"title": "Projects",
-		"subtitle": "Trying to make a living out of this. Not there yet."
+		"subtitle": "Trying to make a living out of this. Not there yet.",
+		"saftcv": {
+			"name": "SAFT (CV) for Goods Generator",
+			"description": "Generates SAF-T CV for Goods from an Excel file",
+			"features": [
+				"Generates SAF-T (CV) for Goods file",
+				"Integrates with Excel"
+			],
+			"todos": [
+				"Validates generated file"
+			]
+		},
+		"keypirinha-qrcode": {
+			"name": "Keypirinha QR Code",
+			"description": "A Keypirinha plugin to convert text to QR Code",
+			"features": [
+				"Copy QR code image to clipboard",
+				"Open as image in default viewer"
+			],
+			"todos": []
+		},
+		"kantu": {
+			"name": "Kantu",
+			"description": "An app to get product prices from various ERPs",
+			"features": [
+				"Integrates with Primavera ERP"
+			],
+			"todos": [
+				"Release the product"
+			]
+		}
 	},
 	"repos": {
 		"title": "Open source",

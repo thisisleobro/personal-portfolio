@@ -1,11 +1,17 @@
 ---
 import Language from '../components/Language.astro'
 import {t} from 'i18next'
+import {MenuIcon} from 'astro-feather';
 ---
 <nav class="flex justify-between fixed p-4 w-svw left-0 z-50 bg-white" id="navigation">
 	<span>Leo Carvalho</span>
 
-	<div id="nav-links" class="flex gap-4">
+	<span onclick="toggleMenu()" class="sm:hidden flex">
+		<MenuIcon/>
+	</span>
+
+
+	<div id="nav-links" class="sm:flex hidden gap-4">
 		<a href="#hero" class="active">{t('hero.title')}</a>
 		<a href="#projects">{t('projects.title')}</a>
 		<a href="#repos">{t('repos.title')}</a>		
@@ -50,4 +56,42 @@ import {t} from 'i18next'
 			});
 		}, { passive: true })
 	}, false);
+</script>
+<script is:inline>
+	const links = document.getElementById("nav-links");
+	const mobileClasses = [
+		'flex',
+		'absolute',
+		'flex-col',
+		'm-4',
+		'p-24',
+		'bg-white',
+		'rounded',
+		'border',
+		'right-0',
+		'left-0',
+		'top-8',
+		'h-dvh',
+		'row',
+		'justify-center',
+		'text-xl'
+	]
+
+	function showMenu() {
+		links.classList.remove('hidden');
+		mobileClasses.forEach((singleClass) => links.classList.add(singleClass))
+	}
+
+	function hideMenu() {
+		links.classList.add('hidden');
+		mobileClasses.forEach((singleClass) => links.classList.remove(singleClass))
+	}
+
+	function toggleMenu() {
+		if (links.classList.contains('hidden')) {
+			showMenu()
+		} else {
+			hideMenu()
+		}
+	}
 </script>

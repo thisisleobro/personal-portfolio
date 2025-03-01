@@ -13,11 +13,15 @@ const position = passedPosition === 'right'?
 		justify: 'sm:justify-start',
 		text: 'sm:text-left',
 		flex: 'sm:flex-row-reverse',
+		margin: 'sm:ml-0 m-auto',
+		reverse: 'sm:justify-end sm:flex-row-reverse',
 	}:
 	{
 		justify: 'sm:justify-end',
 		text: 'sm:text-right',
 		flex: 'sm:flex-row',
+		margin: 'sm:mr-0 m-auto',
+		reverse: 'sm:justify-end',
 	}
 ---
 
@@ -35,18 +39,18 @@ const position = passedPosition === 'right'?
 	<div class={`flex flex-col flex-1 justify-between gap-8`}>
 		<div class="flex flex-col gap-4">
 			<div class="flex flex-col gap-2">
-				<h3 class={`text-xl font-semibold ${position.text} text-center flex gap-1 ${position.justify} justify-center items-baseline`}>
+				<h3 class={` ${position.text} text-center flex gap-1 ${position.justify} justify-center items-baseline`}>
 					{name}
 				</h3>
 				
-				<p class={`${position.text} text-center`}>
+				<p class={`${position.text} text-center w-72 ${position.margin} font-semibold text-xl`}>
 					<Fragment set:html={description}/>
 				</p>
 			</div>
 
 			<div class="flex flex-col gap-2">
-				{features?.map(feature => <p class={`${position.justify} justify-center text-sm flex gap-1`}>
-					{feature} <CheckIcon customClasses='size-4 mt-auto' />
+				{features?.map(feature => <p class={`justify-center text-sm flex gap-1 ${position.reverse}`}>
+					{feature} <CheckIcon customClasses='size-4 mt-1' />
 				</p>)}
 
 				{todos?.map(todo => <p class={`${position.justify} justify-center text-sm flex gap-1`}>

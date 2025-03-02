@@ -53,7 +53,7 @@ await i18next.init({
 		});
 	</script>
 	<div class="flex items-center justify-center flex-col gap-4 min-h-dvh">
-		<h1>You may have javascript disabled. If so pick your language manually</h1>
+		<h1 class="text-center">You may have javascript disabled. If so pick your language manually</h1>
 		<ul class="flex gap-4">
 			{supportedLanguages.map(({lang_key, lang_description}) =><li>
 				<a href={lang_key} class="text-blue-500 underline">{lang_description}</a>

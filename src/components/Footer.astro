@@ -7,6 +7,9 @@ const branch = import.meta.env.COOLIFY_BRANCH
 		Copyright © {new Date().getFullYear()} - Leo Carvalho
 	</p>
 	<p class="text-slate-500 text-sm">
-		{new Date().toISOString()}{commit && " - " + commit}
+		{new Date().toISOString().split('.')[0]}
+	</p>
+	<p class="text-slate-500 text-sm">
+		<span title={commit}>{commit?.slice(7)}</span>
 	</p>
 </footer>

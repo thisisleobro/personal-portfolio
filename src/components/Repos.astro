@@ -1,9 +1,31 @@
 ---
-import {PackageIcon, StarIcon} from 'astro-feather';
+import {PackageIcon, StarIcon, DownloadIcon} from 'astro-feather';
 
-const response = await fetch('https://api.github.com/users/thisisleobro/repos');
-const githubRepos = await response.json();
-// const githubRepos = [];
+const reposResponse = await fetch('https://api.github.com/users/thisisleobro/repos');
+const githubRepos = await reposResponse.json();
+
+// console.log(githubRepos)
+
+const repos = await Promise.all(githubRepos.map(async (repo) => {
+	const releasesResponse = await fetch(`https://api.github.com/repos/thisisleobro/${repo.name}/releases`)
+
+	const releases = await releasesResponse.json()
+
+	const downloads = releases.reduce((downloadsNumber, release) => {
+		return downloadsNumber + release.assets.reduce((assetsDownloadsNumber, assets) => {
+			return assetsDownloadsNumber + assets.download_count
+		}, 0)
+	}, 0)
+
+	// console.log({...repo, downloads})
+
+	return {...repo, downloads}
+}))
+
+// const repos = []
+
+console.log(repos)
+
 
 
 import {t} from 'i18next'
@@ -18,16 +40,22 @@ import {t} from 'i18next'
 		</h3>
 	</div>
 	<ul id="github-repos" class="flex flex-col gap-8">
-		{githubRepos
+		{repos
 		.filter((repo) => !repo.fork)
 		.map((repo) => <li class="flex flex-col gap-2">
 			<div class="flex justify-between">
 				<a href={repo.html_url} class="flex items-center gap-2">
 					<PackageIcon customClasses='size-4' /> {repo.name}
-				</a> 
-				<div class="flex justify-between items-center gap-2">
-					<StarIcon customClasses='size-4'/> {repo.stargazers_count}
-				</div>
+				</a>
+				<div class="flex gap-4">
+					{repo.downloads > 0 && <div class="flex justify-between items-center gap-1">
+						<DownloadIcon customClasses='size-4'/> {repo.downloads}
+					</div>}
+
+					{repo.stargazers_count > 0 && <div class="flex justify-between items-center gap-1">
+						<StarIcon customClasses='size-4'/> {repo.stargazers_count}
+					</div>}
+				</div> 
 			</div>
 			<p>{repo.description ?? '...'}</p>
 		</li>)}

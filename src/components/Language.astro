@@ -1,16 +1,17 @@
 ---
 // For some reason if i move "import {t} from 'i18next'" down it breaks
 import {t} from 'i18next';
+import {GlobeIcon, ArrowDownIcon, ChevronDownIcon} from 'astro-feather';
 const matches = import.meta.glob('../assets/i18n/**/translation.json', { eager: true });
 const translations = Object.values(matches) as any;
 ---
-<select id="languages" class="bg-transparent" aria-label={t('languages')}>
+<!-- <select id="languages" class="bg-transparent" aria-label={t('languages')}>
 	{translations.map(({lang_key, lang_description}) => <option
-	value={`/${lang_key}`}
-	{...{selected: Astro.currentLocale === lang_key}}
-	class="language-option text-right"
-	>
-		{lang_description}
+		value={`/${lang_key}`}
+		{...{selected: Astro.currentLocale === lang_key}}
+		class="language-option text-right"
+		>
+			{lang_description}
 	</option>)}
 </select>
 <script is:inline>
@@ -19,6 +20,41 @@ const translations = Object.values(matches) as any;
 	languageSelect.onchange = (event) => {
 		const url = window.location
 		const locale = event.target.value
+
+		localStorage.setItem('locale', locale.split('/')[1])
+
+		url.pathname = [
+			locale,
+			...url.pathname.split('/').slice(2)
+		].join('/')
+	}
+</script> -->
+
+<div class="relative inline-block text-left dropdown">
+	<button class="flex column items-center gap-1">
+		<!-- <GlobeIcon size={14}/> -->
+		<span>{t('languages')}</span>
+		<ChevronDownIcon size={14} />
+	</button>
+	<div class="bg-white p-2 border rounded hidden flex-col dropdown-menu absolute right-0 left-0 sm:left-auto">
+		{translations.map(({lang_key, lang_description}) => <button
+		class="p-2"
+		onclick={`changeLanguage("${lang_key}")`}
+		>
+			{lang_description}
+		</button>)}
+	</div>
+</div>
+
+<style>
+.dropdown:focus-within .dropdown-menu {
+	display: flex;
+}
+</style>
+<script is:inline>
+	function changeLanguage(lang) {
+		const url = window.location
+		const locale = lang
 
 		localStorage.setItem('locale', locale.split('/')[1])
 

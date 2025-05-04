@@ -1,6 +1,7 @@
 ---
 import i18next from 'i18next'
-import Analytics from '../components/Analytics.astro';
+import Posthog from '../components/Analytics/Posthog.astro'
+import Umami from '../components/Analytics/Umami.astro'
 
 const matches = import.meta.glob('../assets/i18n/**/translation.json', { eager: true });
 const translations = Object.values(matches) as any;
@@ -31,7 +32,8 @@ await i18next.init({
 	<meta name="robots" content="noindex" />
 	<title>/</title>
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-	<Analytics />
+	<Posthog />
+	<Umami />
 </head>
 <body>
 	<script is:inline define:vars={{supportedLanguages}}>

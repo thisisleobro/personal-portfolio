@@ -1,7 +1,8 @@
 ---
 import '../styles/global.css'
 // import profile from '../assets/profile.svg'
-import Analytics from '../components/Analytics.astro'
+import Posthog from '../components/Analytics/Posthog.astro'
+import Umami from '../components/Analytics/Umami.astro'
 
 import {author, title} from '../constants'
 import {t} from 'i18next'
@@ -17,7 +18,8 @@ import {t} from 'i18next'
 		<meta name="description" content={t('description')} />
 		<meta name="author" content={author} />
 		<link rel="sitemap" href="/sitemap-index.xml" />
-		<Analytics />
+		<Posthog />
+		<Umami />
 	</head>
 	<body>
 		<slot />

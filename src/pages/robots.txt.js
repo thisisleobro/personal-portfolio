@@ -1,10 +1,8 @@
-const getRobotsTxt = (sitemapURL) => `
-User-agent: *
+const getRobotsTxt = (sitemapURL) => `User-agent: *
 Allow: /*
 Disallow: /$
 
-Sitemap: ${sitemapURL.href}
-`;
+Sitemap: ${sitemapURL.href}`;
 
 export const GET = ({ site }) => {
 	const sitemapURL = new URL('sitemap-index.xml', site);

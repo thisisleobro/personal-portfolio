@@ -1,31 +1,18 @@
 ---
-import Layout from '../../layouts/Layout.astro'
-
-import i18next from 'i18next'
+ import Root from '../../components/Root.astro';
+import { defaultLocale } from '../../constants';
+import { localeKeys } from '../../lib/locales';
 
 export const getStaticPaths = (() => {
-	return [
-		{ params: { lang: 'en' }, props: {} },
-		{ params: { lang: 'pt' }, props: {} },
-	];
-})
-
-
-// console.log('currentLocale:', Astro.currentLocale)
-await i18next.changeLanguage(Astro.currentLocale)
-
-import Hero from '../../components/Hero.astro';
-import Projects from '../../components/Projects/index.astro';
-import Repos from '../../components/Repos.astro';
-import Navigation from '../../components/Navigation.astro';
-import Footer from '../../components/Footer.astro';
+	return localeKeys
+		.filter(locale => locale !== defaultLocale)
+		.reduce((paths, locale) => {
+		return paths.concat({
+			params: {
+				lang: locale
+			}
+		})
+	}, [])
+});
 ---
-<Layout>
-	<div id="container" class="mx-4 text-slate-800 stroke-slate-800;">
-		<Navigation/>
-		<Hero/>
-		<Projects/>	
-		<Repos/>
-	</div>
-	<Footer/>
-</Layout>
+<Root />

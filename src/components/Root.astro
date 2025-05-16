@@ -1,0 +1,38 @@
+---
+import Hero from './Hero.astro';
+import Projects from './Projects/index.astro';
+import Repos from './Repos.astro';
+import Navigation from './Navigation.astro';
+import Footer from './Footer.astro';
+import Layout from '../layouts/Layout.astro';
+
+import i18next from 'i18next'
+import { defaultLocale,  } from '../constants';
+import {translations} from '../lib/locales'
+
+const resources = {};
+
+translations.forEach((translation) => {
+	resources[translation.lang_key] = {}
+	resources[translation.lang_key].translation = {...translation}
+});
+
+await i18next.init({
+	fallbackLng: defaultLocale, // SSR only
+	// debug: true,
+	lng: Astro.currentLocale,
+	// preload: ['en', 'pt'],
+	ns: ['translation'],
+	defaultNS: 'translation',
+	resources,
+});
+---
+<Layout>
+	<div id="container" class="mx-4 text-slate-800 stroke-slate-800;">
+		<Navigation/>
+		<Hero/>
+		<Projects/>	
+		<Repos/>
+	</div>
+	<Footer/>
+</Layout>

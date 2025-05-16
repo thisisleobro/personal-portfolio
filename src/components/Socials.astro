@@ -1,0 +1,20 @@
+---
+import {t} from 'i18next'
+import { GithubIcon, MailIcon } from "astro-feather";
+---
+
+<p class="flex gap-4 links my-2 justify-center sm:justify-normal">
+	<a class="author-email" id="email" target="_blank" aria-label={t('my_email')}>
+		<MailIcon customClasses='text-yellow-500'/>
+	</a>
+	<a href="https://github.com/thisisleobro" target="_blank" aria-label={t('my_github')} rel="me">
+		<GithubIcon customClasses='text-slate-800'/>
+	</a>
+</p>
+
+<script>
+	const email = ['c', 'a', 'r', 'v', 'a', 'l', 'h', 'o', '@', 'p', 'o', 's', 't', '.', 'c', 'o', 'm']
+	const emailElements = document.querySelectorAll('a.author-email')
+
+	emailElements.forEach((element) => (element as HTMLAnchorElement).href = `mailto:${email.join('')}`)
+</script>

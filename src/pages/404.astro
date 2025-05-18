@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {t} from 'i18next';
+---
+<Layout>
+	<div class="flex flex-col items-center justify-center h-dvh">
+		<h1 class="text-4xl mb-4">404 - {t('not_found.title')}</h1>
+		<p class="text-lg">{t('not_found.path')}: <span id='not-found-path'></span></p>
+	</div>
+
+	<script>
+		const notFoundPath = document.getElementById('not-found-path')
+		notFoundPath.textContent = location.pathname
+	</script>
+</Layout>

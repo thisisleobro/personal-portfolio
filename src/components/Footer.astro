@@ -1,9 +1,11 @@
 ---
-import profile from '../assets/profile.svg?raw'
+// import profile from '../assets/profile.svg?raw'
+import {getRelativeLocaleUrl} from 'astro:i18n';
 import { author } from '../constants';
 import Socials from './Socials.astro';
 const commit = import.meta.env.SOURCE_COMMIT;
 // const branch = import.meta.env.COOLIFY_BRANCH
+
 ---
 <footer class="min-h-16 flex flex-col items-center justify-center px-8 gap-2">
 	<div class="flex w-full border-b py-8 gap-32">
@@ -18,9 +20,9 @@ const commit = import.meta.env.SOURCE_COMMIT;
 		<!-- Links -->
 		<div class="pt-1">
 			<h2 class=" mb-4">Links</h2>
-			<!-- <u class="list-none">
-				<li><a href="/blog"class='link'>Blog</a></li>
-			</u> -->
+			<u class="list-none">
+				<li><a href={getRelativeLocaleUrl(Astro.currentLocale, 'blog')} class='link'>Blog</a></li>
+			</u>
 		</div>
 	</div>
 	<div class="flex w-full row justify-between text-slate-600 text-sm my-4">
@@ -29,7 +31,7 @@ const commit = import.meta.env.SOURCE_COMMIT;
 		</p>
 
 		<p>
-			{new Date().toISOString().split('.')[0]} {commit?.slice(7)}
+			{new Date().toISOString().split('.')[0]} {commit?.slice(0, 8)}
 		</p>
 	</div>
 </footer>

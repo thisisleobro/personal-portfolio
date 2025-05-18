@@ -6,13 +6,13 @@ import Navigation from './Navigation.astro';
 import Footer from './Footer.astro';
 import Layout from '../layouts/Layout.astro';
 
-import i18next from 'i18next'
+import i18next, { type Resource } from 'i18next'
 import { defaultLocale,  } from '../constants';
 import {translations} from '../lib/locales'
 
-const resources = {};
+const resources: Resource = {};
 
-translations.forEach((translation) => {
+translations.forEach((translation: any) => {
 	resources[translation.lang_key] = {}
 	resources[translation.lang_key].translation = {...translation}
 });

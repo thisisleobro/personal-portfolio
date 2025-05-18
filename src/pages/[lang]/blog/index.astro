@@ -1,0 +1,7 @@
+---
+import BlogComponent from '../../../components/Blog.astro';
+import { getStaticPathsImpl } from '../../../lib/locales';
+
+export const getStaticPaths = getStaticPathsImpl
+---
+<BlogComponent />

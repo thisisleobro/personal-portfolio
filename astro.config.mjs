@@ -8,6 +8,9 @@ import { site, defaultLocale } from './src/constants';
 import {localeKeys, locales, translations} from '/src/lib/locales'
 
 
+import mdx from '@astrojs/mdx';
+
+
 // https://astro.build/config
 export default defineConfig({
   site,
@@ -16,11 +19,15 @@ export default defineConfig({
     defaultLocale,
     locales: localeKeys
   },
-  integrations: [tailwind(), sitemap({
-    // filter: (page) => page !== `${site}/`,
-    i18n: {
-      defaultLocale, // All urls that don't contain `es` or `fr` after `https://stargazers.club/` will be treated as default locale, i.e. `en`
-      locales,
-    },
-  })]
+  integrations: [
+    tailwind(),
+    sitemap({
+      // filter: (page) => page !== `${site}/`,
+      i18n: {
+        defaultLocale, // All urls that don't contain `es` or `fr` after `https://stargazers.club/` will be treated as default locale, i.e. `en`
+        locales,
+      },
+    }),
+    mdx()
+  ]
 });

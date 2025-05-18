@@ -5,6 +5,10 @@
 	"my_email": "My email",
 	"my_github": "My Github profile",
 	"description": "Personal portfolio of Leo Carvalho",
+	"not_found": {
+		"title": "Not found",
+		"path": "Path"
+	},
 	"hero": {
 		"title": "About",
 		"design": "I'm Leo. I <span class=\"active\">design</span>",

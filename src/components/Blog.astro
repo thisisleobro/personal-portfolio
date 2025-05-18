@@ -1,0 +1,21 @@
+---
+import { getCollection } from "astro:content"
+import Layout from "../layouts/Layout.astro"
+
+const currentUrl = Astro.url.pathname.endsWith('/')? Astro.url: new URL(Astro.url.pathname.concat('/'), Astro.url)
+const posts = await getCollection('blog')
+
+console.log(posts)
+---
+<Layout>
+	<ul>
+		{posts
+			.filter(post => post.data.language === Astro.currentLocale)
+			.map(({data, rendered, id}) => <li>
+				<h2><a href={new URL(id.slice(0, -3), currentUrl)}>{data.title}</a></h2>
+				<span>{data.pubDate.toLocaleDateString(Astro.currentLocale)}</span>
+				<Fragment set:html={rendered?.html}/>
+			</li>)
+		}
+	</ul>
+</Layout>

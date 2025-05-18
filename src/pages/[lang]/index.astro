@@ -1,18 +1,7 @@
 ---
- import Root from '../../components/Root.astro';
-import { defaultLocale } from '../../constants';
-import { localeKeys } from '../../lib/locales';
+import Root from '../../components/Root.astro';
+import { getStaticPathsImpl } from '../../lib/locales';
 
-export const getStaticPaths = (() => {
-	return localeKeys
-		.filter(locale => locale !== defaultLocale)
-		.reduce((paths, locale) => {
-		return paths.concat({
-			params: {
-				lang: locale
-			}
-		})
-	}, [])
-});
+export const getStaticPaths = getStaticPathsImpl
 ---
 <Root />

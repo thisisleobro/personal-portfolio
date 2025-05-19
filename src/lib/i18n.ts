@@ -1,5 +1,7 @@
 import type { GetStaticPathsResult } from "astro";
+import i18next from 'i18next'
 import { defaultLocale } from "../constants";
+
 
 const matches = import.meta.glob('../assets/i18n/**/translation.json', { eager: true });
 export const translations = Object.values(matches) as any;
@@ -16,3 +18,22 @@ export const getStaticPathsImpl = () => localeKeys
 		}),
 		[]
 	)
+
+export const initI18n = async () => {
+	const resources = {};
+
+	translations.forEach((translation) => {
+		resources[translation.lang_key] = {}
+		resources[translation.lang_key].translation = {...translation}
+	});
+
+	await i18next.init({
+		fallbackLng: defaultLocale, // SSR only
+		// debug: true,
+		// lng: Astro.currentLocale,
+		// preload: ['en', 'pt'],
+		ns: ['translation'],
+		defaultNS: 'translation',
+		resources,
+	});
+}

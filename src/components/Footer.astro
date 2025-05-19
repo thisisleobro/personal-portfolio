@@ -31,7 +31,7 @@ const commit = import.meta.env.SOURCE_COMMIT;
 		</p>
 
 		<p>
-			{new Date().toISOString().split('.')[0]} {commit?.slice(0, 8)}
+			{new Date().toISOString().split('.')[0]}{commit && " - " + commit?.slice(0, 8)}
 		</p>
 	</div>
 </footer>

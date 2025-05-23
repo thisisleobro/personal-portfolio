@@ -6,6 +6,9 @@ import Umami from '../components/Analytics/Umami.astro'
 
 import {author, title} from '../constants'
 import {t} from 'i18next'
+import { initI18n } from '../lib/i18n'
+
+await initI18n(Astro.currentLocale)
 ---
 <!doctype html>
 <html lang={Astro.currentLocale}>

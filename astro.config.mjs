@@ -6,8 +6,6 @@ import sitemap from "@astrojs/sitemap";
 import { site, defaultLocale } from './src/constants';
 import {initI18n, localeKeys, locales} from '/src/lib/i18n'
 
-await initI18n()
-
 // https://astro.build/config
 export default defineConfig({
   site,

@@ -19,7 +19,7 @@ export const getStaticPathsImpl = () => localeKeys
 		[]
 	)
 
-export const initI18n = async () => {
+export const initI18n = async (currentLocale) => {
 	const resources = {};
 
 	translations.forEach((translation) => {
@@ -27,8 +27,11 @@ export const initI18n = async () => {
 		resources[translation.lang_key].translation = {...translation}
 	});
 
+	console.log('resources', resources)
+
 	await i18next.init({
-		fallbackLng: defaultLocale, // SSR only
+		lng: currentLocale,
+		fallbackLng: currentLocale, // SSR only
 		// debug: true,
 		// lng: Astro.currentLocale,
 		// preload: ['en', 'pt'],

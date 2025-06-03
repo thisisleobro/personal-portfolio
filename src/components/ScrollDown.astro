@@ -7,16 +7,13 @@ import {ChevronDownIcon} from 'astro-feather';
 	</div>
 </button>
 
-
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
 		const scroll = document.getElementById("scroll")
 
-		scroll?.addEventListener('click', () => {
-			location.hash = 'projects'
-		})
+		scroll?.addEventListener('click', () => {location.hash = 'projects'})
 
-		window.addEventListener('scroll', () => {
+		window.addEventListener('scroll', (_event) => {
 			if (scrollY > 50) {
 				scroll?.classList.add('opacity-0')
 			} else {

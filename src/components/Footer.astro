@@ -21,7 +21,7 @@ const commit = import.meta.env.SOURCE_COMMIT;
 		<div class="pt-1">
 			<h2 class=" mb-4">Links</h2>
 			<u class="list-none">
-				<li><a href={getRelativeLocaleUrl(Astro.currentLocale, 'blog')} class='link'>Blog</a></li>
+				<li><a href={getRelativeLocaleUrl(Astro.currentLocale || '', 'blog')} class='link'>Blog</a></li>
 			</u>
 		</div>
 	</div>

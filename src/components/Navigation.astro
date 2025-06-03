@@ -3,20 +3,34 @@ import Language from '../components/Language.astro'
 import {t} from 'i18next'
 import {MenuIcon} from 'astro-feather';
 ---
-<nav class="flex justify-between fixed p-4 w-svw left-0 z-50 bg-white" id="navigation">
+<nav class="flex justify-between fixed p-4 w-svw left-0 z-50 bg-white">
 	<span>Leo Carvalho</span>
 
-	<span onclick="toggleMenu()" class="sm:hidden flex">
-		<MenuIcon/>
-	</span>
-
-
-	<div id="nav-links" class="sm:flex hidden gap-4 text-center">
-		<a href="#hero" class="active">{t('hero.title')}</a>
-		<a href="#projects">{t('projects.title')}</a>
-		<a href="#repos">{t('repos.title')}</a>		
-		<!-- <a href="#contact">Contact</a> -->
-		<Language/>
+	<div class="group">
+		<button class="sm:hidden block">
+			<MenuIcon />
+		</button>
+		<div id="nav-links" class="h-auto bg-transparent gap-4 text-center hidden sm:flex items-center justify-center  transition-all delay-1000
+		sm:group-focus-within:auto
+		group-focus-within:flex
+		sm:group-focus-within:static
+		group-focus-within:absolute
+		sm:group-focus-within:inset-auto
+		group-focus-within:inset-0
+		sm:group-focus-within:h-auto
+		group-focus-within:h-dvh
+		sm:group-focus-within:flex-row
+		group-focus-within:flex-col
+		sm:group-focus-within:bg-auto
+		group-focus-within:bg-white
+		"
+		>
+			<a href="#hero" class="active">{t('hero.title')}</a>
+			<a href="#projects">{t('projects.title')}</a>
+			<a href="#repos">{t('repos.title')}</a>		
+			<!-- <a href="#contact">Contact</a> -->
+			<Language/>
+		</div>
 	</div>
 </nav>
 
@@ -27,14 +41,11 @@ import {MenuIcon} from 'astro-feather';
 		const navigation = document.getElementById('navigation') as HTMLElement;
 
 		window.addEventListener('scroll', () => {
-			// console.log('scroll')
-			// add border to navigation
 			if (scrollY > 100) {
-				navigation.classList.add('border-b')
+				navigation?.classList.add('border-b')
 			} else {
-				navigation.classList.remove('border-b')
+				navigation?.classList.remove('border-b')
 			}
-
 
 			// highlight navigation
 			let currentSectionId: string = "";

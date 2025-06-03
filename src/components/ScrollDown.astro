@@ -1,20 +1,24 @@
 ---
 import {ChevronDownIcon} from 'astro-feather';
 ---
-<div class="absolute right-16 bottom-16 transition-all delay-500 bg-blue-200 rounded-[50%] p-2" id="scroll">
+<button class="absolute sm:right-16 right-[50%] translate-x-[50%] bottom-8 transition-all delay-500 bg-blue-200 rounded-[50%] p-2 animate-bounce" id="scroll">
 	<ChevronDownIcon />
-</div>
+</button>
 
 
 <script>
 	document.addEventListener('DOMContentLoaded', function() {
 		const scroll = document.getElementById("scroll")
 
+		scroll?.addEventListener('click', () => {
+			location.hash = 'projects'
+		})
+
 		window.addEventListener('scroll', () => {
 			if (scrollY > 50) {
-				scroll.classList.add('opacity-0')
+				scroll?.classList.add('opacity-0')
 			} else {
-				scroll.classList.remove('opacity-0')
+				scroll?.classList.remove('opacity-0')
 			}
 		}, { passive: true })
 	}, false);

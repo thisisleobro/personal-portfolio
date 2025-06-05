@@ -6,6 +6,9 @@ on:
   workflow_dispatch:
 jobs:
   deploy:
+    environment:
+      name: staging
+      url: 'https://st.carvalho.cv'
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to coolify

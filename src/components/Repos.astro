@@ -1,33 +1,26 @@
 ---
 import {PackageIcon, StarIcon, DownloadIcon} from 'astro-feather';
+import {t} from 'i18next'
 
-const reposResponse = await fetch('https://api.github.com/users/thisisleobro/repos');
+const githubAuth = import.meta.env.GITHUB_AUTH
+
+const reposResponse = await fetch('https://api.github.com/users/thisisleobro/repos', {headers: {Authorization: githubAuth}});
 const githubRepos = await reposResponse.json();
 
-// console.log(githubRepos)
-
-const repos = await Promise.all(githubRepos.map(async (repo) => {
-	const releasesResponse = await fetch(`https://api.github.com/repos/thisisleobro/${repo.name}/releases`)
+const repos = await Promise.all(githubRepos.map(async (repo: any) => {
+	const releasesResponse = await fetch(`https://api.github.com/repos/thisisleobro/${repo.name}/releases`, {headers: {Authorization: githubAuth}})
 
 	const releases = await releasesResponse.json()
 
-	const downloads = releases.reduce((downloadsNumber, release) => {
-		return downloadsNumber + release.assets.reduce((assetsDownloadsNumber, assets) => {
+	const downloads = releases.reduce((downloadsNumber: any, release: any) => {
+		return downloadsNumber + release.assets.reduce((assetsDownloadsNumber: any, assets: any) => {
 			return assetsDownloadsNumber + assets.download_count
 		}, 0)
 	}, 0)
 
-	// console.log({...repo, downloads})
-
 	return {...repo, downloads}
-}))
+}));
 
-// const repos = []
-
-// console.log(repos)
-
-
-import {t} from 'i18next'
 ---
 <section id="repos" class="flex flex-col align-middle gap-12 max-w-3xl mx-auto m-24">
 	<div class="flex flex-col gap-2">

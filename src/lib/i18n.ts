@@ -27,7 +27,7 @@ export const initI18n = async (currentLocale) => {
 		resources[translation.lang_key].translation = {...translation}
 	});
 
-	console.log('resources', resources)
+	// console.log('resources', resources)
 
 	await i18next.init({
 		lng: currentLocale,

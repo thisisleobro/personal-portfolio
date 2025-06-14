@@ -36,7 +36,7 @@ import { defaultLocale } from '../constants';
 		if (onDefaultLanguage && !changingToDefaultLanguage) {
 			url.pathname = [
 				languageToChangeTo,
-				url.pathname.split('/').slice(2).join('/'),
+				url.pathname.split('/').slice(1).join('/'),
 			].join('/')
 		}
 	}
@@ -45,6 +45,7 @@ import { defaultLocale } from '../constants';
 
 	languageButtons.forEach((languageButton) => {
 		languageButton.addEventListener('click', () => {
+			console.log('changing language to', languageButton.dataset.lang)
 			changeLanguage(languageButton.dataset.lang)
 		});
 	});

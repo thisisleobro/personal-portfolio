@@ -1,6 +1,7 @@
 ---
 import {PackageIcon, StarIcon, DownloadIcon} from 'astro-feather';
 import {t} from 'i18next'
+import Section from './ui/Section.astro';
 
 const githubAuth = import.meta.env.GITHUB_AUTH
 
@@ -19,18 +20,9 @@ const repos = await Promise.all(githubRepos.map(async (repo: any) => {
 	}, 0)
 
 	return {...repo, downloads}
-}));
-
+}))
 ---
-<section id="repos" class="flex flex-col align-middle gap-12 max-w-3xl mx-auto m-24">
-	<div class="flex flex-col gap-2">
-		<h2 class="text-xl font-semibold text-center pt-4">
-			{t('repos.title')}
-		</h2>
-		<h3 class="text-lg text-center text-gray-600">
-			{t('repos.subtitle')}
-		</h3>
-	</div>
+<Section id="repos" title={t('repos.title')} subtitle={t('repos.subtitle')}>
 	<ul id="github-repos" class="flex flex-col gap-8">
 		{repos
 		.filter((repo) => !repo.fork)
@@ -52,4 +44,4 @@ const repos = await Promise.all(githubRepos.map(async (repo: any) => {
 			<p>{repo.description ?? '...'}</p>
 		</li>)}
 	</ul>
-</section>
+</Section>

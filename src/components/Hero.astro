@@ -2,12 +2,13 @@
 import profile from '../assets/profile.svg?raw'
 import {t} from 'i18next'
 import Socials from './Socials.astro';
-import ScrollDown from './ScrollDown.astro';
+import Scroll from './ui/Scroll.astro';
+import Section from './ui/Section.astro';
 
 ---
-<section id="hero" class="min-h-svh flex align-middle justify-center">
+<Section id='hero'>
 	<div id="hero-container" class="flex flex-col sm:flex-row m-auto align-middle gap-8">
-		<div class="flex sm:justify-end justify-center flex-1 w-96">
+		<div class="flex sm:justify-end justify-center flex-1 w-80">
 			<Fragment set:html={profile} />
 		</div>
 		<div id="hero-right" class="flex flex-col m-0 gap-4 justify-center flex-1">
@@ -34,6 +35,20 @@ import ScrollDown from './ScrollDown.astro';
 				<Socials />
 			</div>
 		</div>
-		<ScrollDown />
 	</div>
-</section>
+	<Scroll anchor='projects' id='scroll-element'/>
+</Section>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		const scroll = document.getElementById('scroll-element')
+
+		window.addEventListener('scroll', (_event) => {
+			if (scrollY > 50) {
+				scroll?.classList.add('opacity-0')
+			} else {
+				scroll?.classList.remove('opacity-0')
+			}
+		}, { passive: true })
+	}, false);	
+</script>

@@ -1,10 +1,28 @@
 ---
 import Language from '../components/Language.astro'
 import {t} from 'i18next'
-import {MenuIcon} from 'astro-feather';
+import {MenuIcon} from 'astro-feather'
+import { author } from '../constants'
+import { getRelativeLocaleUrl } from 'astro:i18n'
+
+type Link = {href?: string, label?: string, Component?: Function}
+
+const links: Link[] = [
+	{
+		href: getRelativeLocaleUrl(Astro.currentLocale || '', '/').concat('#projects'),
+		label: t('projects.title'),
+	},
+	{
+		href: getRelativeLocaleUrl(Astro.currentLocale || '', 'blog'),
+		label: 'Blog',
+	},
+	{
+		Component: Language
+	}
+]
 ---
 <nav class="flex justify-between fixed p-4 w-svw left-0 z-50 bg-white">
-	<span>Leo Carvalho</span>
+	<a href="/">{author}</a>
 
 	<div class="group">
 		<button class="sm:hidden block">
@@ -25,84 +43,14 @@ import {MenuIcon} from 'astro-feather';
 		group-focus-within:bg-white
 		"
 		>
-			<a href="#hero" class="active">{t('hero.title')}</a>
-			<a href="#projects">{t('projects.title')}</a>
-			<a href="#repos">{t('repos.title')}</a>		
-			<!-- <a href="#contact">Contact</a> -->
-			<Language/>
+			{links.map((link) => {
+				if (link.Component) {
+					return <link.Component />
+				}
+
+				return <a href={link.href}>{link.label}</a>
+			})}
+			
 		</div>
 	</div>
 </nav>
-
-<script>
-	document.addEventListener('DOMContentLoaded', function() {
-		const sections = document.querySelectorAll("#container > section");
-		const navLi = document.querySelectorAll("#nav-links > a") as NodeListOf<HTMLLinkElement>;
-		const navigation = document.getElementById('navigation') as HTMLElement;
-
-		window.addEventListener('scroll', () => {
-			if (scrollY > 100) {
-				navigation?.classList.add('border-b')
-			} else {
-				navigation?.classList.remove('border-b')
-			}
-
-			// highlight navigation
-			let currentSectionId: string = "";
-
-			sections.forEach((section) => {
-				// @ts-ignore
-				const sectionTop = section.offsetTop;
-				if (scrollY >= sectionTop - 300) {
-					currentSectionId = section.getAttribute("id") ?? "";
-				}
-			});
-
-			navLi.forEach((li) => {
-				li.classList.remove("active");
-
-				if (li.href.includes(currentSectionId)) {
-					li.classList.add('active');
-				}
-			});
-		}, { passive: true })
-	}, false);
-</script>
-<script is:inline>
-	const links = document.getElementById("nav-links");
-	const mobileClasses = [
-		'flex',
-		'absolute',
-		'flex-col',
-		'my-4',
-		'p-24',
-		'bg-white',
-		'rounded',
-		'border',
-		'right-0',
-		'left-0',
-		'top-8',
-		'h-dvh',
-		'row',
-		'justify-center',
-		'text-xl'
-	]
-
-	function showMenu() {
-		links.classList.remove('hidden');
-		mobileClasses.forEach((singleClass) => links.classList.add(singleClass))
-	}
-
-	function hideMenu() {
-		links.classList.add('hidden');
-		mobileClasses.forEach((singleClass) => links.classList.remove(singleClass))
-	}
-
-	function toggleMenu() {
-		if (links.classList.contains('hidden')) {
-			showMenu()
-		} else {
-			hideMenu()
-		}
-	}
-</script>

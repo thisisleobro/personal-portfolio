@@ -1,0 +1,10 @@
+---
+type Link = {
+	href: string,
+	label: string,
+}
+
+const {href = '/', label = 'root'} = Astro.props
+---
+
+<a href={href} data-umami-event='link' data-umami-event-href={href}>{label}</a>

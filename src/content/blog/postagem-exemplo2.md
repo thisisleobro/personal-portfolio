@@ -1,9 +1,9 @@
 ---
 language: pt
-title: Postagem em pt
-pubDate: '15 Jan 2025'
+title: Postagem em pt 2
+pubDate: 2025-06-30
 ---
-### Postagem exemplo em pt
+### Postagem exemplo em pt 2
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,

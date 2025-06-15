@@ -1,7 +1,7 @@
 ---
 import { Picture } from 'astro:assets'
 import kantu from '../../assets/kantu.png'
-import { GithubIcon, CheckIcon, BookmarkIcon, GlobeIcon, ExternalLinkIcon } from 'astro-feather';
+import { GithubIcon, CheckIcon, BookmarkIcon, ExternalLinkIcon } from 'astro-feather';
 import VideoPlayer from './VideoPlayer.astro';
 const {id, name, description, imageSrc, videoSrc, poster, features, todos, links, position: passedPosition} = Astro.props
 
@@ -25,10 +25,12 @@ const position = passedPosition === 'right'?
 	}
 ---
 
-<div class={`flex flex-col ${position.flex} gap-8 p-4`}>
+<div class={`flex flex-col ${position.flex} gap-8`}>
 	{imageSrc &&
 		<div class="flex justify-center flex-1">
-			<Picture src={imageSrc} alt={name} class='rounded' width={kantu.width / 3} densities={[1, 2, 3]}/>
+		<div class="my-auto">
+			<Picture src={imageSrc} alt={name} class='rounded m-auto' width={kantu.width / 3} densities={[1, 2, 3]}/>
+		</div>
 		</div>
 	}
 
@@ -49,11 +51,11 @@ const position = passedPosition === 'right'?
 			</div>
 
 			<div class="flex flex-col gap-2">
-				{features?.map(feature => <p class={`justify-center text-sm flex gap-1 ${position.reverse}`}>
+				{features?.map((feature: string) => <p class={`justify-center text-sm flex gap-1 ${position.reverse}`}>
 					{feature} <CheckIcon customClasses='size-4 mt-1' />
 				</p>)}
 
-				{todos?.map(todo => <p class={`${position.justify} justify-center text-sm flex gap-1`}>
+				{todos?.map((todo: string) => <p class={`${position.justify} justify-center text-sm flex gap-1`}>
 					{todo} <BookmarkIcon customClasses='size-4 mt-auto' />
 				</p>)}
 			</div>

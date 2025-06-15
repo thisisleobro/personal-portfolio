@@ -1,12 +1,13 @@
 ---
 import '../styles/global.css'
-// import profile from '../assets/profile.svg'
 import Posthog from '../components/Analytics/Posthog.astro'
 import Umami from '../components/Analytics/Umami.astro'
 
 import {author, title} from '../constants'
 import {t} from 'i18next'
 import { initI18n } from '../lib/i18n'
+import Footer from '../components/Footer.astro'
+import Navigation from '../components/Navigation.astro'
 
 await initI18n(Astro.currentLocale)
 ---
@@ -24,8 +25,10 @@ await initI18n(Astro.currentLocale)
 		<Posthog />
 		<Umami />
 	</head>
-	<body>
+	<body class="text-slate-800 stroke-slate-800">
+		<Navigation />
 		<slot />
+		<Footer />
 	</body>
 </html>
 

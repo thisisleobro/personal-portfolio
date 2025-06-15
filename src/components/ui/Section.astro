@@ -1,0 +1,19 @@
+---
+interface Props {
+	id?: string,
+	title?: string,
+	subtitle?: string,
+}
+const {id, title, subtitle} = Astro.props
+---
+<section id={id} class="min-h-svh flex flex-col align-middle justify-center max-w-3xl m-auto md:mx-auto mx-4">
+	{(title || subtitle) && <div class="mb-6">
+		<h2 class="text-xl font-semibold text-center pt-4 w-full mb-4">
+			{title}
+		</h2>	
+		<h3 class="text-lg text-center text-gray-600 mb-4">
+			{subtitle}
+		</h3>
+	</div>}
+	<slot />
+</section>

@@ -3,12 +3,12 @@ import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
 import sitemap from "@astrojs/sitemap";
 
-import { site, defaultLocale } from './src/constants';
-import {initI18n, localeKeys, locales} from '/src/lib/i18n'
+import { defaultLocale } from './src/constants';
+import {localeKeys, locales} from '/src/lib/i18n'
 
 // https://astro.build/config
 export default defineConfig({
-  site,
+  site: process.env.SITE_URL || 'http://localhost:4321',
   // trailingSlash: 'never',
   i18n: {
     defaultLocale,

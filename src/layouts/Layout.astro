@@ -8,6 +8,7 @@ import {t} from 'i18next'
 import { initI18n } from '../lib/i18n'
 import Footer from './Footer.astro'
 import Navigation from './Nav.astro'
+import { ClientRouter } from "astro:transitions"
 
 await initI18n(Astro.currentLocale)
 
@@ -29,6 +30,7 @@ const {title, showLanguageMenu = true} = Astro.props
 		<meta name="description" content={t('description')} />
 		<meta name="author" content={author} />
 		<link rel="sitemap" href="/sitemap-index.xml" />
+		<ClientRouter />
 		<Posthog />
 		<Umami />
 	</head>

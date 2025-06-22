@@ -1,6 +1,12 @@
 ---
 import {t} from 'i18next';
 import {ChevronDownIcon} from 'astro-feather';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+type Language = {
+	key: string,
+	description: string,
+}
 
 interface Props {
 	label: string,
@@ -15,8 +21,6 @@ interface Props {
 }
 
 const {label, defaultLocale, currentLocale, languages} = Astro.props
-
-console.log('languages', languages)
 ---
 
 <div class="relative inline-block text-left dropdown">
@@ -26,43 +30,18 @@ console.log('languages', languages)
 		<ChevronDownIcon size={16} class:list={'flex'}/>
 	</button>
 	<div class="bg-white p-2 border rounded hidden flex-col dropdown-menu w-full absolute sm:right-0 :smleft-auto gap-2">
-		{languages.map(({key, description}: any) => <button
-			class="language-button"
-			data-lang={key}
-			>
-				{description}
-			</button>)
-		}
+		{languages
+		.filter(({key: languageToChangeTo}: Language) => currentLocale !== languageToChangeTo)
+		.map(({key: languageToChangeTo, description}: Language) => {
+			if (languageToChangeTo === defaultLocale) {
+				const url = '/' + Astro.url.pathname.split('/').filter((str) => str).slice(1).join('/')
+				return <a href={url}>{description}</a>
+			}
+
+			return <a href={getRelativeLocaleUrl(languageToChangeTo, Astro.url.pathname)}>{description}</a>
+		})}
 	</div>
 </div>
-
-<script define:vars={{ defaultLocale, currentLocale }} is:inline>
-	function changeLanguage(languageToChangeTo) {
-		const url = window.location
-		const onDefaultLanguage = currentLocale === defaultLocale
-		const changingToDefaultLanguage = languageToChangeTo === defaultLocale
-
-		if (!onDefaultLanguage && changingToDefaultLanguage) {
-			url.pathname = url.pathname.split('/').slice(2).join('/')
-		}
-
-		if (onDefaultLanguage && !changingToDefaultLanguage) {
-			url.pathname = [
-				languageToChangeTo,
-				url.pathname.split('/').slice(1).join('/'),
-			].join('/')
-		}
-	}
-
-	const languageButtons = document.querySelectorAll('button.language-button')
-
-	languageButtons.forEach((languageButton) => {
-		languageButton.addEventListener('click', () => {
-			console.log('changing language to', languageButton.dataset.lang)
-			changeLanguage(languageButton.dataset.lang)
-		});
-	});
-</script>
 
 <style>
 .dropdown:focus-within .dropdown-menu {

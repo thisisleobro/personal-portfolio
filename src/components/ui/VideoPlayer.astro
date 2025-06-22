@@ -1,7 +1,13 @@
 ---
-const {id, videoSrc, poster} = Astro.props
+import { PlayIcon } from 'astro-feather'
 
-import { PlayIcon } from 'astro-feather';
+interface Props {
+	id: string,
+	videoSrc: string,
+	poster: string
+}
+
+const {id, videoSrc, poster} = Astro.props
 ---
 
 <div class="flex-1 relative cursor-pointer" id={`${id}-media`}>
@@ -16,14 +22,13 @@ import { PlayIcon } from 'astro-feather';
 	<div class="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center" id={`${id}-play`}>
 		<PlayIcon customClasses='stroke-white flex' size={32}/>
 	</div>
-	<script define:vars={{ id }}>
+	<script is:inline define:vars={{ id }}>
 		const kantuMediaElement = document.getElementById(`${id}-media`)
 		const kantuVideo = document.getElementById(`${id}-video`)
 		const kantuPlayOverlay = document.getElementById(`${id}-play`)
 
 		const playVideo = (event) => {
 			event.stopPropagation()
-			// console.log('play', event)
 			kantuVideo.play()
 			kantuMediaElement.removeChild(kantuPlayOverlay)
 
@@ -36,7 +41,6 @@ import { PlayIcon } from 'astro-feather';
 
 		const pauseVideo = (event) => {
 			event.stopPropagation()
-			// console.log('pause', event)
 			kantuVideo.pause()
 			kantuMediaElement.appendChild(kantuPlayOverlay)
 			

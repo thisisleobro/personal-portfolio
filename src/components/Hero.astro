@@ -42,7 +42,7 @@ import Section from './ui/Section.astro';
 </Section>
 
 <script>
-	document.addEventListener('DOMContentLoaded', function() {
+	document.addEventListener('astro:page-load', function() {
 		const scroll = document.getElementById('scroll-element')
 
 		window.addEventListener('scroll', (_event) => {

@@ -3,7 +3,7 @@ import '../styles/global.css'
 import Posthog from '../components/Analytics/Posthog.astro'
 import Umami from '../components/Analytics/Umami.astro'
 
-import {author, defaultTitle} from '../constants'
+import {author} from '../constants'
 import {t} from 'i18next'
 import { initI18n } from '../lib/i18n'
 import Footer from './Footer.astro'
@@ -14,7 +14,7 @@ await initI18n(Astro.currentLocale)
 
 interface Props {
 	showLanguageMenu?: boolean,
-	title?: string
+	title: string
 }
 
 const {title, showLanguageMenu = true} = Astro.props
@@ -26,7 +26,7 @@ const {title, showLanguageMenu = true} = Astro.props
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title? `${title} | ${defaultTitle}`: defaultTitle}</title>
+		<title>{title? `${title} | ${author}`: author}</title>
 		<meta name="description" content={t('description')} />
 		<meta name="author" content={author} />
 		<link rel="sitemap" href="/sitemap-index.xml" />

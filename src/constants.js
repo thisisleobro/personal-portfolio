@@ -1,3 +1,3 @@
 export const author = 'Leo Carvalho'
-export const title = `${author} | Portfolio`
+export const defaultTitle = `Portfolio ${author}`
 export const defaultLocale = 'en'

@@ -1,13 +1,22 @@
 ---
-import Language from '../components/Language.astro'
+import Language from '../components/ui/Language.astro'
 import {t} from 'i18next'
 import {MenuIcon} from 'astro-feather'
-import { author } from '../constants'
+import { author, defaultLocale } from '../constants'
 import { getRelativeLocaleUrl } from 'astro:i18n'
+import { languages } from '../lib/i18n';
+
+interface Props {
+	showLanguageMenu?: boolean
+}
 
 type Link = {href?: string, label?: string, Component?: Function}
 
 const links: Link[] = [
+	{
+		href: getRelativeLocaleUrl(Astro.currentLocale || '', '/').concat('#'),
+		label: t('hero.title'),
+	},
 	{
 		href: getRelativeLocaleUrl(Astro.currentLocale || '', '/').concat('#projects'),
 		label: t('projects.title'),
@@ -16,10 +25,9 @@ const links: Link[] = [
 		href: getRelativeLocaleUrl(Astro.currentLocale || '', 'blog'),
 		label: 'Blog',
 	},
-	{
-		Component: Language
-	}
 ]
+
+const {showLanguageMenu} = Astro.props
 ---
 <nav class="flex justify-between fixed p-4 w-svw left-0 z-50 bg-white">
 	<a href="/">{author}</a>
@@ -43,14 +51,15 @@ const links: Link[] = [
 		group-focus-within:bg-white
 		"
 		>
-			{links.map((link) => {
-				if (link.Component) {
-					return <link.Component />
-				}
+			{links.map((link) => <a href={link.href}>{link.label}</a>)}
 
-				return <a href={link.href}>{link.label}</a>
-			})}
-			
+			{showLanguageMenu &&
+			<Language
+			label={languages.find(({key}: {key: string}) => key === Astro.currentLocale).description}
+			currentLocale={Astro.currentLocale}
+			defaultLocale={defaultLocale}
+			languages={languages}
+			/>}
 		</div>
 	</div>
 </nav>

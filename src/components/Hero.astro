@@ -18,6 +18,9 @@ import Section from './ui/Section.astro';
 				<Fragment set:html={t('hero.develop')} />
 				<br/>
 				<Fragment set:html={t('hero.in_my_free_time')} />
+
+				<!-- Use class active bellow so that tailwind compiler can pick on it -->
+				<span class="active" />
 			</h1>
 
 			<div class="flex flex-col gap-1">
@@ -30,7 +33,6 @@ import Section from './ui/Section.astro';
 					<Fragment set:html={mapPin} />
 					{t('location')}
 				</p> -->
-
 
 				<Socials />
 			</div>

@@ -5,6 +5,7 @@ import { defaultLocale } from "../constants";
 
 const matches = import.meta.glob('../assets/i18n/**/translation.json', { eager: true });
 export const translations = Object.values(matches) as any;
+export const languages = translations.map(({lang_key, lang_description}: any) => ({key: lang_key, description: lang_description}))
 export const localeKeys = translations.map(({lang_key}: {lang_key: string}) => lang_key)
 export const locales = translations.reduce((acc: any, cur: any) => ({ ...acc, [cur.lang_key]: cur.lang_key }), {})
 

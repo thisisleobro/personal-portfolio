@@ -14,7 +14,7 @@ const {id = 'scroll', anchor, direction = 'down'} = Astro.props
 	</div>
 </button>
 
-<script define:vars={{id, anchor}}>
+<script is:inline define:vars={{id, anchor}} >
 	document.addEventListener('DOMContentLoaded', function() {
 		const scroll = document.getElementById(id)
 

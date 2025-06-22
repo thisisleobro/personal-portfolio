@@ -12,12 +12,12 @@ export default defineConfig({
   // trailingSlash: 'never',
   i18n: {
     defaultLocale,
-    locales: localeKeys
+    locales: localeKeys,
   },
   integrations: [
     tailwind(),
     sitemap({
-      // filter: (page) => page !== `${site}/`,
+      filter: (page) => page.startsWith(`${site}/blog`),
       i18n: {
         defaultLocale, // All urls that don't contain `es` or `fr` after `https://stargazers.club/` will be treated as default locale, i.e. `en`
         locales,

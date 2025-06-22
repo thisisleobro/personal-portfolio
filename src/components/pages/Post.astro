@@ -1,0 +1,23 @@
+---
+import { getEntry } from "astro:content"
+import Layout from "../../layouts/Layout.astro"
+import Section from "../ui/Section.astro"
+
+const post = await getEntry('blog', Astro.params.post)
+
+const dateFormat = new Intl.DateTimeFormat(Astro.currentLocale, {dateStyle: "full"})
+
+const publicationDate = dateFormat.format(post?.data.pubDate)
+---
+
+<Layout showLanguageMenu={false} title="Posts">
+	<Section>
+		<div class="flex flex-col mb-4 mt-16">
+			<h2>{post?.data.title}</h2>
+			<span class="text-sm">{publicationDate}</span>
+		</div>
+		<p class="text-7xl">WIP</p>
+
+		<Fragment set:html={post?.rendered?.html}/>
+	</Section>
+</Layout>

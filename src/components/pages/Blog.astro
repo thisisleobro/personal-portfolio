@@ -1,14 +1,14 @@
 ---
 import { getCollection } from "astro:content"
-import Layout from "../layouts/Layout.astro"
-import Section from "./ui/Section.astro"
+import Layout from "../../layouts/Layout.astro"
+import Section from "../ui/Section.astro"
 
 const currentUrl = Astro.url.pathname.endsWith('/')? Astro.url: new URL(Astro.url.pathname.concat('/'), Astro.url)
 const posts = await getCollection('blog')
 
 console.log(posts)
 ---
-<Layout>
+<Layout title="Blog">
 	<Section title="Blog">
 		<ul class="flex flex-col gap-4">
 			{posts

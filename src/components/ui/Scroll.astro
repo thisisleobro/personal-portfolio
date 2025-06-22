@@ -14,12 +14,12 @@ const {id = 'scroll', anchor, direction = 'down'} = Astro.props
 	</div>
 </button>
 
-<script is:inline define:vars={{id, anchor}} >
-	document.addEventListener('DOMContentLoaded', function() {
+<script is:inline define:vars={{id, anchor}}>
+	document.addEventListener('astro:page-load', () => {
 		const scroll = document.getElementById(id)
 
 		if (anchor) {
 			scroll?.addEventListener('click', () => {location.hash = anchor})
 		}
-	}, false);
+	}, false)
 </script>

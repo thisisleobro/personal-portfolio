@@ -1,13 +1,14 @@
 ---
 import profile from '../assets/profile.svg?raw'
 import {t} from 'i18next'
-import Socials from './Socials.astro';
 import Scroll from './ui/Scroll.astro';
 import Section from './ui/Section.astro';
+import { GithubIcon, MailIcon } from "astro-feather";
+import Link from './Link.astro';
 
 ---
 <Section id='hero'>
-	<div id="hero-container" class="flex flex-col sm:flex-row m-auto align-middle gap-8">
+	<div class="flex flex-col sm:flex-row my-32 m-auto align-middle gap-8">
 		<div class="flex sm:justify-end justify-center flex-1 w-80">
 			<Fragment set:html={profile} />
 		</div>
@@ -34,13 +35,16 @@ import Section from './ui/Section.astro';
 					{t('location')}
 				</p> -->
 
-				<Socials />
+				<p class="flex gap-4 links my-2 justify-center sm:justify-normal">
+					<Link aria-label={t('my_email')} IconComponent={MailIcon} href={''} class="author-email bg-yellow-600 py-1 px-2 rounded text-white"/>
+					<Link href="https://github.com/thisisleobro" aria-label={t('my_github')} relMe IconComponent={GithubIcon} class="bg-slate-900 py-1 px-2 rounded text-white" />
+				</p>
+
 			</div>
 		</div>
 	</div>
 	<Scroll anchor='projects' id='scroll-element'/>
 </Section>
-
 <script>
 	document.addEventListener('astro:page-load', function() {
 		const scroll = document.getElementById('scroll-element')

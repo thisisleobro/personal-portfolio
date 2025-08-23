@@ -6,9 +6,11 @@ import sitemap from "@astrojs/sitemap";
 import { defaultLocale } from './src/constants';
 import {localeKeys, locales} from '/src/lib/i18n'
 
+const site = process.env.SITE_URL || 'http://localhost:4321'
+
 // https://astro.build/config
 export default defineConfig({
-  site: process.env.SITE_URL || 'http://localhost:4321',
+  site,
   // trailingSlash: 'never',
   i18n: {
     defaultLocale,

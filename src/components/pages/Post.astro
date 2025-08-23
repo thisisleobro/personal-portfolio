@@ -2,8 +2,13 @@
 import { getEntry } from "astro:content"
 import Layout from "../../layouts/Layout.astro"
 import Section from "../ui/Section.astro"
+import '../../styles/post.css'
+import TitleGroup from "../ui/TitleGroup.astro"
+import Link from "../Link.astro"
 
 const post = await getEntry('blog', Astro.params.post as string)
+
+console.log(post?.slug)
 
 const dateFormat = new Intl.DateTimeFormat(Astro.currentLocale, {dateStyle: "full"})
 
@@ -12,12 +17,12 @@ const publicationDate = dateFormat.format(post?.data.pubDate)
 
 <Layout showLanguageMenu={false} title={post?.data.title}>
 	<Section>
-		<div class="flex flex-col mb-4 mt-16">
-			<h2>{post?.data.title}</h2>
-			<span class="text-sm">{publicationDate}</span>
-		</div>
-		<p class="text-7xl">WIP</p>
-
+		<TitleGroup title={post?.data.title} subtitle={publicationDate} />
+		{<ul class="p-4 bg-slate-50 rounded mb-4">
+			{post?.render().then((result) => result.headings.map((heading) => <li><Link href={`#${heading.slug}`}>
+				{heading.text}
+			</Lin></li>))}
+		</ul>}
 		<Fragment set:html={post?.rendered?.html}/>
 	</Section>
 </Layout>

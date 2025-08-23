@@ -1,31 +1,32 @@
 ---
 import { Picture } from 'astro:assets'
 import kantu from '../../assets/kantu.png'
-import { GithubIcon, CheckIcon, BookmarkIcon, ExternalLinkIcon } from 'astro-feather';
+import { GithubIcon, CheckIcon, BookmarkIcon, ArrowRightIcon } from 'astro-feather';
 import VideoPlayer from '../ui/VideoPlayer.astro';
-const {id, name, description, imageSrc, videoSrc, poster, features, todos, links, position: passedPosition} = Astro.props
+import Link from '../Link.astro';
+const {id, name, description, imageSrc, videoSrc, poster, features, todos, links, positionRight} = Astro.props
 
 const githubUrl = links?.github
 const websiteUrl = links?.website
 
-const position = passedPosition === 'right'?
+const position = positionRight?
 	{
 		justify: 'sm:justify-start',
 		text: 'sm:text-left',
 		flex: 'sm:flex-row-reverse',
-		margin: 'sm:ml-0 m-auto',
+		margin: 'sm:ml-0 m-0',
 		reverse: 'sm:justify-end sm:flex-row-reverse',
 	}:
 	{
 		justify: 'sm:justify-end',
 		text: 'sm:text-right',
 		flex: 'sm:flex-row',
-		margin: 'sm:mr-0 m-auto',
+		margin: 'sm:mr-0 sm:ml-auto m-0',
 		reverse: 'sm:justify-end',
 	}
 ---
 
-<div class={`flex flex-col ${position.flex} gap-8`}>
+<div class={`flex flex-col ${position.flex} gap-8 bg-slate-50 rounded p-4`}>
 	{imageSrc &&
 		<div class="flex justify-center flex-1">
 		<div class="my-auto">
@@ -39,47 +40,31 @@ const position = passedPosition === 'right'?
 	}
 
 	<div class={`flex flex-col flex-1 justify-between gap-8`}>
-		<div class="flex flex-col gap-6">
-			<div class="flex flex-col gap-2">
-				<h3 class={` ${position.text} text-center flex gap-1 ${position.justify} justify-center items-baseline`}>
-					{name}
-				</h3>
-				
-				<p class={`${position.text} text-center w-72 ${position.margin} font-semibold text-xl`}>
-					<Fragment set:html={description}/>
-				</p>
-			</div>
-
-			<div class="flex flex-col gap-2">
-				{features?.map((feature: string) => <p class={`justify-center text-sm flex gap-1 ${position.reverse}`}>
-					{feature} <CheckIcon customClasses='size-4 mt-1' />
-				</p>)}
-
-				{todos?.map((todo: string) => <p class={`${position.justify} justify-center text-sm flex gap-1`}>
-					{todo} <BookmarkIcon customClasses='size-4 mt-auto' />
-				</p>)}
-			</div>
-
+		<div class="flex flex-col gap-2">
+			<h3 class={`${position.text} text-left flex gap-1 text-lg ${position.justify} items-baseline`}>
+				{name}
+			</h3>
+			
+			<p class={`${position.text} text-left  ${position.margin} font-semibold text-xl`}>
+				<Fragment set:html={description}/>
+			</p>
 		</div>
 
-		<div class={`flex gap-4 ${position.justify} justify-center items-center`}>
-			{githubUrl &&
-				<a class=""
-				aria-label='github'
-				href={githubUrl}
-				target="_blank">
-					<GithubIcon customClasses='size-6'/>
-				</a>
-			}
+		<div class="flex flex-col gap-2">
+			{features?.map((feature: string) => <p class={`text-sm flex gap-1 ${position.reverse}`}>
+				{feature} <CheckIcon customClasses='size-4 mt-1' />
+			</p>)}
 
-			{websiteUrl &&
-				<a class=""
-				aria-label='website'
-				href={websiteUrl}
-				target="_blank">
-					<ExternalLinkIcon customClasses='size-6'/>
-				</a>
-			}
+			{todos?.map((todo: string) => <p class={`${position.justify} text-sm flex gap-1`}>
+				{todo} <BookmarkIcon customClasses='size-4 mt-auto' />
+			</p>)}
 		</div>
+
+		<div class={`flex gap-4 ${position.justify} justify-end items-center`}>
+			{githubUrl && <Link class="bg-slate-900 py-1 px-3 rounded text-white" aria-label='github' href={githubUrl} targetBlank IconComponent={GithubIcon}/>}
+
+			{websiteUrl && <Link class="bg-blue-600 py-1 px-3 rounded text-white" aria-label='website' href={websiteUrl} targetBlank IconComponent={ArrowRightIcon} />}
+		</div>
+
 	</div>
 </div>

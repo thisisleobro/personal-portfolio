@@ -14,7 +14,7 @@ await initI18n(Astro.currentLocale)
 
 interface Props {
 	showLanguageMenu?: boolean,
-	title: string
+	title: string | undefined,
 }
 
 const {title, showLanguageMenu = true} = Astro.props
@@ -34,11 +34,18 @@ const {title, showLanguageMenu = true} = Astro.props
 		<Posthog />
 		<Umami />
 	</head>
-	<body class="text-slate-800 stroke-slate-800">
+	<body class={`text-slate-800 stroke-slate-800 min-h-dvh`}>
 		<Navigation showLanguageMenu={showLanguageMenu} />
 		<slot />
 		<Footer />
 	</body>
 </html>
 
+<script>
+	document.addEventListener('astro:page-load', () => {
+		const email = ['c', 'a', 'r', 'v', 'a', 'l', 'h', 'o', '@', 'p', 'o', 's', 't', '.', 'c', 'o', 'm']
+		const emailElements = document.querySelectorAll('a.author-email')
 
+		emailElements.forEach((element) => (element as HTMLAnchorElement).href = `mailto:${email.join('')}`)
+	})
+</script>

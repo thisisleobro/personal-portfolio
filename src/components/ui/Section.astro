@@ -1,19 +1,15 @@
 ---
+import TitleGroup from './TitleGroup.astro'
+
 interface Props {
 	id?: string,
 	title?: string,
 	subtitle?: string,
+	class?: string,
 }
-const {id, title, subtitle} = Astro.props
+const {id, title, subtitle, class: className} = Astro.props
 ---
-<section id={id} class="min-h-svh flex flex-col align-middle justify-center max-w-3xl m-auto md:mx-auto mx-4">
-	{(title || subtitle) && <div class="mb-6">
-		<h2 class="text-xl font-semibold text-center pt-4 w-full mb-4">
-			{title}
-		</h2>	
-		<h3 class="text-lg text-center text-gray-600 mb-4">
-			{subtitle}
-		</h3>
-	</div>}
+<section id={id} class={`my-32 flex flex-col align-middle justify-center max-w-3xl m-auto md:mx-auto mx-4 ${className}`}>
+	{(title || subtitle) && <TitleGroup title={title} subtitle={subtitle} />}
 	<slot />
 </section>

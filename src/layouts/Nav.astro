@@ -29,7 +29,7 @@ const links: {href: string, label?: string, Component?: Function}[] = [
 const {showLanguageMenu} = Astro.props
 ---
 <nav class="flex justify-between p-4 left-0 z-50 bg-white">
-	<Link href="/">{author}</Link>
+	<Link href={getRelativeLocaleUrl(Astro.currentLocale || '', '/')}>{author}</Link>
 
 	<div class="group">
 		<button class="sm:hidden block">

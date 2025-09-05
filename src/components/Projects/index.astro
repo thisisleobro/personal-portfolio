@@ -12,7 +12,7 @@ import Section from '../ui/Section.astro'
 ---
 
 <Section id='projects' title={t('projects.title')} subtitle={t('projects.subtitle')}>
-	<div class="flex flex-col gap-8">
+	<div class="flex flex-col gap-16">
 		<Project
 		imageSrc={ExcelToSaft}
 		name={t('projects.saftcv.name')}
@@ -20,7 +20,7 @@ import Section from '../ui/Section.astro'
 		features={t('projects.saftcv.features', { returnObjects: true })}
 		todos={t('projects.saftcv.todos', {returnObjects: true})}
 		links={{
-			website: 'https://saft.carvalho.cv'
+			website: 'https://saft.carvalho.cv',
 		}}
 		/>
 
@@ -33,9 +33,9 @@ import Section from '../ui/Section.astro'
 		features={t('projects.keypirinha-qrcode.features', { returnObjects: true })}
 		todos={t('projects.keypirinha-qrcode.todos', {returnObjects: true})}
 		links={{
-			github: 'https://github.com/thisisleobro/Keypirinha-qrcode'
+			github: 'https://github.com/thisisleobro/Keypirinha-qrcode',
 		}}
-		position={'right'}
+		positionRight
 		/>
 
 		<Project

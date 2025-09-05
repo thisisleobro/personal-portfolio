@@ -5,14 +5,13 @@ import {MenuIcon} from 'astro-feather'
 import { author, defaultLocale } from '../constants'
 import { getRelativeLocaleUrl } from 'astro:i18n'
 import { languages } from '../lib/i18n';
+import Link from '../components/Link.astro'
 
 interface Props {
 	showLanguageMenu?: boolean
 }
 
-type Link = {href?: string, label?: string, Component?: Function}
-
-const links: Link[] = [
+const links: {href: string, label?: string, Component?: Function}[] = [
 	{
 		href: getRelativeLocaleUrl(Astro.currentLocale || '', '/').concat('#'),
 		label: t('hero.title'),
@@ -29,14 +28,14 @@ const links: Link[] = [
 
 const {showLanguageMenu} = Astro.props
 ---
-<nav class="flex justify-between fixed p-4 w-svw left-0 z-50 bg-white">
-	<a href="/">{author}</a>
+<nav class="flex justify-between fixed p-4 left-0 top-0 righ-0 w-dvw z-50 bg-white">
+	<Link href={getRelativeLocaleUrl(Astro.currentLocale || '', '/')}>{author}</Link>
 
 	<div class="group">
 		<button class="sm:hidden block">
 			<MenuIcon />
 		</button>
-		<div id="nav-links" class="h-auto bg-transparent gap-4 text-center hidden sm:flex items-center justify-center  transition-all delay-1000
+		<div id="nav-links" class="h-auto bg-transparent gap-4 text-center hidden sm:flex items-center justify-center transition-all delay-1000
 		sm:group-focus-within:auto
 		group-focus-within:flex
 		sm:group-focus-within:static
@@ -48,13 +47,15 @@ const {showLanguageMenu} = Astro.props
 		sm:group-focus-within:flex-row
 		group-focus-within:flex-col
 		sm:group-focus-within:bg-auto
-		group-focus-within:bg-white
+		group-focus-within:backdrop-blur-xl
+
 		"
 		>
-			{links.map((link) => <a href={link.href}>{link.label}</a>)}
+			{links.map((link) => <Link href={link.href} class='sm:text-base text-xl'>{link.label}</Link>)}
 
 			{showLanguageMenu &&
 			<Language
+			class="sm:text-base text-xl"
 			label={languages.find(({key}: {key: string}) => key === Astro.currentLocale).description}
 			currentLocale={Astro.currentLocale}
 			defaultLocale={defaultLocale}

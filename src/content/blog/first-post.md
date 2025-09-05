@@ -1,6 +1,6 @@
 ---
 language: en
-title: Firs Post
+title: How to write an example
 pubDate: 'Jul 08 2022'
 ---
 

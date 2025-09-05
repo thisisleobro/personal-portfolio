@@ -1,25 +1,33 @@
 ---
 import { getCollection } from "astro:content"
 import Layout from "../../layouts/Layout.astro"
+import { languages } from "../../lib/i18n"
 import Section from "../ui/Section.astro"
+import Link from "../Link.astro"
+import { ArrowRightIcon } from "astro-feather"
 
 const currentUrl = Astro.url.pathname.endsWith('/')? Astro.url: new URL(Astro.url.pathname.concat('/'), Astro.url)
 const posts = await getCollection('blog')
 
-console.log(posts)
+const currentLanguageDescription = languages.find((language: any) => language.key === Astro.currentLocale).description
+
 ---
-<Layout title="Blog">
-	<Section title="Blog">
+<Layout title={`Blog (${currentLanguageDescription})`}>
+	<Section title="Blog" class="min-h-max">
 		<ul class="flex flex-col gap-4">
 			{posts
 				.filter(post => post.data.language === Astro.currentLocale)
-				.map(({data, id}) => <li class="flex flex-col gap-2">
-					<h3 class="text-2xl"><a href={new URL(id.slice(0, -3), currentUrl)}>{data.title}</a></h3>
-					<span class="text-sm">
-						{new Intl.DateTimeFormat(Astro.currentLocale, {dateStyle: "full"})
-							.format(data.pubDate)
-						}</span>
-					{/*<Fragment set:html={rendered?.html}/>*/}
+				.map(({id, data, body, rendered, render, collection, slug, filePath}) =>
+				<li class={`flex flex-col gap-4 bg-slate-50 rounded p-4`}>
+					<h3 class="text-2xl">
+						<Link href={new URL(id.slice(0, -3), currentUrl).toString()}>{data.title}</Link>
+					</h3>
+					<div class="flex justify-between">
+						<span class="text-slate-600">
+							{new Intl.DateTimeFormat(Astro.currentLocale, {dateStyle: "full"}).format(data.pubDate)}
+						</span>
+						<Link href={slug} IconComponent={ArrowRightIcon} class="py-1 px-3 rounded " />
+					</div>
 				</li>)
 			}
 		</ul>

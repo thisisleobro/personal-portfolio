@@ -2,11 +2,14 @@
 import {PackageIcon, StarIcon, DownloadIcon} from 'astro-feather';
 import {t} from 'i18next'
 import Section from './ui/Section.astro';
+import Link from './Link.astro';
 
 const githubAuth = import.meta.env.GITHUB_AUTH
 
 const reposResponse = await fetch('https://api.github.com/users/thisisleobro/repos', {headers: {Authorization: githubAuth}});
 const githubRepos = await reposResponse.json();
+// const githubRepos = []
+
 
 const repos = await Promise.all(githubRepos.map(async (repo: any) => {
 	const releasesResponse = await fetch(`https://api.github.com/repos/thisisleobro/${repo.name}/releases`, {headers: {Authorization: githubAuth}})
@@ -28,9 +31,9 @@ const repos = await Promise.all(githubRepos.map(async (repo: any) => {
 		.filter((repo) => !repo.fork)
 		.map((repo) => <li class="flex flex-col gap-2">
 			<div class="flex justify-between">
-				<a href={repo.html_url} class="flex items-center gap-2">
+				<Link href={repo.html_url} class="flex items-center gap-2">
 					<PackageIcon customClasses='size-4' /> {repo.name}
-				</a>
+				</Link>
 				<div class="flex gap-4">
 					{repo.downloads > 0 && <div class="flex justify-between items-center gap-1">
 						<DownloadIcon customClasses='size-4'/> {repo.downloads}

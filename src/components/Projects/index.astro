@@ -1,10 +1,10 @@
 ---
 import {t} from 'i18next'
-import { getImage } from 'astro:assets'
+// import { getImage } from 'astro:assets'
 import kantu from '../../assets/kantu.png'
-import keypirinhaQrCodeVideo from '../../assets/keypirinha-qrcode.mp4?inline'
-import keypirinhaQrCodeImage from '../../assets/keypirinha-qrcode.jpg'
-const optimizedKeypirinhaQrCode = await getImage({src: keypirinhaQrCodeImage, width: 1024})
+// import keypirinhaQrCodeVideo from '../../assets/keypirinha-qrcode.mp4?inline'
+// import keypirinhaQrCodeImage from '../../assets/keypirinha-qrcode.jpg'
+// const optimizedKeypirinhaQrCode = await getImage({src: keypirinhaQrCodeImage, width: 1024})
 import ExcelToSaft from '../../assets/excel-to-saftcv.png'
 
 import Project from './Project.astro'
@@ -24,7 +24,7 @@ import Section from '../ui/Section.astro'
 		}}
 		/>
 
-		<Project
+<!-- 		<Project
 		id={'Keypirinha-qrcode'}
 		name={t('projects.keypirinha-qrcode.name')}
 		description={t('projects.keypirinha-qrcode.description')}
@@ -36,7 +36,7 @@ import Section from '../ui/Section.astro'
 			github: 'https://github.com/thisisleobro/Keypirinha-qrcode',
 		}}
 		positionRight
-		/>
+		/> -->
 
 		<Project
 		imageSrc={kantu}

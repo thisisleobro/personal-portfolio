@@ -12,7 +12,7 @@ export const getStaticPaths = async(): Promise<GetStaticPathsResult> => {
 	.reduce((multiPosts: GetStaticPathsResult, post) => {
 		return multiPosts.concat({
 			params: {
-				post: post.id.slice(0, -3)
+				post: post.slug
 			}
 		})
 	}, [])

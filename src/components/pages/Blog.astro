@@ -17,10 +17,10 @@ const currentLanguageDescription = languages.find((language: any) => language.ke
 		<ul class="flex flex-col gap-4">
 			{posts
 				.filter(post => post.data.language === Astro.currentLocale)
-				.map(({id, data, body, rendered, render, collection, slug, filePath}) =>
+				.map(({data, body, rendered, render, collection, slug, filePath}) =>
 				<li class={`flex flex-col gap-4 bg-slate-50 rounded p-4`}>
 					<h3 class="text-2xl">
-						<Link href={new URL(id.slice(0, -3), currentUrl).toString()}>{data.title}</Link>
+						<Link href={new URL(slug, currentUrl).toString()}>{data.title}</Link>
 					</h3>
 					<div class="flex justify-between">
 						<span class="text-slate-600">

@@ -10,7 +10,7 @@ export const getStaticPaths = async(): Promise<GetStaticPathsResult> => {
 	const posts = await getCollection('blog')
 
 	return localeKeys
-	.filter((locale: string) => locale === Astro.currentLocale)
+	.filter((locale: string) => locale !== defaultLocale)
 	.reduce((paths: GetStaticPathsResult, locale: string) => {
 		return paths.concat(
 			posts

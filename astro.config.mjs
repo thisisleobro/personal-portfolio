@@ -16,6 +16,12 @@ export default defineConfig({
     defaultLocale,
     locales: localeKeys,
   },
+  markdown:{
+    syntaxHighlight: 'shiki',
+    shikiConfig: {
+      theme: 'one-light',
+    },
+  },
   integrations: [
     tailwind(),
     sitemap({

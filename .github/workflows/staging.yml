@@ -13,3 +13,16 @@ jobs:
     steps:
       - name: Deploy to coolify
         run: "curl --request GET '${{ secrets.COOLIFY_STAGING_WEBHOOK }}' --header 'Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}'"
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Generate changelog
+        id: changelog
+        run: |
+          {
+            echo 'CHANGELOG<<EOF'
+            npx changelogen --from ${{ github.event.before }} --to ${{ github.event.after }}
+            echo EOF
+          } >> "$GITHUB_OUTPUT"
+      - name: Update summary
+        run: echo ${{ steps.changelog.outputs.SELECTED_COLOR }} >> $GITHUB_STEP_SUMMARY

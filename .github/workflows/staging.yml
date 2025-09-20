@@ -25,4 +25,4 @@ jobs:
             echo EOF
           } >> "$GITHUB_OUTPUT"
       - name: Update summary
-        run: echo ${{ steps.changelog.outputs.SELECTED_COLOR }} >> $GITHUB_STEP_SUMMARY
+        run: echo '${{ steps.changelog.outputs.CHANGELOG }}' 1>> $GITHUB_STEP_SUMMARY

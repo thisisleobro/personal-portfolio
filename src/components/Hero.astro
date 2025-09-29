@@ -51,9 +51,7 @@ import Link from './Link.astro';
 
 		window.addEventListener('scroll', (_event) => {
 			if (scrollY > 50) {
-				scroll?.classList.add('opacity-0')
-			} else {
-				scroll?.classList.remove('opacity-0')
+				scroll?.classList.add('hidden')
 			}
 		}, { passive: true })
 	}, false);	

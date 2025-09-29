@@ -7,7 +7,7 @@ interface Props {
 }
 const {id = 'scroll', anchor, direction = 'down'} = Astro.props
 ---
-<button class="absolute sm:right-16 right-[50%] translate-x-[50%] bottom-8 transition-all delay-500" id={id}>
+<button class="absolute right-[50%] translate-x-[50%] bottom-8 transition-all delay-500" id={id}>
 	<div class="animate-bounce bg-blue-200 rounded-[50%] p-2">
 		{direction === 'down' && <ChevronDownIcon />}
 		{direction === 'up' && <ChevronUpIcon />}

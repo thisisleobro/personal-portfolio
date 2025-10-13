@@ -33,7 +33,7 @@ jobs:
           -H "Authorization: Bearer ${{ secrets.POSTHOG_PERSONAL_API_KEY }}" \
           https://eu.posthog.com/api/projects/${{ secrets.POSTHOG_PROJECT_ID }}/annotations/ \
           -d '{
-            "content": "[Action run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})\n\n\n[Changes](${{ github.server_url }}/${{ github.repository }}/compare/${{ github.event.before }}...${{ github.event.after }})",
+            "content": "Staging\n\n\n[Action run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})\n\n\n[Changes](${{ github.server_url }}/${{ github.repository }}/compare/${{ github.event.before }}...${{ github.event.after }})",
             "date_marker":
             "${{ github.event.repository.updated_at}}",
             "scope": "project"

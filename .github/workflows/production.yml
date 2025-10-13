@@ -10,3 +10,20 @@ jobs:
     steps:
       - name: Deploy to coolify
         run: "curl --request GET '${{ secrets.COOLIFY_PRODUCTION_WEBHOOK }}' --header 'Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}'"
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Update summary
+        run: echo '${{ steps.changelog.outputs.CHANGELOG }}' 1>> $GITHUB_STEP_SUMMARY
+      - name: Create annotation
+        run: |
+          curl \
+          -H "Content-Type: application/json" \
+          -H "Authorization: Bearer ${{ secrets.POSTHOG_PERSONAL_API_KEY }}" \
+          https://eu.posthog.com/api/projects/${{ secrets.POSTHOG_PROJECT_ID }}/annotations/ \
+          -d '{
+            "content": "Production\n\n\n[Action run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})",
+            "date_marker":
+            "${{ github.event.repository.updated_at}}",
+            "scope": "project"
+          }'

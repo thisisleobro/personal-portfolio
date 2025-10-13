@@ -5,6 +5,7 @@ import kantu from '../../assets/kantu.png'
 // import keypirinhaQrCodeVideo from '../../assets/keypirinha-qrcode.mp4?inline'
 // import keypirinhaQrCodeImage from '../../assets/keypirinha-qrcode.jpg'
 // const optimizedKeypirinhaQrCode = await getImage({src: keypirinhaQrCodeImage, width: 1024})
+import Markview from '../../assets/markview.png'
 import ExcelToSaft from '../../assets/excel-to-saftcv.png'
 
 import Project from './Project.astro'
@@ -14,14 +15,11 @@ import Section from '../ui/Section.astro'
 <Section id='projects' title={t('projects.title')} subtitle={t('projects.subtitle')}>
 	<div class="flex flex-col gap-16">
 		<Project
-		imageSrc={ExcelToSaft}
-		name={t('projects.saftcv.name')}
-		description={t('projects.saftcv.description')}
-		features={t('projects.saftcv.features', { returnObjects: true })}
-		todos={t('projects.saftcv.todos', {returnObjects: true})}
-		links={{
-			website: 'https://saft.carvalho.cv',
-		}}
+		imageSrc={kantu}
+		name={t('projects.kantu.name')}
+		description={t('projects.kantu.description')}
+		features={t('projects.kantu.features', { returnObjects: true })}
+		todos={t('projects.kantu.todos', {returnObjects: true})}
 		/>
 
 <!-- 		<Project
@@ -39,11 +37,27 @@ import Section from '../ui/Section.astro'
 		/> -->
 
 		<Project
-		imageSrc={kantu}
-		name={t('projects.kantu.name')}
-		description={t('projects.kantu.description')}
-		features={t('projects.kantu.features', { returnObjects: true })}
-		todos={t('projects.kantu.todos', {returnObjects: true})}
+		name={t('projects.markview.name')}
+		description={t('projects.markview.description')}
+		imageSrc={Markview}
+		features={t('projects.markview.features', { returnObjects: true })}
+		todos={t('projects.markview.todos', {returnObjects: true})}
+		links={{
+			github: 'https://github.com/thisisleobro/markview',
+		}}
+		positionRight
 		/>
+		
+		<Project
+		imageSrc={ExcelToSaft}
+		name={t('projects.saftcv.name')}
+		description={t('projects.saftcv.description')}
+		features={t('projects.saftcv.features', { returnObjects: true })}
+		todos={t('projects.saftcv.todos', {returnObjects: true})}
+		links={{
+			website: 'https://saft.carvalho.cv',
+		}}
+		/>
+
 	</div>
 </Section>

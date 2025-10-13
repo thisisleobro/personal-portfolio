@@ -39,6 +39,14 @@
 			],
 			"todos": []
 		},
+		"markview": {
+			"name": "markview",
+			"description": "A fast, less than 5 MB, markdown viewer",
+			"features": [],
+			"todos": [
+				"Support for Mac and Linux"
+			]
+		},
 		"kantu": {
 			"name": "Kantu",
 			"description": "An app to get product prices from various ERPs",

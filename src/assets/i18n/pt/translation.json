@@ -39,6 +39,14 @@
 			],
 			"todos": []
 		},
+		"markview": {
+			"name": "markview",
+			"description": "Um visualizador de markdown rapido e com menos de 5 MB",
+			"features": [],
+						"todos": [
+				"Suporte para Mac e Linux"
+			]
+		},
 		"kantu": {
 			"name": "Kantu",
 			"description": "Um aplicativo para consulta de precos em varios ERPs",

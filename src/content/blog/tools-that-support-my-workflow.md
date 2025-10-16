@@ -38,15 +38,15 @@ It's very lightweight and fast.
 
 - **Flow Launcher**
 
-**Flow Launcher** doesn’t have everything I need out of the box, but it’s easily extendable with C#, Python, or JavaScript.
-The main downside is that it uses prefixes to scope functionality, which can make it a bit tricky to find exactly what you’re looking for.
+Flow Launcher doesn’t have everything I need out of the box, but it’s easily extendable with C#, Python, or JavaScript.
+At first, I had trouble finding exactly what I was looking for because you need to know the prefix keyword for each plugin.
+While these keywords are clearly shown on the homepage, it’s not always intuitive to know them right away.
 
 - **Keypirinha**
 
 On the other hand, **Keypirinha** lets you start typing anything and find it instantly.
-Everything is available as a top-level command, and it’s fuzzily matched for fast searching.
+Everything is available as a top-level command, and it’s fuzzy matched for fast searching.
 Though it has not been updated for years and it is not open source.
-
 
 ---
 

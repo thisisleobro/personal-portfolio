@@ -6,7 +6,7 @@ html,
 body {
 	scroll-behavior: smooth;
 	scrollbar-width: thin;
-	scroll-padding-top: 40px;
+	scroll-padding-top: 50px;
 	margin: 0;
 }
 

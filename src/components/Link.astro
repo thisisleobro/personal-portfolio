@@ -5,15 +5,21 @@ interface Props {
 	href: string,
 	class?: string,
 	'aria-label'?: string,
-	targetBlank?: boolean,
 	IconComponent?: typeof GithubIcon,
 	relMe?: boolean
 }
 
-const {href, class: className, 'aria-label': ariaLabel, targetBlank, IconComponent, relMe} = Astro.props
-
+const {href, class: className, 'aria-label': ariaLabel, IconComponent, relMe} = Astro.props
+const isExternalLink = new URL(href, Astro.url).hostname !== Astro.url.hostname
 ---
 
-<a href={href} data-umami-event='link' data-umami-event-href={href} class={className} aria-label={ariaLabel} target={targetBlank? '_blank': '_self'} rel={relMe? 'me': ''}>
+<a
+href={href} data-umami-event='link'
+data-umami-event-href={href}
+class={className}
+aria-label={ariaLabel}
+target={isExternalLink? '_blank': '_self'}
+rel={relMe? 'me': ''}
+>
 	{ IconComponent && <IconComponent /> } <slot />
 </a>

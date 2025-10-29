@@ -8,6 +8,7 @@ const {id, name, description, imageSrc, videoSrc, poster, features, todos, links
 
 const githubUrl = links?.github
 const websiteUrl = links?.website
+const preferedUrl = websiteUrl || githubUrl
 
 const position = positionRight?
 	{
@@ -27,38 +28,42 @@ const position = positionRight?
 ---
 
 <div class={`flex flex-col ${position.flex} gap-6 bg-slate-50 rounded p-4`}>
-	{imageSrc &&
-		<div class="flex justify-center flex-1">
-		<div class="my-auto">
-			<Picture src={imageSrc} alt={name} class='rounded m-auto' width={kantu.width / 3} densities={[1, 2, 3]}/>
-		</div>
-		</div>
-	}
+	<Link href={preferedUrl}>
+		{imageSrc &&
+			<div class="flex justify-center flex-1">
+			<div class="my-auto">
+				<Picture src={imageSrc} alt={name} class='rounded m-auto' width={kantu.width / 3} densities={[1, 2, 3]}/>
+			</div>
+			</div>
+		}
 
-	{videoSrc &&
-		<VideoPlayer id={id} videoSrc={videoSrc} poster={poster}/>
-	}
+		{videoSrc &&
+			<VideoPlayer id={id} videoSrc={videoSrc} poster={poster}/>
+		}
+	</Link>
 
 	<div class={`flex flex-col flex-1 justify-between gap-8`}>
-		<div class="flex flex-col gap-2">
-			<h3 class={`${position.text} text-left flex gap-1 text-lg ${position.justify} items-baseline`}>
-				{name}
-			</h3>
-			
-			<p class={`${position.text} text-left  ${position.margin} font-semibold text-xl`}>
-				<Fragment set:html={description}/>
-			</p>
-		</div>
+		<Link href={preferedUrl}>
+			<div class="flex flex-col gap-2">
+				<h3 class={`${position.text} text-left flex gap-1 text-lg ${position.justify} items-baseline`}>
+					{name}
+				</h3>
+				
+				<p class={`${position.text} text-left  ${position.margin} font-semibold text-xl`}>
+					<Fragment set:html={description}/>
+				</p>
+			</div>
 
-		<div class="flex flex-col gap-2">
-			{features?.map((feature: string) => <p class={`text-sm flex gap-1 ${position.reverse}`}>
-				{feature} <CheckIcon customClasses='size-4 mt-1' />
-			</p>)}
+			<div class="flex flex-col gap-2">
+				{features?.map((feature: string) => <p class={`text-sm flex gap-1 ${position.reverse}`}>
+					{feature} <CheckIcon customClasses='size-4 mt-1' />
+				</p>)}
 
-			{todos?.map((todo: string) => <p class={`${position.justify} text-sm flex gap-1`}>
-				{todo} <BookmarkIcon customClasses='size-4 mt-auto' />
-			</p>)}
-		</div>
+				{todos?.map((todo: string) => <p class={`${position.justify} text-sm flex gap-1`}>
+					{todo} <BookmarkIcon customClasses='size-4 mt-auto' />
+				</p>)}
+			</div>
+		</Link>
 
 		<div class={`flex gap-4 ${position.justify} justify-end items-center`}>
 			{githubUrl && <Link class="bg-slate-900 py-1 px-3 rounded text-white" aria-label='github' href={githubUrl} IconComponent={GithubIcon}/>}

@@ -18,7 +18,7 @@
 	},
 	"projects": {
 		"title": "Projects",
-		"subtitle": "Trying to make a living out of this. Not there yet.",
+		"subtitle": "Working on building a living from this. Getting closer every day.",
 		"saftcv": {
 			"name": "SAFT (CV) for Goods Generator",
 			"description": "Generates SAF-T CV for Goods from an Excel file",

@@ -3,6 +3,7 @@ import {PackageIcon, StarIcon, DownloadIcon} from 'astro-feather';
 import {t} from 'i18next'
 import Section from './ui/Section.astro';
 import Link from './Link.astro';
+import TitleGroup from './ui/TitleGroup.astro';
 
 const githubAuth = import.meta.env.GITHUB_AUTH
 
@@ -25,26 +26,31 @@ const repos = await Promise.all(githubRepos.map(async (repo: any) => {
 	return {...repo, downloads}
 }))
 ---
-<Section id="repos" title={t('repos.title')} subtitle={t('repos.subtitle')}>
+<div id="repos" class="my-8">
+	<TitleGroup title={t('repos.title')} subtitle={t('repos.subtitle')} />
 	<ul id="github-repos" class="flex flex-col gap-8">
 		{repos
 		.filter((repo) => !repo.fork)
-		.map((repo) => <li class="flex flex-col gap-2">
-			<div class="flex justify-between">
-				<Link href={repo.html_url} class="flex items-center gap-2">
-					<PackageIcon customClasses='size-4' /> {repo.name}
-				</Link>
-				<div class="flex gap-4">
-					{repo.downloads > 0 && <div class="flex justify-between items-center gap-1">
-						<DownloadIcon customClasses='size-4'/> {repo.downloads}
-					</div>}
+		.map((repo) => <Link href={repo.html_url}>
+			<li class="flex flex-col gap-2 bg-slate-50 rounded p-4">
+				<div class="flex justify-between">
+					<span class="flex items-center gap-2">
+						<PackageIcon customClasses='size-4' /> {repo.name}
+					</span>
+					<div class="flex gap-4">
+						{repo.downloads > 0 &&
+						<div class="flex justify-between items-center gap-1">
+							<DownloadIcon customClasses='size-4'/> {repo.downloads}
+						</div>}
 
-					{repo.stargazers_count > 0 && <div class="flex justify-between items-center gap-1">
-						<StarIcon customClasses='size-4'/> {repo.stargazers_count}
-					</div>}
-				</div> 
-			</div>
-			<p>{repo.description ?? '...'}</p>
-		</li>)}
+						{repo.stargazers_count > 0 &&
+						<div class="flex justify-between items-center gap-1">
+							<StarIcon customClasses='size-4'/> {repo.stargazers_count}
+						</div>}
+					</div> 
+				</div>
+				<p>{repo.description ?? '...'}</p>
+			</li>
+		</Link>)}
 	</ul>
-</Section>
+</div>

@@ -9,11 +9,9 @@ import Markview from '../../assets/markview.png'
 import ExcelToSaft from '../../assets/excel-to-saftcv.png'
 
 import Project from './Project.astro'
-import Section from '../ui/Section.astro'
 ---
 
-<Section id='projects' title={t('projects.title')} subtitle={t('projects.subtitle')}>
-	<div class="flex flex-col gap-16">
+<div id='projects'>
 		<Project
 		imageSrc={kantu}
 		name={t('projects.kantu.name')}

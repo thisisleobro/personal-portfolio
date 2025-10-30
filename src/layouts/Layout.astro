@@ -34,10 +34,14 @@ const {title, showLanguageMenu = true} = Astro.props
 		<Posthog />
 		<Umami />
 	</head>
-	<body class={`text-slate-800 stroke-slate-800 min-h-dvh`}>
-		<Navigation showLanguageMenu={showLanguageMenu} />
-		<slot />
-		<Footer />
+	<body class={`text-slate-800 stroke-slate-800   `}>
+		<Navigation showLanguageMenu={showLanguageMenu}/>
+		<div class="mx-4 flex flex-col min-h-dvh justify-between">
+			<!-- an empty div to push content down -->
+			<div />
+			<slot />
+			<Footer />
+		</div>
 	</body>
 </html>
 

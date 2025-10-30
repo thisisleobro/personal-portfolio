@@ -10,8 +10,8 @@ const commit = import.meta.env.SOURCE_COMMIT;
 // const branch = import.meta.env.COOLIFY_BRANCH
 
 ---
-<footer class="min-h-16 flex flex-col items-center justify-center px-8 gap-2 text-base">
-	<div class="flex w-full border-b py-8 gap-32">
+<footer class="min-h-16 flex flex-col items-center justify-center gap-2 text-base">
+	<div class="flex py-4 gap-32 w-full">
 		<div class="flex flex-col">
 			<h2 class="text-lg mb-4">{author}</h2>
 			<!-- <div class="flex sm:justify-end justify-center flex-1 w-8 h-8">
@@ -34,7 +34,8 @@ const commit = import.meta.env.SOURCE_COMMIT;
 			</u>
 		</div>
 	</div>
-	<div class="flex w-full row justify-between text-slate-600 text-sm my-4">
+	<div class="border-b w-full" />
+	<div class="flex w-full row justify-between text-slate-600 text-sm py-4">
 		<p>
 			Copyright © {new Date().getFullYear()} - Leo Carvalho
 		</p>

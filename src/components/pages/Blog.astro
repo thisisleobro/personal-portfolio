@@ -17,19 +17,19 @@ const currentLanguageDescription = languages.find((language: any) => language.ke
 		<TitleGroup  title="Blog" />
 		<ul class="flex flex-col">
 			{posts
-				.filter(post => post.data.language === Astro.currentLocale)
-				.map(({data, body, rendered, render, collection, slug, filePath}) =>
+			.filter(post => post.data.language === Astro.currentLocale)
+			.map(({data, body, rendered, render, collection, slug, filePath}) =>
+				<Link href={new URL(slug, currentUrl).toString()}>
 				<li class={`flex flex-col gap-4 bg-slate-50 rounded p-4`}>
-					<h3 class="text-2xl">
-						<Link href={new URL(slug, currentUrl).toString()}>{data.title}</Link>
-					</h3>
+					<h3 class="text-2xl">{data.title}</h3>
 					<div class="flex justify-between">
 						<span class="text-slate-600">
 							{new Intl.DateTimeFormat(Astro.currentLocale, {dateStyle: "full"}).format(data.pubDate)}
 						</span>
-						<Link href={slug} IconComponent={ArrowRightIcon} class="py-1 px-3 rounded " />
+						<ArrowRightIcon />
 					</div>
-				</li>)
+				</li>
+				</Link>)
 			}
 		</ul>
 	</div>

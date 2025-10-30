@@ -2,9 +2,9 @@
 import { getCollection } from "astro:content"
 import Layout from "../../layouts/Layout.astro"
 import { languages } from "../../lib/i18n"
-import Section from "../ui/Section.astro"
 import Link from "../Link.astro"
 import { ArrowRightIcon } from "astro-feather"
+import TitleGroup from "../ui/TitleGroup.astro"
 
 const currentUrl = Astro.url.pathname.endsWith('/')? Astro.url: new URL(Astro.url.pathname.concat('/'), Astro.url)
 const posts = await getCollection('blog')
@@ -13,8 +13,9 @@ const currentLanguageDescription = languages.find((language: any) => language.ke
 
 ---
 <Layout title={`Blog (${currentLanguageDescription})`}>
-	<Section title="Blog" class="min-h-max">
-		<ul class="flex flex-col gap-4">
+	<div class="">
+		<TitleGroup  title="Blog" />
+		<ul class="flex flex-col">
 			{posts
 				.filter(post => post.data.language === Astro.currentLocale)
 				.map(({data, body, rendered, render, collection, slug, filePath}) =>
@@ -31,5 +32,5 @@ const currentLanguageDescription = languages.find((language: any) => language.ke
 				</li>)
 			}
 		</ul>
-	</Section>
+	</div>
 </Layout>

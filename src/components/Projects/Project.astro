@@ -53,7 +53,9 @@ const position = positionRight?
 					<Fragment set:html={description}/>
 				</p>
 			</div>
+		</Link>
 
+		<Link href={preferedUrl}>
 			<div class="flex flex-col gap-2">
 				{features?.map((feature: string) => <p class={`text-sm flex gap-1 ${position.reverse}`}>
 					{feature} <CheckIcon customClasses='size-4 mt-1' />

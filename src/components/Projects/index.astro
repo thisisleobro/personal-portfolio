@@ -14,15 +14,7 @@ import TitleGroup from '../ui/TitleGroup.astro'
 
 <div id='projects'>
 	<TitleGroup title={t('projects.title')} subtitle={t('projects.subtitle')} />
-	<div class="flex flex-col gap-8">
-		<Project
-		imageSrc={kantu}
-		name={t('projects.kantu.name')}
-		description={t('projects.kantu.description')}
-		features={t('projects.kantu.features', { returnObjects: true })}
-		todos={t('projects.kantu.todos', {returnObjects: true})}
-		/>
-
+	<div class="flex flex-col gap-4">
 <!-- 		<Project
 		id={'Keypirinha-qrcode'}
 		name={t('projects.keypirinha-qrcode.name')}
@@ -58,6 +50,14 @@ import TitleGroup from '../ui/TitleGroup.astro'
 		links={{
 			website: 'https://saft.carvalho.cv',
 		}}
+		/>
+
+		<Project
+		imageSrc={kantu}
+		name={t('projects.kantu.name')}
+		description={t('projects.kantu.description')}
+		features={t('projects.kantu.features', { returnObjects: true })}
+		todos={t('projects.kantu.todos', {returnObjects: true})}
 		/>
 
 	</div>

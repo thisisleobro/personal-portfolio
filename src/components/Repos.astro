@@ -25,7 +25,7 @@ const repos = await Promise.all(githubRepos.map(async (repo: any) => {
 	return {...repo, downloads}
 }))
 ---
-<div id="repos" class="my-8">
+<section id="repos" class="my-8">
 	<TitleGroup title={t('repos.title')} subtitle={t('repos.subtitle')} />
 	<ul id="github-repos" class="flex flex-col gap-4">
 		{repos
@@ -52,4 +52,4 @@ const repos = await Promise.all(githubRepos.map(async (repo: any) => {
 			</li>
 		</Link>)}
 	</ul>
-</div>
+</section>

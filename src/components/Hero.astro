@@ -6,7 +6,7 @@ import { GithubIcon, MailIcon } from "astro-feather";
 import Link from './Link.astro';
 
 ---
-<div id='hero'>
+<section id='hero'>
 	<div class="flex flex-col sm:flex-row min-h-[90dvh] m-auto align-middle gap-8">
 		<div class="flex sm:justify-end justify-center flex-1 w-full sm:items-center items-end">
 			<Fragment set:html={profile} />
@@ -32,7 +32,7 @@ import Link from './Link.astro';
 		</div>
 	</div>
 	<Scroll anchor='projects' id='scroll-element'/>
-</div>
+</section>
 <script>
 	document.addEventListener('astro:page-load', function() {
 		const scroll = document.getElementById('scroll-element')

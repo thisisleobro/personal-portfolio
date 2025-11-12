@@ -13,7 +13,7 @@ body {
 #profile {
 	fill: none;
 	stroke-width: 2px;
-	height: 200px;
+	height: 220px;
 }
 
 @layer components {

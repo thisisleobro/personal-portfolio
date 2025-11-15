@@ -1,13 +1,17 @@
 import type { GetStaticPathsResult } from "astro";
-import i18next from 'i18next'
+import i18next, { type Resource } from 'i18next'
 import { defaultLocale } from "../constants";
+import translationJson from '../assets/i18n/en/translation.json'
+
+type Locale = typeof translationJson;
 
 
-const matches = import.meta.glob('../assets/i18n/**/translation.json', { eager: true });
-export const translations = Object.values(matches) as any;
-export const languages = translations.map(({lang_key, lang_description}: any) => ({key: lang_key, description: lang_description}))
-export const localeKeys = translations.map(({lang_key}: {lang_key: string}) => lang_key)
-export const locales = translations.reduce((acc: any, cur: any) => ({ ...acc, [cur.lang_key]: cur.lang_key }), {})
+const matches: Record<string, Locale> = import.meta.glob('../assets/i18n/**/translation.json', { eager: true });
+// matches keys are the file paths like: '../assets/i18n/en/translation.json'
+export const translations = Object.values(matches);
+export const languages = translations.map(({lang_key, lang_description}) => ({key: lang_key, description: lang_description}))
+export const localeKeys = translations.map(({lang_key}) => lang_key)
+
 
 export const getStaticPathsImpl = () => localeKeys
 	.filter((locale: string) => locale !== defaultLocale)
@@ -20,15 +24,10 @@ export const getStaticPathsImpl = () => localeKeys
 		[]
 	)
 
-export const initI18n = async (currentLocale) => {
-	const resources = {};
+export const initI18n = async (currentLocale: string) => {
+	const resources: Resource = {};
 
-	translations.forEach((translation) => {
-		resources[translation.lang_key] = {}
-		resources[translation.lang_key].translation = {...translation}
-	});
-
-	// console.log('resources', resources)
+	translations.forEach((translation) => resources[translation.lang_key] = { translation } )
 
 	await i18next.init({
 		lng: currentLocale,

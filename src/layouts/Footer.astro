@@ -26,12 +26,12 @@ const commit = import.meta.env.SOURCE_COMMIT;
 		<!-- Links -->
 		<div class="pt-1">
 			<h2 class="mb-4 text-lg">Links</h2>
-			<u class="list-none no-underline flex flex-col gap-2 text-md">
+			<ul class="list-none no-underline flex flex-col gap-2 text-md">
 				{languages.map((language: any) =>
 					<li><Link href={getRelativeLocaleUrl(language.key, 'blog')}>Blog ({language.description})</Link></li>
 				)}
 				<li><Link href='/sitemap-index.xml'>Sitemap</Link></li>
-			</u>
+			</ul>
 		</div>
 	</div>
 	<div class="border-b w-full" />

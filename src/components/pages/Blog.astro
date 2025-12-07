@@ -9,14 +9,14 @@ import TitleGroup from "../ui/TitleGroup.astro"
 const currentUrl = Astro.url.pathname.endsWith('/')? Astro.url: new URL(Astro.url.pathname.concat('/'), Astro.url)
 const posts = await getCollection('blog')
 
-const currentLanguageDescription = languages.find((language: any) => language.key === Astro.currentLocale).description
+const currentLanguageDescription = languages.find((language) => language.key === Astro.currentLocale).description
 
 ---
 <Layout title={`Blog (${currentLanguageDescription})`}>
 	<div class="w-full">
 		<div class="max-w-4xl m-auto">
 			<TitleGroup  title="Blog" />
-			<ul class="flex flex-col">
+			{posts &&<ul class="flex flex-col">
 				{posts
 				.filter(post => post.data.language === Astro.currentLocale)
 				.map(({data, body, rendered, render, collection, slug, filePath}) =>
@@ -32,7 +32,7 @@ const currentLanguageDescription = languages.find((language: any) => language.ke
 					</li>
 					</Link>)
 				}
-			</ul>
+			</ul>}
 		</div>
 	</div>
 </Layout>

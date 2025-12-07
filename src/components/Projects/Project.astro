@@ -61,8 +61,8 @@ const position = positionRight?
 					{feature} <CheckIcon customClasses='size-4 mt-1' />
 				</p>)}
 
-				{todos?.map((todo: string) => <p class={`${position.justify} text-sm flex gap-1`}>
-					{todo} <BookmarkIcon customClasses='size-4 mt-auto' />
+				{todos?.map((todo: string) => <p class={`text-sm flex gap-1 ${position.reverse}`}>
+					{todo} <BookmarkIcon customClasses='size-4 mt-1' />
 				</p>)}
 			</div>
 		</Link>

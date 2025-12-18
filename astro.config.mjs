@@ -11,6 +11,9 @@ const site = process.env.SITE_URL || 'http://localhost:4321'
 // https://astro.build/config
 export default defineConfig({
   site,
+  redirects: {
+    '/en': '/',
+  },
   // trailingSlash: 'never',
   i18n: {
     defaultLocale,

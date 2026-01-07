@@ -11,7 +11,7 @@ const commit = import.meta.env.SOURCE_COMMIT;
 
 ---
 <footer class="min-h-16 flex flex-col items-center justify-center gap-2 text-base">
-	<div class="flex py-4 gap-32 w-full">
+	<div class="flex py-4 gap-8 w-full">
 		<div class="flex flex-col">
 			<h2 class="text-lg mb-4">{author}</h2>
 			<!-- <div class="flex sm:justify-end justify-center flex-1 w-8 h-8">
@@ -24,7 +24,7 @@ const commit = import.meta.env.SOURCE_COMMIT;
 		</div>
 
 		<!-- Links -->
-		<div class="pt-1">
+		<div class="">
 			<h2 class="mb-4 text-lg">Links</h2>
 			<ul class="list-none no-underline flex flex-col gap-2 text-md">
 				{languages.map((language: any) =>

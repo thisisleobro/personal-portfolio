@@ -24,7 +24,7 @@ export const getStaticPathsImpl = () => localeKeys
 		[]
 	)
 
-export const initI18n = async (currentLocale: string) => {
+export const initI18n = async (currentLocale: string = defaultLocale ) => {
 	const resources: Resource = {};
 
 	translations.forEach((translation) => resources[translation.lang_key] = { translation } )

@@ -9,6 +9,7 @@
 		"title": "Não encontrado",
 		"path": "Caminho"
 	},
+	"empty": "Parece estar vazio",
 	"hero": {
 		"title": "Sobre",
 		"design": "Sou o Leo. <span class=\"active\">Projeto</span>",

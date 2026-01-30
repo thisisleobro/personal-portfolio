@@ -1,13 +1,11 @@
 ---
-import Hero from '../Hero.astro';
-import Projects from '../Projects/index.astro';
-import Repos from '../Repos.astro';
+import Hero from '../sections/Hero.astro';
+import Projects from '../sections/Projects/index.astro';
+import Repos from '../sections/Repos.astro';
 import Layout from '../../layouts/Layout.astro';
 ---
 <Layout title='Portfolio'>
-	<div class="max-w-4xl m-auto">
-		<Hero/>
-		<Projects/>	
-		<Repos/>
-	</div>
+	<Hero/>
+	<Projects/>	
+	<Repos/>
 </Layout>

@@ -13,26 +13,24 @@ const currentLanguageDescription = languages.find((language) => language.key ===
 
 ---
 <Layout title={`Blog (${currentLanguageDescription})`}>
-	<div class="w-full">
-		<div class="max-w-4xl m-auto">
-			<TitleGroup  title="Blog" />
-			{posts &&<ul class="flex flex-col">
-				{posts
-				.filter(post => post.data.language === Astro.currentLocale)
-				.map(({data, body, rendered, render, collection, slug, filePath}) =>
-					<Link href={new URL(slug, currentUrl).toString()}>
-					<li class={`flex flex-col gap-4 bg-slate-50 rounded p-4`}>
-						<h3 class="text-2xl">{data.title}</h3>
-						<div class="flex justify-between">
-							<span class="text-slate-600">
-								{new Intl.DateTimeFormat(Astro.currentLocale, {dateStyle: "full"}).format(data.pubDate)}
-							</span>
-							<ArrowRightIcon />
-						</div>
-					</li>
-					</Link>)
-				}
-			</ul>}
-		</div>
+	<div class="max-w-4xl m-auto">
+		<TitleGroup  title="Blog" />
+		{posts && <ul class="flex flex-col">
+			{posts
+			.filter(post => post.data.language === Astro.currentLocale)
+			.map(({data, body, rendered, render, collection, slug, filePath}) =>
+				<Link href={new URL(slug, currentUrl).toString()}>
+				<li class={`flex flex-col gap-4 bg-slate-50 rounded p-4`}>
+					<h3 class="text-2xl">{data.title}</h3>
+					<div class="flex justify-between">
+						<span class="text-slate-600">
+							{new Intl.DateTimeFormat(Astro.currentLocale, {dateStyle: "full"}).format(data.pubDate)}
+						</span>
+						<ArrowRightIcon />
+					</div>
+				</li>
+				</Link>)
+			}
+		</ul>}
 	</div>
 </Layout>

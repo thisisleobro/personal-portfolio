@@ -1,9 +1,9 @@
 ---
 import { Picture } from 'astro:assets'
-import kantu from '../../assets/kantu.png'
+import kantu from '../../../assets/kantu.png'
 import { GithubIcon, CheckIcon, BookmarkIcon, ArrowRightIcon } from 'astro-feather';
-import VideoPlayer from '../ui/VideoPlayer.astro';
-import Link from '../Link.astro';
+import VideoPlayer from '../../ui/VideoPlayer.astro';
+import Link from '../../Link.astro';
 const {id, name, description, imageSrc, videoSrc, poster, features, todos, links, positionRight} = Astro.props
 
 const githubUrl = links?.github

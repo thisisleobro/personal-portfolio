@@ -3,14 +3,14 @@ import '../styles/global.css'
 import Posthog from '../components/Analytics/Posthog.astro'
 import Umami from '../components/Analytics/Umami.astro'
 
-import {author} from '../constants'
+import {siteName, defaultLocale} from '../constants'
 import {t} from 'i18next'
 import { initI18n } from '../lib/i18n'
 import Footer from './Footer.astro'
 import Navigation from './Nav.astro'
 import { ClientRouter } from "astro:transitions"
 
-await initI18n(Astro.currentLocale)
+await initI18n(Astro.currentLocale || defaultLocale)
 
 interface Props {
 	showLanguageMenu?: boolean,
@@ -18,7 +18,7 @@ interface Props {
 }
 
 const {title, showLanguageMenu = true} = Astro.props
-const actualTitle = title? `${title} | ${author}`: author
+const actualTitle = title? `${title} | ${siteName}`: siteName
 ---
 <!doctype html>
 <html lang={Astro.currentLocale}>
@@ -32,11 +32,11 @@ const actualTitle = title? `${title} | ${author}`: author
 		<title>{actualTitle}</title>
 		<meta name="apple-mobile-web-app-title" content={actualTitle} />
 		<meta name="description" content={t('description')} />
-		<meta name="author" content={author} />
+		<!-- <meta name="author" content={author} /> -->
 		<link rel="sitemap" href="/sitemap-index.xml" />
-		<ClientRouter />
 		<Posthog />
 		<Umami />
+		<ClientRouter />
 	</head>
 	<body class={`text-slate-800 stroke-slate-800   `}>
 		<Navigation showLanguageMenu={showLanguageMenu}/>
@@ -44,18 +44,11 @@ const actualTitle = title? `${title} | ${author}`: author
 			<!-- an empty div to push content down -->
 			<div />
 			<main>
-				<slot />
+				<div class="max-w-4xl m-auto">
+					<slot />
+				</div>
 			</main>
 			<Footer />
 		</div>
 	</body>
 </html>
-
-<script>
-	document.addEventListener('astro:page-load', () => {
-		const email = ['c', 'a', 'r', 'v', 'a', 'l', 'h', 'o', '@', 'p', 'o', 's', 't', '.', 'c', 'o', 'm']
-		const emailElements = document.querySelectorAll('a.author-email')
-
-		emailElements.forEach((element) => (element as HTMLAnchorElement).href = `mailto:${email.join('')}`)
-	})
-</script>

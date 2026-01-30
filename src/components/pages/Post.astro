@@ -15,7 +15,7 @@ const publicationDate = dateFormat.format(post?.data.pubDate)
 ---
 
 <Layout showLanguageMenu={false} title={post?.data.title}>
-	<article class="max-w-4xl mx-auto">
+	<article>
 		<TitleGroup title={post?.data.title} subtitle={publicationDate} />
 		{<ul class="p-4 bg-slate-50 rounded mb-4">
 			{post?.render().then((result) => result.headings.map((heading) => <li><Link href={`#${heading.slug}`}>

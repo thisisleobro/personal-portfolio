@@ -2,7 +2,7 @@
 // import profile from '../assets/profile.svg?raw'
 import {getRelativeLocaleUrl} from 'astro:i18n';
 import {t} from 'i18next'
-import { author, email } from '../constants';
+import { siteName, email } from '../constants';
 import Link from '../components/Link.astro';
 import { languages } from '../lib/i18n';
 import { GithubIcon, MailIcon } from 'astro-feather';
@@ -13,7 +13,7 @@ const commit = import.meta.env.SOURCE_COMMIT;
 <footer class="min-h-16 flex flex-col items-center justify-center gap-2 text-base">
 	<div class="flex py-4 gap-8 w-full">
 		<div class="flex flex-col">
-			<h2 class="text-lg mb-4">{author}</h2>
+			<h2 class="text-lg mb-4">{siteName}</h2>
 			<!-- <div class="flex sm:justify-end justify-center flex-1 w-8 h-8">
 				<Fragment set:html={profile} />
 			</div> -->
@@ -37,7 +37,7 @@ const commit = import.meta.env.SOURCE_COMMIT;
 	<div class="border-b w-full" />
 	<div class="flex flex-col sm:flex-row w-full sm:text-inherit text-center gap-2 justify-between text-slate-600 text-sm py-4">
 		<p>
-			Copyright © {new Date().getFullYear()} - Leo Carvalho
+			Copyright © {new Date().getFullYear()} - {siteName}
 		</p>
 
 		<p>

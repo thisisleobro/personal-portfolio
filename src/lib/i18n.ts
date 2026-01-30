@@ -9,7 +9,7 @@ type Locale = typeof translationJson;
 const matches: Record<string, Locale> = import.meta.glob('../assets/i18n/**/translation.json', { eager: true });
 // matches keys are the file paths like: '../assets/i18n/en/translation.json'
 export const translations = Object.values(matches);
-export const languages = translations.map(({lang_key, lang_description}) => ({key: lang_key, description: lang_description}))
+export const languages = translations.map(({lang_key, lang_description}) => ({key: lang_key, description: lang_description})) || []
 export const localeKeys = translations.map(({lang_key}) => lang_key)
 
 

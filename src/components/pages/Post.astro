@@ -14,7 +14,7 @@ const dateFormat = new Intl.DateTimeFormat(Astro.currentLocale, {dateStyle: "ful
 const publicationDate = dateFormat.format(post?.data.pubDate)
 ---
 
-<Layout showLanguageMenu={false} title={post?.data.title}>
+<Layout showLanguageMenu={false} title={post?.data.title || 'No title'}>
 	<article>
 		<TitleGroup title={post?.data.title} subtitle={publicationDate} />
 		{<ul class="p-4 bg-slate-50 rounded mb-4">

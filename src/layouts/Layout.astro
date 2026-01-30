@@ -1,42 +1,25 @@
 ---
 import '../styles/global.css'
-import Posthog from '../components/Analytics/Posthog.astro'
-import Umami from '../components/Analytics/Umami.astro'
 
-import {siteName, defaultLocale} from '../constants'
-import {t} from 'i18next'
+import {defaultLocale} from '../constants'
 import { initI18n } from '../lib/i18n'
 import Footer from './Footer.astro'
 import Navigation from './Nav.astro'
-import { ClientRouter } from "astro:transitions"
+import Head from './Head.astro'
 
 await initI18n(Astro.currentLocale || defaultLocale)
 
 interface Props {
 	showLanguageMenu?: boolean,
-	title: string | undefined,
+	title: string,
 }
 
 const {title, showLanguageMenu = true} = Astro.props
-const actualTitle = title? `${title} | ${siteName}`: siteName
 ---
 <!doctype html>
 <html lang={Astro.currentLocale}>
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" type="image/png" href="/favicon.png" />
-		<link rel="apple-touch-icon" href="/favicon.png">
-		<meta name="generator" content={Astro.generator} />
-		<title>{actualTitle}</title>
-		<meta name="apple-mobile-web-app-title" content={actualTitle} />
-		<meta name="description" content={t('description')} />
-		<!-- <meta name="author" content={author} /> -->
-		<link rel="sitemap" href="/sitemap-index.xml" />
-		<Posthog />
-		<Umami />
-		<ClientRouter />
+		<Head title={title}/>
 	</head>
 	<body class={`text-slate-800 stroke-slate-800   `}>
 		<Navigation showLanguageMenu={showLanguageMenu}/>

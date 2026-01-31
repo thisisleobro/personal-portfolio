@@ -6,12 +6,16 @@ import { languages } from "../../lib/i18n"
 import Link from "../Link.astro"
 import { ArrowRightIcon } from "astro-feather"
 import TitleGroup from "../ui/TitleGroup.astro"
+import { initI18n } from '../../lib/i18n'
 
 const currentUrl = Astro.url.pathname.endsWith('/')? Astro.url: new URL(Astro.url.pathname.concat('/'), Astro.url)
 const posts = await getCollection('blog')
 const postsInCurrentLanguage = posts.filter(post => post.data.language === Astro.currentLocale)
 
 const currentLanguageDescription = languages.find((language) => language.key === Astro.currentLocale).description
+
+
+initI18n(Astro.currentLocale)
 ---
 <Layout title={`Blog (${currentLanguageDescription})`}>
 	<div class="max-w-4xl m-auto">

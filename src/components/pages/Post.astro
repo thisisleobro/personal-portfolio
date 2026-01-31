@@ -7,16 +7,19 @@ import Link from "../Link.astro"
 
 const post = await getEntry('blog', Astro.params.post as string)
 
-console.log(post?.slug)
-
 const dateFormat = new Intl.DateTimeFormat(Astro.currentLocale, {dateStyle: "full"})
 
-const publicationDate = dateFormat.format(post?.data.pubDate)
+const publicationDateFormated = dateFormat.format(post?.data.publishedDate)
 ---
 
-<Layout showLanguageMenu={false} title={post?.data.title || 'No title'}>
+<Layout
+showLanguageMenu={false}
+title={post?.data.title || 'No title'}
+pubDatetime={post?.data.publishedDate}
+modDatetime={post?.data.updatedDate}
+>
 	<article>
-		<TitleGroup title={post?.data.title} subtitle={publicationDate} />
+		<TitleGroup title={post?.data.title} subtitle={publicationDateFormated} />
 		{<ul class="p-4 bg-slate-50 rounded mb-4">
 			{post?.render().then((result) => result.headings.map((heading) => <li><Link href={`#${heading.slug}`}>
 				{heading.text}

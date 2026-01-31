@@ -18,11 +18,11 @@ await initI18n(Astro.currentLocale || defaultLocale)
 interface Props {
 	showLanguageMenu?: boolean,
 	title: string,
-	description: string,
-	socialImageUrl: string,
-	author: string,
-	pubDatetime: Date | undefined,
-	modDatetime: Date | undefined,
+	description?: string,
+	socialImageUrl?: string,
+	author?: string | undefined,
+	pubDatetime?: Date,
+	modDatetime?: Date,
 }
 
 const {

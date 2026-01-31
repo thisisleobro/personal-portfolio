@@ -13,9 +13,6 @@ const posts = await getCollection('blog')
 const postsInCurrentLanguage = posts.filter(post => post.data.language === Astro.currentLocale)
 
 const currentLanguageDescription = languages.find((language) => language.key === Astro.currentLocale).description
-
-
-initI18n(Astro.currentLocale)
 ---
 <Layout title={`Blog (${currentLanguageDescription})`}>
 	<div class="max-w-4xl m-auto">

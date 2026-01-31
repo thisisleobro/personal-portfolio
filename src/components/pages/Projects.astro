@@ -1,7 +1,8 @@
 ---
+import {t} from 'i18next'
 import ProjectsSection from '../sections/Projects/index.astro';
 import Layout from '../../layouts/Layout.astro';
 ---
-<Layout title='Projects'>
+<Layout title={t('projects.title')}>
 	<ProjectsSection/>	
 </Layout>

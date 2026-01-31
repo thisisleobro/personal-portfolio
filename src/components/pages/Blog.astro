@@ -6,7 +6,6 @@ import { languages } from "../../lib/i18n"
 import Link from "../Link.astro"
 import { ArrowRightIcon } from "astro-feather"
 import TitleGroup from "../ui/TitleGroup.astro"
-import { initI18n } from '../../lib/i18n'
 
 const currentUrl = Astro.url.pathname.endsWith('/')? Astro.url: new URL(Astro.url.pathname.concat('/'), Astro.url)
 const posts = await getCollection('blog')
@@ -25,7 +24,7 @@ const currentLanguageDescription = languages.find((language) => language.key ===
 					<h3 class="text-2xl">{data.title}</h3>
 					<div class="flex justify-between">
 						<span class="text-slate-600">
-							{new Intl.DateTimeFormat(Astro.currentLocale, {dateStyle: "full"}).format(data.pubDate)}
+							{new Intl.DateTimeFormat(Astro.currentLocale, {dateStyle: "full"}).format(data.publishedDate)}
 						</span>
 						<ArrowRightIcon />
 					</div>

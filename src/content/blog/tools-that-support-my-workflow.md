@@ -2,6 +2,7 @@
 language: en
 title: Tools that support my workflow
 publishedDate: '2025-10-13'
+updatedDate: '2025-10-13'
 ---
 ### **Browsers**
 

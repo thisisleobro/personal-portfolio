@@ -32,7 +32,7 @@ const {showLanguageMenu} = Astro.props
 	<Link href={getRelativeLocaleUrl(Astro.currentLocale || '', '/')}>{siteName}</Link>
 
 	<div class="group">
-		<button class="sm:hidden block">
+		<button class="sm:hidden block" aria-label="Hamburger menu">
 			<MenuIcon />
 		</button>
 		<div id="nav-links" class="h-auto bg-transparent gap-4 text-center hidden sm:flex items-center justify-center transition-all delay-1000

@@ -30,8 +30,8 @@ const repos = await Promise.all(githubRepos.map(async (repo: any) => {
 	<ul id="github-repos" class="flex flex-col gap-4">
 		{repos
 		.filter((repo) => !repo.fork)
-		.map((repo) => <Link href={repo.html_url}>
-			<li class="flex flex-col gap-2 bg-slate-50 rounded p-4">
+		.map((repo) => <li class="flex flex-col gap-2 bg-slate-50 rounded p-4">
+				<Link href={repo.html_url}>
 				<div class="flex justify-between">
 					<span class="flex items-center gap-2">
 						<PackageIcon customClasses='size-4' /> {repo.name}
@@ -49,7 +49,7 @@ const repos = await Promise.all(githubRepos.map(async (repo: any) => {
 					</div> 
 				</div>
 				<p>{repo.description ?? '...'}</p>
-			</li>
-		</Link>)}
+				</Link>
+			</li>)}
 	</ul>
 </section>

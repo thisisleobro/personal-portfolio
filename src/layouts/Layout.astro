@@ -80,9 +80,7 @@ const actualTitle = title? `${title} | ${siteName}`: siteName
 				person_profiles: 'always', // or 'always' to create profiles for anonymous users as well
 			})
 		</script>}
-
-		{umamiWebsiteId && <script is:inline defer src="https://analytics.carvalho.cv/script.js" data-website-id={umamiWebsiteId}></script>}
-
+		
 		<ClientRouter />
 	</head>
 	<body class={`text-slate-800 stroke-slate-800   `}>

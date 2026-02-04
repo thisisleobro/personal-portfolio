@@ -14,8 +14,7 @@ const isExternalLink = new URL(href, Astro.url).hostname !== Astro.url.hostname
 ---
 
 <a
-href={href} data-umami-event='link'
-data-umami-event-href={href}
+href={href}
 class={className}
 aria-label={ariaLabel}
 target={isExternalLink? '_blank': '_self'}

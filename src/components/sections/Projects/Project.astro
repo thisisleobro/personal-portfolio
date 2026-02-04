@@ -61,10 +61,12 @@ const position = positionRight?
 			</p>)}
 		</div>
 
-		<div class={`flex gap-4 ${position.justify} justify-end items-center z-0`}>
-			{githubUrl && <Link class="bg-slate-900 py-1 px-3 rounded text-white" aria-label='github' href={githubUrl} IconComponent={GithubIcon}/>}
+		<div class={`flex gap-4 ${position.justify} justify-end items-center`}>
+			<div class="flex z-0">
+				{githubUrl && <Link class="bg-slate-900 py-1 px-3 rounded text-white" aria-label='github' href={githubUrl} IconComponent={GithubIcon}/>}
 
-			{websiteUrl && <Link class="bg-blue-600 py-1 px-3 rounded text-white" aria-label='website' href={websiteUrl} IconComponent={ArrowRightIcon} />}
+				{websiteUrl && <Link class="bg-blue-600 py-1 px-3 rounded text-white" aria-label='website' href={websiteUrl} IconComponent={ArrowRightIcon} />}
+			</div>
 		</div>
 
 	</div>

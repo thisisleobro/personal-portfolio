@@ -4,22 +4,37 @@ import Layout from "../../layouts/Layout.astro"
 import '../../styles/post.css'
 import TitleGroup from "../ui/TitleGroup.astro"
 import Link from "../Link.astro"
+import sanitizeHtml from 'sanitize-html'
+
 
 const post = await getEntry('blog', Astro.params.post as string)
+
+const title = post?.data.title || 'No title'
+
+const postText = sanitizeHtml(post?.rendered?.html || '', {
+  allowedTags: [],
+  allowedAttributes: {}
+});
 
 const dateFormat = new Intl.DateTimeFormat(Astro.currentLocale, {dateStyle: "full"})
 
 const publicationDateFormated = dateFormat.format(post?.data.publishedDate)
+
+const description = [
+	title.length > 150? title.slice(0, 147).concat('...'): title,
+	postText.length > 150? postText.slice(0, 147).concat('...'): postText,
+].join(' ')
 ---
 
 <Layout
 showLanguageMenu={false}
-title={post?.data.title || 'No title'}
+title={title}
 pubDatetime={post?.data.publishedDate}
 modDatetime={post?.data.updatedDate}
+description={description}
 >
 	<article>
-		<TitleGroup title={post?.data.title} subtitle={publicationDateFormated} />
+		<TitleGroup title={title} subtitle={publicationDateFormated} />
 		{<ul class="p-4 bg-slate-50 rounded mb-4">
 			{post?.render().then((result) => result.headings.map((heading) => <li><Link href={`#${heading.slug}`}>
 				{heading.text}

@@ -5,6 +5,7 @@ import '../../styles/post.css'
 import TitleGroup from "../ui/TitleGroup.astro"
 import Link from "../Link.astro"
 import sanitizeHtml from 'sanitize-html'
+import Scroll from "../ui/Scroll.astro"
 
 
 const post = await getEntry('blog', Astro.params.post as string)
@@ -42,4 +43,13 @@ description={description}
 		</ul>}
 		<Fragment set:html={post?.rendered?.html}/>
 	</article>
+	<div class="sticky flex justify-end bottom-8 pointer-events-none">
+		<Scroll
+		id='scroll-to-top'
+		direction="up"
+		anchor='#'
+		containerClass='transition-all delay-500 pointer-events-auto'
+		iconClass='bg-blue-100 rounded-[50%] p-2'
+		/>
+	</div>
 </Layout>

@@ -4,11 +4,13 @@ interface Props {
 	anchor: string,
 	direction?: 'down' | 'up',
 	id?: string,
+	containerClass?: string,
+	iconClass?: string,
 }
-const {id = 'scroll', anchor, direction = 'down'} = Astro.props
+const {id = 'scroll', anchor, direction = 'down', containerClass, iconClass} = Astro.props
 ---
-<button class="absolute right-[50%] translate-x-[50%] bottom-8 transition-all delay-500" id={id} aria-label="Scroll down">
-	<div class="animate-bounce bg-blue-200 rounded-[50%] p-2">
+<button class={containerClass} id={id} aria-label="Scroll down">
+	<div class={iconClass}>
 		{direction === 'down' && <ChevronDownIcon />}
 		{direction === 'up' && <ChevronUpIcon />}
 	</div>

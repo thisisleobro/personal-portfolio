@@ -32,11 +32,16 @@ import { email } from '../../constants'
 			</div>
 		</div>
 	</div>
-	<Scroll anchor='projects' id='scroll-element'/>
+	<Scroll
+	id='scroll-to-featured-projects'
+	anchor='projects'
+	containerClass="absolute right-[50%] translate-x-[50%] bottom-8 transition-all delay-500"
+	iconClass="animate-bounce bg-blue-200 rounded-[50%] p-2"
+	/>
 </section>
 <script>
 	document.addEventListener('astro:page-load', function() {
-		const scroll = document.getElementById('scroll-element')
+		const scroll = document.getElementById('scroll-to-featured-projects')
 
 		window.addEventListener('scroll', (_event) => {
 			if (scrollY > 50) {

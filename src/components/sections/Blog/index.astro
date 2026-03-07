@@ -1,0 +1,33 @@
+---
+import {t} from 'i18next'
+import { getCollection } from "astro:content"
+import Link from "@components/Link.astro"
+import { ArrowRightIcon } from "astro-feather"
+import TitleGroup from "@components/ui/TitleGroup.astro"
+
+const currentUrl = Astro.url.pathname.endsWith('/')? Astro.url: new URL(Astro.url.pathname.concat('/'), Astro.url)
+const posts = await getCollection('blog')
+const postsInCurrentLanguage = posts.filter(post => post.data.language === Astro.currentLocale)
+const emptyDescription = t("empty")
+---
+<section id='blog' class="max-w-4xl m-auto">
+	<TitleGroup  title="Blog" />
+	{postsInCurrentLanguage.length != 0 ?
+	<ul class="flex flex-col">
+		{postsInCurrentLanguage
+		.map(({data, body, rendered, render, collection, slug, filePath}) =>
+			<Link href={new URL(slug, currentUrl).toString()}>
+			<li class={`flex flex-col gap-4 bg-slate-50 rounded p-4`}>
+				<h3 class="text-2xl">{data.title}</h3>
+				<div class="flex justify-between">
+					<span class="text-slate-600">
+						{new Intl.DateTimeFormat(Astro.currentLocale, {dateStyle: "full"}).format(data.publishedDate)}
+					</span>
+					<ArrowRightIcon />
+				</div>
+			</li>
+			</Link>)
+		}
+	</ul>:
+	<span>{emptyDescription}</span>}
+</section>

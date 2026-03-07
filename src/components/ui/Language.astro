@@ -30,7 +30,10 @@ const {label, defaultLocale, currentLocale, languages, class: className} = Astro
 		.filter(({key: languageToChangeTo}: Language) => currentLocale !== languageToChangeTo)
 		.map(({key: languageToChangeTo, description}: Language) => {
 			if (languageToChangeTo === defaultLocale) {
-				const url = '/' + Astro.url.pathname.split('/').filter((str) => str).slice(1).join('/')
+				const url = '/' + Astro.url.pathname.split('/')
+					.filter((str) => str)
+					.slice(1)
+					.join('/')
 				return <a href={url}>{description}</a>
 			}
 

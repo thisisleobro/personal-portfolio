@@ -3,7 +3,7 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from "@astrojs/sitemap";
 
 import { defaultLocale } from './src/constants';
-import { localeKeys } from './src/lib/i18n'
+import { localeKeys } from './src/libs/i18n'
 
 const site = process.env.SITE_URL || 'http://localhost:4321'
 

@@ -4,7 +4,7 @@ import {getRelativeLocaleUrl} from 'astro:i18n';
 import {t} from 'i18next'
 import { siteName, email } from '../constants';
 import Link from '../components/Link.astro';
-import { languages } from '../lib/i18n';
+import { languages } from '@libs/i18n';
 import { GithubIcon, MailIcon } from 'astro-feather';
 const commit = import.meta.env.SOURCE_COMMIT;
 // const branch = import.meta.env.COOLIFY_BRANCH

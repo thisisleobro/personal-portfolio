@@ -4,7 +4,7 @@ import {t} from 'i18next'
 import {MenuIcon} from 'astro-feather'
 import { siteName, defaultLocale } from '../constants'
 import { getRelativeLocaleUrl } from 'astro:i18n'
-import { languages } from '../lib/i18n';
+import { languages } from '@libs/i18n';
 import Link from '../components/Link.astro'
 
 interface Props {
@@ -21,7 +21,7 @@ const links: {href: string, label?: string, Component?: Function}[] = [
 		label: t('projects.title'),
 	},
 	{
-		href: getRelativeLocaleUrl(Astro.currentLocale || '', 'blog'),
+		href: getRelativeLocaleUrl(Astro.currentLocale || '', '/').concat('blog'),
 		label: 'Blog',
 	},
 ]

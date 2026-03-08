@@ -10,7 +10,7 @@ const currentLocale = Astro.currentLocale || defaultLocale
 const postsInCurrentLanguage = await getPosts(Astro.currentLocale || defaultLocale)
 const blogUrl = getUrlForLocale(new URL('/blog', Astro.url), defaultLocale, currentLocale).url.toString()
 ---
-<section id='blog' class="max-w-4xl m-auto">
+<section id='blog'>
 	<Heading  title="Blog" />
 	{postsInCurrentLanguage.length != 0 ?
 	<ul class="flex flex-col">

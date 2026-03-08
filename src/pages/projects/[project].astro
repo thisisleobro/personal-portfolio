@@ -1,22 +1,10 @@
 ---
-import PostComponent from '../../components/pages/Post.astro'
+import ProjectsPage from '../../components/pages/Projects.astro'
 import { type GetStaticPathsResult } from 'astro';
-import { defaultLocale } from '../../constants';
-import { getCollection } from 'astro:content';
 
 export const getStaticPaths = async(): Promise<GetStaticPathsResult> => {
-	const posts = await getCollection('blog')
-
-	return posts
-	.filter((post) => post.data.language === defaultLocale)
-	.reduce((multiPosts: GetStaticPathsResult, post) => {
-		return multiPosts.concat({
-			params: {
-				post: post.slug
-			}
-		})
-	}, [])
+	return []
 }
 
 ---
-<PostComponent />
+<ProjectsPage />

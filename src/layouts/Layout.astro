@@ -7,15 +7,18 @@ import { initI18n } from '@libs/i18n'
 import Footer from './Footer.astro'
 import Navigation from './Nav.astro'
 import { ClientRouter } from 'astro:transitions'
+import { getLocalizedUrls } from '@libs/i18n'
 
 const posthogApiKey = import.meta.env.POSTHOG_API_KEY
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.url)
+const localizedUrls = getLocalizedUrls(Astro.url, Astro.currentLocale || defaultLocale)
+const defaultLocalization = localizedUrls
+	.find(localize => localize.lang === defaultLocale)
 
 await initI18n(Astro.currentLocale || defaultLocale)
 
 interface Props {
-	showLanguageMenu?: boolean,
+	isLocalized?: boolean,
 	title: string,
 	description?: string,
 	socialImageUrl?: string,
@@ -25,7 +28,7 @@ interface Props {
 }
 
 const {
-	showLanguageMenu = true,
+	isLocalized = true,
 	title = siteName,
 	description = t('description'),
 	socialImageUrl = new URL('/favicon-1024.png', Astro.url),
@@ -49,22 +52,30 @@ const actualTitle = title? `${title} | ${siteName}`: siteName
 		<meta name="description" content={description} />
 		<meta name="author" content={author} />
 		<link rel="sitemap" href="/sitemap-index.xml" />
-		<link rel="canonical" href={canonicalURL} />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" type="image/png" href="/favicon-32.png" />
 		<link rel="apple-touch-icon" href="/favicon-32.png">
+
+		<link rel="canonical" href={Astro.url} />
+		{isLocalized &&
+			<link rel="alternate" hreflang="x-default" href={defaultLocalization?.url} />
+		}
+		{isLocalized && localizedUrls
+			.map((localized) =>
+				<link rel="alternate" hreflang={localized.lang} href={localized.url}>)
+		}
 
 		<meta name="generator" content={Astro.generator} />
 
 		<!-- Open Graph / Facebook -->
 		<meta property="og:title" content={actualTitle} />
 		<meta property="og:description" content={description} />
-		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:url" content={Astro.url} />
 		<meta property="og:image" content={socialImageUrl} />
 
 		<!-- Twitter -->
 		<meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content={canonicalURL} />
+		<meta property="twitter:url" content={Astro.url} />
 		<meta property="twitter:title" content={actualTitle} />
 		<meta property="twitter:description" content={description} />
 		<meta property="twitter:image" content={socialImageUrl} />
@@ -83,7 +94,7 @@ const actualTitle = title? `${title} | ${siteName}`: siteName
 		<ClientRouter />
 	</head>
 	<body class={`text-slate-800 stroke-slate-800   `}>
-		<Navigation showLanguageMenu={showLanguageMenu}/>
+		<Navigation showLanguageMenu={isLocalized}/>
 		<div class="mx-4 flex flex-col min-h-dvh justify-between">
 			<!-- an empty div to push content down -->
 			<div />

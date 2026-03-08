@@ -1,17 +1,16 @@
 ---
-import Language from '../components/ui/Language.astro'
+import LanguageSwitcher from '@components/LanguageSwitcher.astro'
 import {t} from 'i18next'
 import {MenuIcon} from 'astro-feather'
-import { siteName, defaultLocale } from '../constants'
+import { siteName } from '../constants'
 import { getRelativeLocaleUrl } from 'astro:i18n'
-import { languages } from '@libs/i18n';
 import Link from '../components/Link.astro'
 
 interface Props {
 	showLanguageMenu?: boolean
 }
 
-const links: {href: string, label?: string, Component?: Function}[] = [
+const links: {href: string, label: string}[] = [
 	{
 		href: getRelativeLocaleUrl(Astro.currentLocale || '', '/').concat('#'),
 		label: t('hero.title'),
@@ -29,7 +28,11 @@ const links: {href: string, label?: string, Component?: Function}[] = [
 const {showLanguageMenu} = Astro.props
 ---
 <nav class="flex justify-between sticky p-4 left-0 top-0 righ-0 z-50 bg-white">
-	<Link href={getRelativeLocaleUrl(Astro.currentLocale || '', '/')}>{siteName}</Link>
+	<Link
+	href={getRelativeLocaleUrl(Astro.currentLocale || '', '/')}
+	aria-label={siteName}>
+		{siteName}
+	</Link>
 
 	<div class="group">
 		<button class="sm:hidden block" aria-label="Hamburger menu">
@@ -49,16 +52,17 @@ const {showLanguageMenu} = Astro.props
 		sm:group-focus-within:bg-auto
 		group-focus-within:backdrop-blur-xl
 		">
-			{links.map((link) => <Link href={link.href} class='text-xl sm:text-base'>{link.label}</Link>)}
+			{links.map((link) =>
+				<Link
+				aria-label={link.label}
+				href={link.href} class='text-xl sm:text-base'>
+					{link.label}
+				</Link>)
+			}
 
 			{showLanguageMenu &&
-			<Language
-			class="text-xl sm:text-base"
-			label={languages.find(language => language.key === Astro.currentLocale)?.description || ''}
-			currentLocale={Astro.currentLocale}
-			defaultLocale={defaultLocale}
-			languages={languages}
-			/>}
+				<LanguageSwitcher class="text-xl sm:text-base" />
+			}
 		</div>
 	</div>
 </nav>

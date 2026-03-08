@@ -2,10 +2,18 @@
 import HeroSection from '@components/sections/Hero/index.astro';
 import ProjectsSection from '@components/sections/Projects/index.astro';
 import ReposSection from '@components/sections/Repos/index.astro';
+import BlogSection from '@components/sections/Blog/index.astro';
 import Layout from '@layouts/Layout.astro';
 ---
 <Layout title='Portfolio'>
 	<HeroSection/>
-	<ProjectsSection/>	
+	<ProjectsSection
+	featured={[
+		// 'Keypirinha-qrcode',
+		'markview',
+		'excel-to-saft',
+		// 'kantu',
+	]}/>	
 	<ReposSection/>
+	<BlogSection />
 </Layout>

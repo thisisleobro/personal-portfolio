@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import PostComponent from '@components/pages/Post.astro';
+import { type GetStaticPathsResult } from 'astro';
+import { localeKeys } from '@libs/i18n';
+import { defaultLocale } from '../../../constants';
+
+
+export const getStaticPaths = async(): Promise<GetStaticPathsResult> => {
+	const posts = await getCollection('blog')
+
+	return localeKeys
+	.filter((locale: string) => locale !== defaultLocale)
+	.reduce((paths: GetStaticPathsResult, locale: string) => {
+		return paths.concat(
+			posts
+			.filter((post) => post.data.language === locale)
+			.reduce((multiPosts: GetStaticPathsResult, post) => {
+				return multiPosts.concat({
+					params: {
+						lang: locale,
+						post: post.slug
+					}
+				})
+			}, [])
+		)
+	}, [])
+}
+---
+<PostComponent />

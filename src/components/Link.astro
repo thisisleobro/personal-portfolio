@@ -4,7 +4,7 @@ import { GithubIcon } from "astro-feather";
 interface Props {
 	href: string,
 	class?: string,
-	'aria-label'?: string,
+	'aria-label': string,
 	IconComponent?: typeof GithubIcon,
 	relMe?: boolean
 }
@@ -18,7 +18,7 @@ href={href}
 class={className}
 aria-label={ariaLabel}
 target={isExternalLink? '_blank': '_self'}
-rel={relMe? 'me': ''}
+rel={relMe? 'me': undefined}
 >
 	{ IconComponent && <IconComponent /> } <slot />
 </a>

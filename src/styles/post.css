@@ -1,7 +1,7 @@
 
 
 h1, h2, h3, h4, h5 {
-	@apply mb-4 mt-6 text-3xl
+	@apply mb-4 mt-6 text-3xl font-semibold
 }
 
 p {

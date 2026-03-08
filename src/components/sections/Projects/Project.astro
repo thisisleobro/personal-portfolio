@@ -1,13 +1,42 @@
 ---
 import { Picture } from 'astro:assets'
-import kantu from '../../../assets/kantu.png'
 import { GithubIcon, CheckIcon, BookmarkIcon, ArrowRightIcon } from 'astro-feather';
-import VideoPlayer from '../../ui/VideoPlayer.astro';
-import Link from '../../Link.astro';
-const {id, name, description, imageSrc, videoSrc, poster, features, todos, links, positionRight} = Astro.props
+import VideoPlayer from '../../Video.astro';
+import Link from '@components/Link.astro';
 
-const githubUrl = links?.github
-const websiteUrl = links?.website
+interface Props {
+	id: string,
+	name: string,
+	description: string,
+	imageSrc?: ImageMetadata,
+	videoSrc?: string,
+	poster?: string,
+	features?: any,
+	todos?: any,
+	links?: {
+		github?: string,
+		website?: string,
+	},
+	featuredProjects?: string[]
+	positionRight?: boolean,
+}
+
+const {
+	id,
+	name,
+	description,
+	imageSrc,
+	videoSrc,
+	poster,
+	features = [],
+	todos = [],
+	links = {},
+	featuredProjects,
+	positionRight,
+} = Astro.props
+
+const githubUrl = links.github
+const websiteUrl = links.website
 const preferedUrl = websiteUrl || githubUrl
 
 const position = positionRight?
@@ -25,14 +54,21 @@ const position = positionRight?
 		reverse: 'sm:justify-end',
 	}
 ---
-
-<div class={`flex flex-col ${position.flex} gap-6 bg-slate-50 rounded p-4 relative`}>
+{!featuredProjects || featuredProjects.includes(id)?
+<li class={`flex flex-col ${position.flex} gap-6 bg-slate-50 rounded p-4 relative`}>
 	{preferedUrl && <Link class="absolute inset-0 bg-transparent" href={preferedUrl} aria-label='Preferred Url'/>}
 	{imageSrc &&
 		<div class="flex justify-center flex-1">
-		<div class="my-auto">
-			<Picture src={imageSrc} alt={name} class='rounded m-auto' width={kantu.width / 3} densities={[1, 2, 3]}/>
-		</div>
+			<div class="my-auto">
+				<Picture
+				src={imageSrc}
+				alt={name}
+				class='rounded m-auto'
+				width={imageSrc.width / 3}
+				height={imageSrc.height / 3}
+				densities={[1, 2, 3]}
+				/>
+			</div>
 		</div>
 	}
 
@@ -68,6 +104,7 @@ const position = positionRight?
 				{websiteUrl && <Link class="bg-blue-600 py-1 px-3 rounded text-white" aria-label='website' href={websiteUrl} IconComponent={ArrowRightIcon} />}
 			</div>
 		</div>
-
 	</div>
-</div>
+</li>:
+""
+}

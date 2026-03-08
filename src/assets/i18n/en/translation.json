@@ -9,7 +9,6 @@
 		"title": "Not found",
 		"path": "Path"
 	},
-	"empty": "Seems empty here",
 	"hero": {
 		"title": "About",
 		"design": "I'm Leo. I <span class=\"active\">design</span>",
@@ -19,6 +18,7 @@
 	},
 	"projects": {
 		"title": "Projects",
+		"title_featured": "Featured projects",
 		"subtitle": "Working on building a living from this. Getting closer every day.",
 		"saftcv": {
 			"name": "SAFT (CV) for Goods Generator",
@@ -62,5 +62,8 @@
 	"repos": {
 		"title": "Open source",
 		"subtitle": "Want to contribute more to open source. Here some repos i pulled from my github"
-	}
+	},
+  "blog": {
+    "empty": "Seems empty here"
+  }
 }

@@ -2,10 +2,10 @@
 import { getEntry } from "astro:content"
 import Layout from "../../layouts/Layout.astro"
 import '../../styles/post.css'
-import TitleGroup from "../ui/TitleGroup.astro"
 import Link from "../Link.astro"
 import sanitizeHtml from 'sanitize-html'
-import Scroll from "../ui/Scroll.astro"
+import Scroll from "../Scroll.astro"
+import Heading from "@components/Heading.astro"
 
 
 const post = await getEntry('blog', Astro.params.post as string)
@@ -28,18 +28,20 @@ const description = [
 ---
 
 <Layout
-showLanguageMenu={false}
+isLocalized={false}
 title={title}
 pubDatetime={post?.data.publishedDate}
 modDatetime={post?.data.updatedDate}
 description={description}
 >
 	<article>
-		<TitleGroup title={title} subtitle={publicationDateFormated} />
+		<Heading title={title} subtitle={publicationDateFormated} level={1} />
 		{<ul class="p-4 bg-slate-50 rounded mb-4">
-			{post?.render().then((result) => result.headings.map((heading) => <li><Link href={`#${heading.slug}`}>
-				{heading.text}
-			</Lin></li>))}
+			{post?.render().then((result) => result.headings.map((heading) => <li>
+				<Link href={`#${heading.slug}`} aria-label={heading.text}>
+					{heading.text}
+				</Link>
+			</li>))}
 		</ul>}
 		<Fragment set:html={post?.rendered?.html}/>
 	</article>

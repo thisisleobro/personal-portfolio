@@ -1,0 +1,18 @@
+---
+import Link from "@components/Link.astro";
+
+interface Props {
+	url: string,
+	description: string,
+	class?: string,
+	'aria-label': string,
+}
+
+const {url, description, "aria-label": ariaLabel} = Astro.props
+
+---
+<div class="flex flex-col gap-2 bg-slate-50 rounded p-4 relative">
+	<Link class='absolute inset-0 bg-transparent' aria-label={ariaLabel} href={url} />
+	<slot />
+	<p class="text-slate-600">{description}</p>
+</div>

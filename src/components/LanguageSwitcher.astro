@@ -1,44 +1,30 @@
 ---
 import {t} from 'i18next';
 import {ChevronDownIcon} from 'astro-feather';
-import { getRelativeLocaleUrl } from 'astro:i18n';
-
-type Language = {
-	key: string,
-	description: string,
-}
+import { getLocalizedUrls } from '@libs/i18n';
+import { defaultLocale } from '../constants';
 
 interface Props {
-	label: string,
-	defaultLocale: string,
-	currentLocale: string | undefined,
-	languages: Language[],
 	class: string,
 }
 
-const {label, defaultLocale, currentLocale, languages, class: className} = Astro.props
+const { class: className } = Astro.props
+
+const localizedUrls = getLocalizedUrls(Astro.url, Astro.currentLocale || defaultLocale)
+const currentLocalized = localizedUrls.find((localized) => localized.lang === Astro.currentLocale)
 ---
 
 <div class={`relative inline-block text-left dropdown ${className}`}>
 	<button class="flex column items-center gap-1 w-full justify-center mx-auto" aria-label={t('languages')}>
 		<svg  width="14" height="14" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path class="st0" d="M2,16c0.1,0,8-5,9-7c0.6-1.3,1-5,1-5h3H1h7V1"/> <line class="st0" x1="4" y1="8" x2="12" y2="16"/> <polygon class="st0" points="15,19 21,19 23,23 18,11 13,23 "/> </svg>
-		<span>{label}</span>
+		<span>{currentLocalized?.description}</span>
 		<ChevronDownIcon size={16} class:list={'flex'}/>
 	</button>
 	<div class="bg-white p-2 border rounded hidden flex-col dropdown-menu w-full absolute sm:right-0 :smleft-auto gap-2">
-		{languages
-		.filter(({key: languageToChangeTo}: Language) => currentLocale !== languageToChangeTo)
-		.map(({key: languageToChangeTo, description}: Language) => {
-			if (languageToChangeTo === defaultLocale) {
-				const url = '/' + Astro.url.pathname.split('/')
-					.filter((str) => str)
-					.slice(1)
-					.join('/')
-				return <a href={url}>{description}</a>
-			}
-
-			return <a href={getRelativeLocaleUrl(languageToChangeTo, Astro.url.pathname)}>{description}</a>
-		})}
+		{localizedUrls
+			.filter((localized) => localized.lang !== Astro.currentLocale)
+			.map((localized) => <a href={localized.url}>{localized.description}</a>)
+		}
 	</div>
 </div>
 

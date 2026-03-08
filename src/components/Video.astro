@@ -1,0 +1,57 @@
+---
+import { PlayIcon } from 'astro-feather'
+
+interface Props {
+	id: string,
+	videoSrc: string,
+	poster?: string
+}
+
+const {id, videoSrc, poster} = Astro.props
+
+const videoId = `${id}-video-video`
+const playOverlayId  = `${id}-video-play`
+---
+<div class="flex-1 relative cursor-pointer">
+	<video
+	src={videoSrc}
+	loop={true}
+	muted={true}
+	poster={poster}
+	id={videoId}
+	class="rounded"
+	/>
+	<div class="absolute top-0 bottom-0 left-0 right-0 flex items-center justify-center" id={playOverlayId}>
+		<PlayIcon customClasses='stroke-white flex' size={32}/>
+	</div>
+</div>
+<script is:inline define:vars={{ id, videoId,  playOverlayId}}>
+	document.addEventListener('astro:page-load', () => {
+		const videoOverlay = document.getElementById(playOverlayId)
+
+		const playVideo = () => {
+			const video = document.getElementById(videoId)
+
+			if (video) {
+				video.play()
+				const videoOverlay = document.getElementById(playOverlayId)
+				videoOverlay && (videoOverlay.style.display = "none")
+				video.onclick = (e) => { e.stopPropagation(); pauseVideo()}
+			}
+		}
+
+		const pauseVideo = () => {
+			const video = document.getElementById(videoId)
+
+			if (video) {
+				video.pause()
+				const videoOverlay = document.getElementById(playOverlayId)
+				videoOverlay && (videoOverlay.style.display = "flex")
+				
+				video.onclick = (e) => {e.stopPropagation; playVideo()}
+			}
+		}
+
+		videoOverlay && (videoOverlay.onclick = (e) => {e.stopPropagation();playVideo()})
+	})
+</script>

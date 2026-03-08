@@ -1,0 +1,53 @@
+---
+interface Props {
+	level?: number
+	title: string,
+	subtitle?: string,
+	className?: string,
+}
+
+const {level = 2, title, subtitle, className} = Astro.props
+
+const defaultClassName = "text-3xl font-semibold pt-4 w-full mb-2 mt-4"
+---
+<div class="mb-6 text-left">
+	{level === 1 &&
+	<h1 class={className || defaultClassName}>
+		{title}
+	</h1>
+	}
+	
+	{level === 2 &&
+	<h2 class={className || defaultClassName}>
+		{title}
+	</h2>
+	}
+	
+	{level === 3 &&
+	<h3 class={className || defaultClassName}>
+		{title}
+	</h3>
+	}
+	
+	{level === 4 &&
+	<h4 class={className || defaultClassName}>
+		{title}
+	</h4>
+	}
+
+	{level === 5 &&
+	<h5 class={className || defaultClassName}>
+		{title}
+	</h5>
+	}
+
+	{level === 6 &&
+	<h6 class={className ||defaultClassName}>
+		{title}
+	</h6>
+	}
+
+	<span class="text-xl text-slate-600">
+		{subtitle}
+	</span>
+</div>

@@ -1,10 +1,9 @@
 import type { GetStaticPathsResult } from "astro";
-import i18next, { type Resource } from 'i18next'
 import { defaultLocale } from "../constants";
-import translationJson from '../assets/i18n/en/translation.json'
-import { getRelativeLocaleUrl } from "astro:i18n";
+import defaultTranslationJson from '../assets/i18n/en/translation.json'
+import i18next, { type Resource } from "i18next";
 
-type Locale = typeof translationJson & {default: typeof translationJson};
+type Locale = typeof defaultTranslationJson & {default: typeof defaultTranslationJson};
 
 
 const matches: Record<string, Locale> = import.meta.glob('../assets/i18n/**/translation.json', { eager: true });
@@ -44,36 +43,4 @@ export const initI18n = async (currentLocale: string = defaultLocale ) => {
 		defaultNS: 'translation',
 		resources,
 	});
-}
-
-export const getLocalizedUrls = (currentUrl: URL, currentLocale: string): LocalizedUrl[] => {
-	return languages
-	.reduce((urls, {key, description}) => {
-		if (key === currentLocale) {
-			return urls.concat({
-				lang: currentLocale,
-				url: currentUrl,
-				description,
-			})
-		}
-
-		if (key === defaultLocale) {
-			const url = '/' + currentUrl.pathname.split('/')
-				.filter((str) => str)
-				.slice(1)
-				.join('/')
-
-			return urls.concat({
-				lang: key,
-				url: new URL(url, currentUrl.origin),
-				description,
-			})
-		}
-
-		return urls.concat({
-			lang: key,
-			url: new URL(getRelativeLocaleUrl(key, currentUrl.pathname), currentUrl.origin),
-			description,
-		})
-	}, [] as LocalizedUrl[])
 }

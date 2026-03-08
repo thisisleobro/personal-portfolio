@@ -7,11 +7,11 @@ import { initI18n } from '@libs/i18n'
 import Footer from './Footer.astro'
 import Navigation from './Nav.astro'
 import { ClientRouter } from 'astro:transitions'
-import { getLocalizedUrls } from '@libs/i18n'
+import { getUrlInAllLocales } from '../utils/getUrlInAllLocales'
 
 const posthogApiKey = import.meta.env.POSTHOG_API_KEY
 
-const localizedUrls = getLocalizedUrls(Astro.url, Astro.currentLocale || defaultLocale)
+const localizedUrls = getUrlInAllLocales(Astro.url, Astro.currentLocale || defaultLocale)
 const defaultLocalization = localizedUrls
 	.find(localize => localize.lang === defaultLocale)
 

@@ -2,7 +2,7 @@
 import {t} from 'i18next';
 import {ChevronDownIcon} from 'astro-feather';
 import { defaultLocale } from '../constants';
-import { getUrlInAllLocales } from '../utils/getUrlInAllLocales';
+import { getUrlForAllLocales } from '../utils/getUrlForAllLocales';
 
 interface Props {
 	class: string,
@@ -10,7 +10,7 @@ interface Props {
 
 const { class: className } = Astro.props
 
-const localizedUrls = getUrlInAllLocales(Astro.url, Astro.currentLocale || defaultLocale)
+const localizedUrls = getUrlForAllLocales(Astro.url, Astro.currentLocale || defaultLocale)
 const currentLocalized = localizedUrls.find((localized) => localized.lang === Astro.currentLocale)
 ---
 

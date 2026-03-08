@@ -1,14 +1,14 @@
 ---
 import {t} from 'i18next'
-import Link from "@components/Link.astro"
-import { ArrowRightIcon } from "astro-feather"
 import { defaultLocale } from '../../../constants'
 import {getPosts} from '@libs/posts'
 import Heading from '@components/Heading.astro'
 import ClickableCard from '@components/Cards/ClickableCard.astro'
+import {getUrlForLocale} from '@utils/getUrlForLocale'
 
-const currentUrl = Astro.url.pathname.endsWith('/')? Astro.url: new URL(Astro.url.pathname.concat('/'), Astro.url)
+const currentLocale = Astro.currentLocale || defaultLocale
 const postsInCurrentLanguage = await getPosts(Astro.currentLocale || defaultLocale)
+const blogUrl = getUrlForLocale(new URL('/blog', Astro.url), defaultLocale, currentLocale).url.toString()
 ---
 <section id='blog' class="max-w-4xl m-auto">
 	<Heading  title="Blog" />
@@ -28,7 +28,7 @@ const postsInCurrentLanguage = await getPosts(Astro.currentLocale || defaultLoca
 				<ClickableCard
 				aria-label={new Intl.DateTimeFormat(Astro.currentLocale, {dateStyle: "full"}).format(data.publishedDate)}
 				description={new Intl.DateTimeFormat(Astro.currentLocale, {dateStyle: "full"}).format(data.publishedDate)}
-				url={new URL(slug, currentUrl).toString()}
+				url={new URL(slug, blogUrl).toString()}
 				>
 					<h3>{data.title}</h3>
 				</ClickableCard>
